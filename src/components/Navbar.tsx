@@ -7,6 +7,7 @@ const navLinks = [
   { href: '/canon', label: 'The Canon' },
   { href: '/echoverse', label: 'Echoverse' },
   { href: '/shop', label: 'Shop' },
+  { href: '/news', label: 'News' },
   { href: '/contact', label: 'Contact' },
 ];
 
