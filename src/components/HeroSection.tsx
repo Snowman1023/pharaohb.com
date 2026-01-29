@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import healingFrequency from '@/assets/healing-frequency.avif';
 
 export function HeroSection() {
   const scrollToSection = (href: string) => {
@@ -10,6 +11,14 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        style={{ backgroundImage: `url(${healingFrequency})` }}
+      />
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
+      
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         {/* Decorative ornament */}
