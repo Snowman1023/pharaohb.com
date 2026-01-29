@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button';
-import goldenOrnament from '@/assets/golden-ornament.jpg';
 
 export function HeroSection() {
   const scrollToSection = (href: string) => {
@@ -11,19 +10,6 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Golden Ornament Logo - Central Element */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="relative">
-          <img 
-            src={goldenOrnament} 
-            alt="Golden Sacred Geometry" 
-            className="w-[400px] h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain opacity-40 animate-rotate-slow"
-          />
-          {/* Glow effect behind ornament */}
-          <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full scale-75" />
-        </div>
-      </div>
-
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         {/* Decorative ornament */}
