@@ -12,14 +12,12 @@ const Contact = () => {
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // PLACEHOLDER: Newsletter form submission
     console.log('Newsletter signup:', email);
     setEmail('');
   };
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // PLACEHOLDER: Contact form submission
     console.log('Contact form:', contactForm);
     setContactForm({ name: '', email: '', message: '' });
   };
@@ -27,8 +25,8 @@ const Contact = () => {
   return (
     <PageLayout>
       <PageHeader 
-        title="Connect"
-        subtitle="Reach out to the sacred realm"
+        title="Contact"
+        subtitle="A simple way to reach me."
         symbol="𓂋"
       />
 
@@ -37,13 +35,10 @@ const Contact = () => {
           {/* Newsletter */}
           <div className="space-y-6">
             <h2 className="font-cinzel text-2xl text-gold-gradient">
-              {/* PLACEHOLDER: Newsletter heading */}
-              Join the Sacred Circle
+              Stay Close
             </h2>
             <p className="font-cormorant text-muted-foreground">
-              {/* PLACEHOLDER: Newsletter description */}
-              Receive transmissions from the eternal realm. Wisdom, updates, and exclusive 
-              offerings delivered to your sanctuary.
+              Periodic updates and new work, delivered directly.
             </p>
             <form onSubmit={handleNewsletterSubmit} className="space-y-4">
               <Input
@@ -65,7 +60,6 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="space-y-6">
             <h2 className="font-cinzel text-2xl text-gold-gradient">
-              {/* PLACEHOLDER: Contact heading */}
               Send a Message
             </h2>
             <form onSubmit={handleContactSubmit} className="space-y-4">
@@ -94,24 +88,18 @@ const Contact = () => {
                 variant="outline"
                 className="w-full font-cinzel text-sm tracking-wider border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground"
               >
-                Send Message
+                Send
               </Button>
             </form>
           </div>
         </div>
       </SectionContainer>
 
-      {/* Social & Location */}
+      {/* Social Links */}
       <SectionContainer className="bg-gradient-to-b from-transparent via-muted/10 to-transparent">
-        <div className="max-w-3xl mx-auto text-center space-y-8">
-          <h2 className="font-cinzel text-2xl text-gold-gradient">
-            {/* PLACEHOLDER: Social heading */}
-            Follow the Journey
-          </h2>
-          
+        <div className="max-w-3xl mx-auto text-center space-y-6">
           <div className="flex justify-center items-center gap-8 flex-wrap">
-            {/* PLACEHOLDER: Social links - replace with actual URLs */}
-            {['Instagram', 'Twitter', 'YouTube', 'TikTok'].map((social) => (
+            {['Instagram', 'Twitter', 'YouTube'].map((social) => (
               <a
                 key={social}
                 href="#"
@@ -120,13 +108,6 @@ const Contact = () => {
                 {social}
               </a>
             ))}
-          </div>
-
-          <div className="pt-8">
-            <p className="font-cormorant text-muted-foreground italic">
-              {/* PLACEHOLDER: Location */}
-              Houston, Texas
-            </p>
           </div>
         </div>
       </SectionContainer>

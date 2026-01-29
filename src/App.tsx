@@ -5,12 +5,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Canon from "./pages/Canon";
-import CanonEntry from "./pages/CanonEntry";
+import Work from "./pages/Work";
+import WorkEntry from "./pages/WorkEntry";
 import Echoverse from "./pages/Echoverse";
 import Shop from "./pages/Shop";
-import News from "./pages/News";
-import NewsArticle from "./pages/NewsArticle";
+import Notes from "./pages/Notes";
+import NoteEntry from "./pages/NoteEntry";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -27,12 +27,12 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/canon" element={<Canon />} />
-          <Route path="/canon/:slug" element={<CanonEntry />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/work/:slug" element={<WorkEntry />} />
           <Route path="/echoverse" element={<Echoverse />} />
           <Route path="/shop" element={<Shop />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/news/:slug" element={<NewsArticle />} />
+          <Route path="/notes" element={<Notes />} />
+          <Route path="/notes/:slug" element={<NoteEntry />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />

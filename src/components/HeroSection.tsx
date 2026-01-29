@@ -23,15 +23,13 @@ export function HeroSection() {
         {/* Main headline */}
         <h1 className="font-cinzel text-4xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-tight">
           <span className="text-gold-gradient text-glow-gold">
-            {/* PLACEHOLDER: [HERO_HEADLINE] */}
-            [HERO_HEADLINE]
+            Pharaoh B.
           </span>
         </h1>
 
         {/* Subhead */}
         <p className="font-cormorant text-xl md:text-2xl text-muted-foreground mb-12 italic max-w-2xl mx-auto">
-          {/* PLACEHOLDER: [HERO_SUBHEAD] */}
-          [HERO_SUBHEAD]
+          Writer. Architect. Mirror. Messenger.
         </p>
 
         {/* CTA Buttons */}
@@ -40,7 +38,7 @@ export function HeroSection() {
             asChild
             className="font-cinzel text-sm tracking-widest px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-500"
           >
-            <Link to="/canon">
+            <Link to="/work">
               Enter the Archive
             </Link>
           </Button>
@@ -51,7 +49,7 @@ export function HeroSection() {
             className="font-cinzel text-sm tracking-widest px-8 py-6 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500"
           >
             <Link to="/shop">
-              Shop Art
+              Shop
             </Link>
           </Button>
         </div>

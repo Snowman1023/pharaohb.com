@@ -3,35 +3,31 @@ import { PageHeader } from '@/components/shared/PageHeader';
 import { SectionContainer } from '@/components/shared/SectionContainer';
 import { cn } from '@/lib/utils';
 
-// PLACEHOLDER: Project data - replace with actual content
+// Projects without category labels
 const projects = [
   {
     id: 1,
-    title: "The Sacred Archives",
-    category: "Digital Experience",
-    description: "An immersive digital sanctuary housing ancient teachings reimagined for the modern soul.",
-    symbol: "𓋹",
+    title: 'The Sacred Archives',
+    description: 'An immersive digital sanctuary housing ancient teachings reimagined for the modern soul.',
+    symbol: '𓋹',
   },
   {
     id: 2,
-    title: "Temple of Echoes",
-    category: "Podcast",
-    description: "Weekly transmissions from the eternal realm, bringing wisdom to your ears.",
-    symbol: "𓇳",
+    title: 'Temple of Echoes',
+    description: 'Weekly transmissions from the eternal realm, bringing wisdom to your ears.',
+    symbol: '𓇳',
   },
   {
     id: 3,
-    title: "The Golden Circle",
-    category: "Community",
-    description: "A sacred gathering of seekers united in the pursuit of self-mastery.",
-    symbol: "𓂓",
+    title: 'The Golden Circle',
+    description: 'A sacred gathering of seekers united in the pursuit of self-mastery.',
+    symbol: '𓂓',
   },
   {
     id: 4,
-    title: "Pharaonic Arts",
-    category: "Visual Art",
-    description: "Original artwork channeling the mystical energy of ancient kingdoms.",
-    symbol: "𓃭",
+    title: 'Pharaonic Arts',
+    description: 'Original artwork channeling the mystical energy of ancient kingdoms.',
+    symbol: '𓃭',
   },
 ];
 
@@ -39,23 +35,15 @@ const Echoverse = () => {
   return (
     <PageLayout>
       <PageHeader 
-        title="The Echoverse"
-        subtitle="Explore the expanding universe of creation"
+        title="Echoverse"
+        subtitle="Projects, collaborations, and other doors."
         symbol="𓆣"
       />
 
       <SectionContainer>
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <p className="font-cormorant text-xl text-muted-foreground">
-            {/* PLACEHOLDER: Echoverse intro text */}
-            Each realm is a gateway to deeper understanding and sacred connection. 
-            Step through these portals to discover new dimensions of wisdom.
-          </p>
-        </div>
-
         {/* Projects grid */}
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <div 
               key={project.id}
               className={cn(
@@ -75,9 +63,6 @@ const Echoverse = () => {
 
               {/* Content */}
               <div className="relative space-y-3">
-                <span className="font-cinzel text-xs tracking-widest text-primary/80 uppercase">
-                  {project.category}
-                </span>
                 <h3 className="font-cinzel text-2xl text-foreground group-hover:text-gold-gradient transition-colors">
                   {project.title}
                 </h3>
