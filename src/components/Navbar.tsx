@@ -68,10 +68,7 @@ export function Navbar() {
                 )} />
               </Link>
             ))}
-            <span className="text-muted-foreground text-sm font-cormorant italic">
-              Houston, Texas
-            </span>
-          </div>
+            </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -116,9 +113,6 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <span className="text-muted-foreground text-sm font-cormorant italic">
-              Houston, Texas
-            </span>
           </div>
         </div>
       </div>
