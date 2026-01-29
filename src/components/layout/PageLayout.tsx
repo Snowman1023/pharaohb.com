@@ -1,19 +1,20 @@
+import { ReactNode } from 'react';
 import { GoldenTorus } from '@/components/GoldenTorus';
 import { Navbar } from '@/components/Navbar';
-import { HeroSection } from '@/components/HeroSection';
-import { AboutSection } from '@/components/AboutSection';
-import { CanonSection } from '@/components/CanonSection';
-import { EchoverseSection } from '@/components/EchoverseSection';
-import { ShopSection } from '@/components/ShopSection';
 import { Footer } from '@/components/Footer';
 import { useScrollProgress } from '@/hooks/useScrollProgress';
 
-const Index = () => {
+interface PageLayoutProps {
+  children: ReactNode;
+  showFooter?: boolean;
+}
+
+export function PageLayout({ children, showFooter = true }: PageLayoutProps) {
   const scrollProgress = useScrollProgress();
 
   return (
     <div className="relative min-h-screen bg-background">
-      {/* 3D Golden Torus Background */}
+      {/* 3D Golden Torus Background - persistent across all pages */}
       <GoldenTorus scrollProgress={scrollProgress} />
       
       {/* Navigation */}
@@ -21,17 +22,13 @@ const Index = () => {
       
       {/* Main Content */}
       <main className="relative z-10">
-        <HeroSection />
-        <AboutSection />
-        <CanonSection />
-        <EchoverseSection />
-        <ShopSection />
+        {children}
       </main>
       
       {/* Footer */}
-      <Footer />
+      {showFooter && <Footer />}
     </div>
   );
-};
+}
 
-export default Index;
+export default PageLayout;
