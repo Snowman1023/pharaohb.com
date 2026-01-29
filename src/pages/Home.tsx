@@ -2,152 +2,165 @@ import { useState } from 'react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { HeroSection } from '@/components/HeroSection';
 import { SectionContainer } from '@/components/shared/SectionContainer';
+import { PlaceholderImage } from '@/components/shared/PlaceholderImage';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
-import { Feather, Eye, Sparkles } from 'lucide-react';
+
+// Recent work entries - no categories, just titles and lines
+const recentWork = [
+  { slug: 'the-book-of-sacred-echoes', title: 'The Book of Sacred Echoes', line: 'A meditation on silence and return.' },
+  { slug: 'letters-to-the-forgotten-throne', title: 'Letters to the Forgotten Throne', line: 'Correspondence with what remains.' },
+  { slug: 'on-sacred-geometry', title: 'On Sacred Geometry', line: 'Form as language. Structure as meaning.' },
+  { slug: 'the-frequency-of-becoming', title: 'The Frequency of Becoming', line: 'Movement through states of being.' },
+  { slug: 'the-law-of-mirrors', title: 'The Law of Mirrors', line: 'Reflection as truth.' },
+  { slug: 'houston-transmission-2024', title: 'Houston Transmission', line: 'Live recording. November 2024.' },
+];
+
+// Featured archive piece
+const featuredPiece = {
+  slug: 'the-architects-blueprint',
+  title: 'The Architect\'s Blueprint',
+  excerpt: 'There is a structure beneath all things. Not imposed, but discovered. The architect does not create the laws of form—only reveals them, traces them, makes them visible to others.',
+};
+
+// Shop items - no categories
+const shopItems = [
+  { id: 1, name: 'The Ankh Pendant', price: '$89' },
+  { id: 2, name: 'Papyrus Journal', price: '$45' },
+  { id: 3, name: 'Sacred Incense Set', price: '$34' },
+];
 
 const Home = () => {
   const [email, setEmail] = useState('');
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // PLACEHOLDER: Implement newsletter signup
     console.log('Newsletter signup:', email);
     setEmail('');
   };
 
   return (
     <PageLayout>
-      {/* Hero Section - kept exactly as-is */}
+      {/* 1. Hero Section */}
       <HeroSection />
       
-      {/* 2. Signature Value Strip */}
-      <SectionContainer className="py-16 border-b border-border/50">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            {[
-              { icon: Feather, label: '[PILLAR_1]' },
-              { icon: Eye, label: '[PILLAR_2]' },
-              { icon: Sparkles, label: '[PILLAR_3]' },
-            ].map((pillar, index) => (
-              <div key={index} className="flex flex-col items-center gap-3">
-                <pillar.icon className="w-8 h-8 text-primary/70" strokeWidth={1.5} />
-                <span className="font-cinzel text-sm tracking-widest text-foreground/80">
-                  {pillar.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </SectionContainer>
-
-      {/* 3. Featured Drops */}
+      {/* 2. Recent Work */}
       <SectionContainer className="py-20">
         <div className="max-w-5xl mx-auto">
           <h2 className="font-cinzel text-2xl md:text-3xl text-gold-gradient text-center mb-12">
-            Featured Drops
+            Recent Work
+          </h2>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {recentWork.map((item) => (
+              <Link 
+                key={item.slug}
+                to={`/work/${item.slug}`}
+                className="group p-6 border border-border hover:border-primary/50 bg-card/30 backdrop-blur-sm transition-all duration-300"
+              >
+                <h3 className="font-cinzel text-lg text-foreground group-hover:text-gold-gradient transition-colors mb-2">
+                  {item.title}
+                </h3>
+                <p className="font-cormorant text-muted-foreground text-sm">
+                  {item.line}
+                </p>
+              </Link>
+            ))}
+          </div>
+          
+          <div className="text-center mt-10">
+            <Button
+              asChild
+              variant="outline"
+              className="font-cinzel text-sm tracking-widest px-8 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500"
+            >
+              <Link to="/work">
+                View All
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </SectionContainer>
+
+      {/* 3. From the Archive */}
+      <SectionContainer className="py-20 border-y border-border/50">
+        <div className="max-w-3xl mx-auto">
+          <Link 
+            to={`/work/${featuredPiece.slug}`}
+            className="group block text-center"
+          >
+            <span className="font-cinzel text-xs tracking-widest text-primary/60 uppercase">
+              From the Archive
+            </span>
+            <h2 className="font-cinzel text-2xl md:text-3xl text-foreground group-hover:text-gold-gradient transition-colors mt-4 mb-6">
+              {featuredPiece.title}
+            </h2>
+            <p className="font-cormorant text-lg text-muted-foreground italic leading-relaxed mb-6">
+              "{featuredPiece.excerpt}"
+            </p>
+            <span className="font-cinzel text-sm tracking-widest text-muted-foreground group-hover:text-primary transition-colors">
+              Continue Reading →
+            </span>
+          </Link>
+        </div>
+      </SectionContainer>
+
+      {/* 4. Available Now (Shop) */}
+      <SectionContainer className="py-20">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-cinzel text-2xl md:text-3xl text-gold-gradient text-center mb-12">
+            Available Now
           </h2>
           
           <div className="grid md:grid-cols-3 gap-6">
-            {[1, 2, 3].map((num) => (
+            {shopItems.map((item) => (
               <Link 
-                key={num}
+                key={item.id}
                 to="/shop"
-                className="group p-6 border border-border hover:border-primary/50 bg-card/30 backdrop-blur-sm transition-all duration-300"
+                className="group"
               >
-                {/* Image placeholder */}
-                <div className="aspect-square bg-muted/20 border border-border/50 mb-4 flex items-center justify-center">
-                  <span className="text-muted-foreground font-cormorant italic">
-                    [DROP_IMAGE_{num}]
-                  </span>
-                </div>
-                
-                <h3 className="font-cinzel text-lg text-foreground group-hover:text-gold-gradient transition-colors mb-2">
-                  [DROP_TITLE_{num}]
-                </h3>
-                <p className="font-cormorant text-muted-foreground text-sm mb-3">
-                  [DROP_DESC_{num}]
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="font-cinzel text-sm text-primary/80">
-                    $[PRICE]
-                  </span>
-                  <span className="font-cinzel text-xs tracking-widest text-muted-foreground group-hover:text-primary transition-colors">
-                    View →
-                  </span>
+                <div className="border border-border hover:border-primary/50 bg-card/30 transition-all duration-300 overflow-hidden">
+                  <PlaceholderImage 
+                    aspectRatio="square" 
+                    label=""
+                    symbol="☥"
+                  />
+                  <div className="p-4">
+                    <h3 className="font-cinzel text-sm text-foreground group-hover:text-gold-gradient transition-colors mb-1">
+                      {item.name}
+                    </h3>
+                    <span className="font-cinzel text-lg text-primary">
+                      {item.price}
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))}
           </div>
-        </div>
-      </SectionContainer>
-
-      {/* 4. The Canon Preview */}
-      <SectionContainer className="py-20 border-y border-border/50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-cinzel text-2xl md:text-3xl text-gold-gradient mb-6">
-            The Canon
-          </h2>
-          <p className="font-cormorant text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
-            {/* PLACEHOLDER: Canon intro text */}
-            [CANON_INTRO_TEXT]
-          </p>
           
-          <div className="grid md:grid-cols-3 gap-4 mb-8">
-            {[
-              { title: '[CANON_TILE_1]', symbol: '𓂀' },
-              { title: '[CANON_TILE_2]', symbol: '𓅓' },
-              { title: '[CANON_TILE_3]', symbol: '𓆣' },
-            ].map((tile, index) => (
-              <Link
-                key={index}
-                to="/canon"
-                className="group p-6 border border-border hover:border-primary/50 bg-card/20 transition-all duration-300"
-              >
-                <div className="text-3xl text-primary/40 group-hover:text-primary transition-colors mb-3">
-                  {tile.symbol}
-                </div>
-                <span className="font-cinzel text-sm tracking-wider text-foreground/80 group-hover:text-gold-gradient transition-colors">
-                  {tile.title}
-                </span>
+          <div className="text-center mt-10">
+            <Button
+              asChild
+              variant="outline"
+              className="font-cinzel text-sm tracking-widest px-8 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500"
+            >
+              <Link to="/shop">
+                Browse Shop
               </Link>
-            ))}
+            </Button>
           </div>
         </div>
       </SectionContainer>
 
-      {/* 5. EchoVerse Preview */}
-      <SectionContainer className="py-20">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-cinzel text-2xl md:text-3xl text-gold-gradient mb-6">
-            EchoVerse
-          </h2>
-          <p className="font-cormorant text-lg text-muted-foreground mb-8">
-            {/* PLACEHOLDER: EchoVerse intro */}
-            [ECHOVERSE_INTRO_TEXT]
-          </p>
-          <Button
-            asChild
-            variant="outline"
-            className="font-cinzel text-sm tracking-widest px-8 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500"
-          >
-            <Link to="/echoverse">
-              Explore EchoVerse
-            </Link>
-          </Button>
-        </div>
-      </SectionContainer>
-
-      {/* 6. Join the Circle (Newsletter) */}
+      {/* 5. Stay Close (Newsletter) */}
       <SectionContainer className="py-20 border-y border-border/50">
         <div className="max-w-xl mx-auto text-center">
           <h2 className="font-cinzel text-2xl md:text-3xl text-gold-gradient mb-4">
-            Join the Circle
+            Stay Close
           </h2>
           <p className="font-cormorant text-lg text-muted-foreground mb-8">
-            {/* PLACEHOLDER: Newsletter copy */}
-            [NEWSLETTER_COPY]
+            Periodic updates and new work.
           </p>
           
           <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3">
@@ -169,12 +182,11 @@ const Home = () => {
         </div>
       </SectionContainer>
 
-      {/* 7. Contact CTA Band */}
+      {/* 6. Reach Out */}
       <SectionContainer className="py-16">
         <div className="max-w-3xl mx-auto text-center">
           <p className="font-cormorant text-xl text-muted-foreground mb-6">
-            {/* PLACEHOLDER: Contact one-liner */}
-            [CONTACT_ONELINER]
+            For inquiries, collaborations, or anything else.
           </p>
           <Button
             asChild

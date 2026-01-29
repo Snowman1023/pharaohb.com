@@ -4,10 +4,8 @@ import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/about', label: 'About' },
-  { href: '/canon', label: 'The Canon' },
-  { href: '/echoverse', label: 'Echoverse' },
+  { href: '/work', label: 'Work' },
   { href: '/shop', label: 'Shop' },
-  { href: '/news', label: 'News' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -45,7 +43,7 @@ export function Navbar() {
             to="/" 
             className="font-cinzel text-xl md:text-2xl font-semibold text-gold-gradient tracking-widest"
           >
-            PHARAOH B. 1111
+            PHARAOH B.
           </Link>
 
           {/* Desktop Navigation */}
@@ -56,7 +54,8 @@ export function Navbar() {
                 to={link.href}
                 className={cn(
                   "font-cinzel text-sm tracking-wider transition-colors duration-300 relative group",
-                  location.pathname === link.href 
+                  location.pathname === link.href || 
+                  (link.href === '/work' && location.pathname.startsWith('/work'))
                     ? "text-primary" 
                     : "text-foreground/80 hover:text-primary"
                 )}
@@ -64,7 +63,10 @@ export function Navbar() {
                 {link.label}
                 <span className={cn(
                   "absolute -bottom-1 left-0 h-px bg-primary transition-all duration-300",
-                  location.pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                  location.pathname === link.href || 
+                  (link.href === '/work' && location.pathname.startsWith('/work'))
+                    ? "w-full" 
+                    : "w-0 group-hover:w-full"
                 )} />
               </Link>
             ))}
@@ -105,7 +107,8 @@ export function Navbar() {
                 to={link.href}
                 className={cn(
                   "font-cinzel text-sm tracking-wider transition-colors text-left",
-                  location.pathname === link.href 
+                  location.pathname === link.href || 
+                  (link.href === '/work' && location.pathname.startsWith('/work'))
                     ? "text-primary" 
                     : "text-foreground/80 hover:text-primary"
                 )}

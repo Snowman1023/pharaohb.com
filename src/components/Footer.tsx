@@ -11,7 +11,6 @@ export function Footer() {
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // PLACEHOLDER: Implement newsletter signup
     console.log('Newsletter signup:', email);
     setEmail('');
   };
@@ -34,17 +33,16 @@ export function Footer() {
             {/* Column 1: Brand & Newsletter */}
             <div className="space-y-6">
               <div className="font-cinzel text-xl text-gold-gradient">
-                ☥ PHARAOH B. 1111 ☥
+                Pharaoh B.
               </div>
-              <p className="font-cormorant text-muted-foreground">
-                {/* PLACEHOLDER: Brand tagline */}
-                Awakening consciousness through ancient wisdom and modern frequencies.
+              <p className="font-cormorant text-muted-foreground italic">
+                Writer. Architect. Mirror. Messenger.
               </p>
               
               {/* Newsletter signup */}
               <form onSubmit={handleNewsletterSubmit} className="space-y-3">
                 <label className="font-cinzel text-xs tracking-widest text-foreground/80">
-                  Join the Inner Circle
+                  Stay Close
                 </label>
                 <div className="flex gap-2">
                   <Input
@@ -70,11 +68,11 @@ export function Footer() {
               <div className="grid grid-cols-2 gap-3">
                 {[
                   { to: '/about', label: 'About' },
-                  { to: '/canon', label: 'The Canon' },
-                  { to: '/echoverse', label: 'Echoverse' },
+                  { to: '/work', label: 'Work' },
                   { to: '/shop', label: 'Shop' },
-                  { to: '/news', label: 'News' },
                   { to: '/contact', label: 'Contact' },
+                  { to: '/echoverse', label: 'Echoverse' },
+                  { to: '/notes', label: 'Notes' },
                 ].map((link) => (
                   <Link
                     key={link.to}
@@ -93,7 +91,6 @@ export function Footer() {
                 Other Doors
               </h4>
               <div className="space-y-3">
-                {/* PLACEHOLDER: Replace # with actual URLs when available */}
                 <a
                   href="https://1111.live"
                   target="_blank"
@@ -126,8 +123,7 @@ export function Footer() {
                   Connect
                 </h4>
                 <div className="flex items-center gap-4">
-                  {/* PLACEHOLDER: Replace # with actual social URLs */}
-                  {['Instagram', 'Twitter', 'YouTube', 'TikTok'].map((social) => (
+                  {['Instagram', 'Twitter', 'YouTube'].map((social) => (
                     <a
                       key={social}
                       href="#"
@@ -150,20 +146,19 @@ export function Footer() {
                   to="/privacy"
                   className="font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  Privacy Policy
+                  Privacy
                 </Link>
                 <Link
                   to="/terms"
                   className="font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  Terms of Service
+                  Terms
                 </Link>
               </div>
 
               {/* Copyright */}
               <p className="font-cormorant text-sm text-muted-foreground">
-                {/* PLACEHOLDER: Update year dynamically if needed */}
-                © 2024 Pharaoh B. All Rights Reserved.
+                © {new Date().getFullYear()} Pharaoh B.
               </p>
             </div>
           </div>
