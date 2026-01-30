@@ -4,10 +4,11 @@ interface PageHeaderProps {
   title: string;
   subtitle?: string;
   symbol?: string;
+  orientationText?: string;
   className?: string;
 }
 
-export function PageHeader({ title, subtitle, symbol = "☥", className }: PageHeaderProps) {
+export function PageHeader({ title, subtitle, symbol = "☥", orientationText, className }: PageHeaderProps) {
   return (
     <div className={cn("pt-32 pb-16 md:pt-40 md:pb-20", className)}>
       <div className="container mx-auto px-6">
@@ -24,6 +25,12 @@ export function PageHeader({ title, subtitle, symbol = "☥", className }: PageH
           {subtitle && (
             <p className="font-cormorant text-xl md:text-2xl text-muted-foreground italic">
               {subtitle}
+            </p>
+          )}
+          
+          {orientationText && (
+            <p className="font-cormorant text-base md:text-lg text-primary/60 mt-3 max-w-2xl mx-auto">
+              {orientationText}
             </p>
           )}
           

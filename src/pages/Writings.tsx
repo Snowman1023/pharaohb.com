@@ -10,6 +10,7 @@ const Writings = () => {
       <PageHeader
         title="Writings"
         subtitle="Transmissions from the threshold"
+        orientationText="Reflections offered as companions, not conclusions."
         symbol="𓂃"
       />
 
