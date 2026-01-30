@@ -12,6 +12,7 @@ const Canon = () => {
       <PageHeader 
         title="The Canon"
         subtitle="Sacred texts and teachings for the modern seeker"
+        orientationText="Begin here."
         symbol="𓅓"
       />
 

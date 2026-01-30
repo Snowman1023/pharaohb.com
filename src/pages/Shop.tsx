@@ -22,6 +22,7 @@ const Shop = () => {
       <PageHeader 
         title="The Sacred Shop"
         subtitle="Artifacts and treasures for your sacred journey"
+        orientationText="These works are offered as companions, not commodities."
         symbol="𓋾"
       />
 
