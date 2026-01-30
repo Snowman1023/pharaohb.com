@@ -1,103 +1,97 @@
 import { PageLayout } from '@/components/layout/PageLayout';
+import { PageHeader } from '@/components/shared/PageHeader';
 import { SectionContainer } from '@/components/shared/SectionContainer';
+import { PlaceholderImage } from '@/components/shared/PlaceholderImage';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
     <PageLayout>
-      {/* 1. Header */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20">
-        <div className="container mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto">
-            <div className="mb-6 flex justify-center">
-              <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
-            </div>
-            
-            <h1 className="font-cinzel text-4xl md:text-5xl lg:text-6xl text-gold-gradient mb-6">
-              About
-            </h1>
-            
-            <p className="font-cormorant text-xl md:text-2xl text-muted-foreground italic">
-              Writer. Architect. Mirror. Messenger.
-            </p>
-            
-            <div className="egyptian-divider max-w-md mx-auto mt-8">
-              <span className="text-primary text-2xl">𓂀</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHeader 
+        title="About"
+        subtitle="Writer. Architect. Mirror. Messenger."
+        symbol="𓂀"
+      />
 
-      {/* 2. Introduction */}
-      <SectionContainer className="py-16">
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="font-cormorant text-xl text-muted-foreground leading-relaxed">
-            The work spans forms. It moves through writing, image, sound, and object. 
-            It accumulates. It continues.
-          </p>
-        </div>
-      </SectionContainer>
-
-      {/* 3. What Exists - Visual rhythm without labels */}
-      <SectionContainer className="py-20 border-y border-border/50">
+      <SectionContainer>
         <div className="max-w-4xl mx-auto">
-          <Link to="/work" className="group block">
-            <div className="grid grid-cols-3 gap-8 md:gap-16">
-              {['𓏏', '𓋹', '𓇳'].map((symbol, index) => (
-                <div 
-                  key={index} 
-                  className="text-center group-hover:scale-105 transition-transform duration-500"
-                >
-                  <div className="text-5xl md:text-6xl text-primary/40 group-hover:text-primary/70 transition-colors duration-500">
-                    {symbol}
-                  </div>
-                </div>
-              ))}
+          {/* Primary Image */}
+          <div className="mb-16">
+            <PlaceholderImage 
+              aspectRatio="wide" 
+              label=""
+              symbol="𓂀"
+              className="w-full"
+            />
+          </div>
+
+          {/* Content Sections */}
+          <div className="space-y-16">
+            {/* Section 1: Who */}
+            <section className="max-w-2xl">
+              <h2 className="font-cinzel text-2xl text-gold-gradient mb-6">
+                The Work and Its Author
+              </h2>
+              <p className="font-cormorant text-lg text-muted-foreground leading-relaxed mb-4">
+                Pharaoh B. is a writer, visual artist, and composer whose work spans multiple forms and media. The body of work explores themes of consciousness, identity, sacred geometry, and the structures underlying human experience.
+              </p>
+              <p className="font-cormorant text-lg text-muted-foreground leading-relaxed">
+                Based in Houston, Texas. Creating since 2018.
+              </p>
+            </section>
+
+            {/* Section 2: What the work represents */}
+            <section className="max-w-2xl">
+              <h2 className="font-cinzel text-2xl text-gold-gradient mb-6">
+                What the Work Represents
+              </h2>
+              <p className="font-cormorant text-lg text-muted-foreground leading-relaxed mb-4">
+                The work is not instruction or doctrine. It is a body of exploration offered for those who find resonance in it. Each piece—whether written, visual, or sonic—stands as an independent creation while contributing to a larger, accumulating whole.
+              </p>
+              <p className="font-cormorant text-lg text-muted-foreground leading-relaxed">
+                The themes recur and interweave: reflection, architecture, echo, form. These are not beliefs to be adopted but patterns to be observed.
+              </p>
+            </section>
+
+            {/* Section 3: How to engage */}
+            <section className="max-w-2xl">
+              <h2 className="font-cinzel text-2xl text-gold-gradient mb-6">
+                How to Engage
+              </h2>
+              <div className="space-y-4 font-cormorant text-lg text-muted-foreground leading-relaxed">
+                <p>
+                  <strong className="text-foreground">Read</strong> — Begin with The Canon, a collection of written works ranging from short essays to full-length books.
+                </p>
+                <p>
+                  <strong className="text-foreground">View</strong> — The Art section houses visual works exploring form, geometry, and symbolic expression.
+                </p>
+                <p>
+                  <strong className="text-foreground">Listen</strong> — Music and audio compositions designed for contemplation and inner work.
+                </p>
+              </div>
+            </section>
+
+            {/* CTA */}
+            <div className="pt-8 flex flex-col sm:flex-row gap-4">
+              <Button
+                asChild
+                className="font-cinzel text-sm tracking-widest px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90"
+              >
+                <Link to="/canon">
+                  Explore The Canon
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="font-cinzel text-sm tracking-widest px-8 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              >
+                <Link to="/contact">
+                  Get in Touch
+                </Link>
+              </Button>
             </div>
-          </Link>
-        </div>
-      </SectionContainer>
-
-      {/* 4. A Note */}
-      <SectionContainer className="py-20">
-        <div className="max-w-2xl mx-auto text-center">
-          <blockquote className="relative">
-            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-4xl text-primary/20">
-              "
-            </span>
-            <p className="font-cormorant text-2xl text-foreground/90 italic leading-relaxed">
-              Everything here is offered, not prescribed.
-            </p>
-            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-4xl text-primary/20">
-              "
-            </span>
-          </blockquote>
-        </div>
-      </SectionContainer>
-
-      {/* 5. Connect */}
-      <SectionContainer className="py-16 border-t border-border/50">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              asChild
-              className="font-cinzel text-sm tracking-widest px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90"
-            >
-              <Link to="/work">
-                Explore the Work
-              </Link>
-            </Button>
-            
-            <Button
-              asChild
-              variant="outline"
-              className="font-cinzel text-sm tracking-widest px-8 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-            >
-              <Link to="/contact">
-                Get in Touch
-              </Link>
-            </Button>
           </div>
         </div>
       </SectionContainer>

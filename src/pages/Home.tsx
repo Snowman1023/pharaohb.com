@@ -7,28 +7,29 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
 
-// Recent work entries - no categories, just titles and lines
-const recentWork = [
-  { slug: 'the-book-of-sacred-echoes', title: 'The Book of Sacred Echoes', line: 'A meditation on silence and return.' },
-  { slug: 'letters-to-the-forgotten-throne', title: 'Letters to the Forgotten Throne', line: 'Correspondence with what remains.' },
-  { slug: 'on-sacred-geometry', title: 'On Sacred Geometry', line: 'Form as language. Structure as meaning.' },
-  { slug: 'the-frequency-of-becoming', title: 'The Frequency of Becoming', line: 'Movement through states of being.' },
-  { slug: 'the-law-of-mirrors', title: 'The Law of Mirrors', line: 'Reflection as truth.' },
-  { slug: 'houston-transmission-2024', title: 'Houston Transmission', line: 'Live recording. November 2024.' },
-];
+// Word cloud terms
+const wordCloudTerms = ['writing', 'philosophy', 'art', 'reflection', 'identity'];
 
-// Featured archive piece
-const featuredPiece = {
-  slug: 'the-architects-blueprint',
-  title: 'The Architect\'s Blueprint',
-  excerpt: 'There is a structure beneath all things. Not imposed, but discovered. The architect does not create the laws of form—only reveals them, traces them, makes them visible to others.',
-};
-
-// Shop items - no categories
-const shopItems = [
-  { id: 1, name: 'The Ankh Pendant', price: '$89' },
-  { id: 2, name: 'Papyrus Journal', price: '$45' },
-  { id: 3, name: 'Sacred Incense Set', price: '$34' },
+// Three paths
+const threePaths = [
+  {
+    title: 'The Canon',
+    description: 'Written works exploring consciousness, identity, and the architecture of meaning.',
+    link: '/canon',
+    symbol: '𓏏',
+  },
+  {
+    title: 'Art',
+    description: 'Visual explorations in form, geometry, and symbolic expression.',
+    link: '/art',
+    symbol: '𓋹',
+  },
+  {
+    title: 'Music',
+    description: 'Sound compositions designed for contemplation and inner work.',
+    link: '/music',
+    symbol: '𓇳',
+  },
 ];
 
 const Home = () => {
@@ -42,125 +43,70 @@ const Home = () => {
 
   return (
     <PageLayout>
-      {/* 1. Hero Section */}
+      {/* 1. Hero Section - Unchanged */}
       <HeroSection />
       
-      {/* 2. Recent Work */}
-      <SectionContainer className="py-20">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="font-cinzel text-2xl md:text-3xl text-gold-gradient text-center mb-12">
-            Recent Work
-          </h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recentWork.map((item) => (
-              <Link 
-                key={item.slug}
-                to={`/work/${item.slug}`}
-                className="group p-6 border border-border hover:border-primary/50 bg-card/30 backdrop-blur-sm transition-all duration-300"
+      {/* 2. Word Cloud Section */}
+      <SectionContainer className="py-20 border-b border-border/30">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 md:gap-x-12 md:gap-y-6">
+            {wordCloudTerms.map((term) => (
+              <span 
+                key={term}
+                className="font-cormorant text-2xl md:text-3xl lg:text-4xl text-muted-foreground/60 hover:text-primary transition-colors duration-500 cursor-default"
               >
-                <h3 className="font-cinzel text-lg text-foreground group-hover:text-gold-gradient transition-colors mb-2">
-                  {item.title}
-                </h3>
-                <p className="font-cormorant text-muted-foreground text-sm">
-                  {item.line}
-                </p>
-              </Link>
+                {term}
+              </span>
             ))}
           </div>
-          
-          <div className="text-center mt-10">
-            <Button
-              asChild
-              variant="outline"
-              className="font-cinzel text-sm tracking-widest px-8 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500"
-            >
-              <Link to="/work">
-                View All
-              </Link>
-            </Button>
-          </div>
         </div>
       </SectionContainer>
 
-      {/* 3. From the Archive */}
-      <SectionContainer className="py-20 border-y border-border/50">
-        <div className="max-w-3xl mx-auto">
-          <Link 
-            to={`/work/${featuredPiece.slug}`}
-            className="group block text-center"
-          >
-            <span className="font-cinzel text-xs tracking-widest text-primary/60 uppercase">
-              From the Archive
-            </span>
-            <h2 className="font-cinzel text-2xl md:text-3xl text-foreground group-hover:text-gold-gradient transition-colors mt-4 mb-6">
-              {featuredPiece.title}
-            </h2>
-            <p className="font-cormorant text-lg text-muted-foreground italic leading-relaxed mb-6">
-              "{featuredPiece.excerpt}"
-            </p>
-            <span className="font-cinzel text-sm tracking-widest text-muted-foreground group-hover:text-primary transition-colors">
-              Continue Reading →
-            </span>
-          </Link>
-        </div>
-      </SectionContainer>
-
-      {/* 4. Available Now (Shop) */}
+      {/* 3. Three Paths Grid */}
       <SectionContainer className="py-20">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="font-cinzel text-2xl md:text-3xl text-gold-gradient text-center mb-12">
-            Available Now
-          </h2>
-          
+        <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-3 gap-6">
-            {shopItems.map((item) => (
+            {threePaths.map((path) => (
               <Link 
-                key={item.id}
-                to="/shop"
-                className="group"
+                key={path.title}
+                to={path.link}
+                className="group block"
               >
-                <div className="border border-border hover:border-primary/50 bg-card/30 transition-all duration-300 overflow-hidden">
+                <div className="border border-border hover:border-primary/50 bg-card/30 transition-all duration-500 overflow-hidden">
+                  {/* Abstract image placeholder */}
                   <PlaceholderImage 
-                    aspectRatio="square" 
+                    aspectRatio="landscape" 
                     label=""
-                    symbol="☥"
+                    symbol={path.symbol}
                   />
-                  <div className="p-4">
-                    <h3 className="font-cinzel text-sm text-foreground group-hover:text-gold-gradient transition-colors mb-1">
-                      {item.name}
+                  
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="font-cinzel text-xl text-foreground group-hover:text-gold-gradient transition-colors mb-3">
+                      {path.title}
                     </h3>
-                    <span className="font-cinzel text-lg text-primary">
-                      {item.price}
+                    <p className="font-cormorant text-muted-foreground mb-4 line-clamp-2">
+                      {path.description}
+                    </p>
+                    <span className="font-cinzel text-sm tracking-widest text-primary">
+                      Explore →
                     </span>
                   </div>
                 </div>
               </Link>
             ))}
           </div>
-          
-          <div className="text-center mt-10">
-            <Button
-              asChild
-              variant="outline"
-              className="font-cinzel text-sm tracking-widest px-8 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500"
-            >
-              <Link to="/shop">
-                Browse Shop
-              </Link>
-            </Button>
-          </div>
         </div>
       </SectionContainer>
 
-      {/* 5. Stay Close (Newsletter) */}
-      <SectionContainer className="py-20 border-y border-border/50">
+      {/* 4. Email Updates */}
+      <SectionContainer className="py-20 border-y border-border/30">
         <div className="max-w-xl mx-auto text-center">
           <h2 className="font-cinzel text-2xl md:text-3xl text-gold-gradient mb-4">
-            Stay Close
+            Stay Updated
           </h2>
           <p className="font-cormorant text-lg text-muted-foreground mb-8">
-            Periodic updates and new work.
+            Receive updates, writings, and new works.
           </p>
           
           <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3">
@@ -181,26 +127,9 @@ const Home = () => {
           </form>
         </div>
       </SectionContainer>
-
-      {/* 6. Reach Out */}
-      <SectionContainer className="py-16">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="font-cormorant text-xl text-muted-foreground mb-6">
-            For inquiries, collaborations, or anything else.
-          </p>
-          <Button
-            asChild
-            variant="outline"
-            className="font-cinzel text-sm tracking-widest px-8 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500"
-          >
-            <Link to="/contact">
-              Get in Touch
-            </Link>
-          </Button>
-        </div>
-      </SectionContainer>
     </PageLayout>
   );
 };
 
 export default Home;
+

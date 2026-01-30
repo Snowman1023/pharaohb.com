@@ -18,10 +18,10 @@ export function Footer() {
   return (
     <footer 
       ref={ref as React.RefObject<HTMLElement>}
-      className="relative py-16 border-t border-primary/20"
+      className="relative py-16 border-t border-border/50"
     >
-      {/* Egyptian decorative border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+      {/* Decorative border */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       
       <div className="container mx-auto px-6">
         <div className={cn(
@@ -29,55 +29,36 @@ export function Footer() {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
           {/* Main footer content */}
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
-            {/* Column 1: Brand & Newsletter */}
-            <div className="space-y-6">
-              <div className="font-cinzel text-xl text-gold-gradient">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            {/* Column 1: Brand */}
+            <div className="space-y-4">
+              <Link to="/" className="font-cinzel text-xl text-gold-gradient">
                 Pharaoh B.
-              </div>
-              <p className="font-cormorant text-muted-foreground italic">
+              </Link>
+              <p className="font-cormorant text-muted-foreground">
                 Writer. Architect. Mirror. Messenger.
               </p>
-              
-              {/* Newsletter signup */}
-              <form onSubmit={handleNewsletterSubmit} className="space-y-3">
-                <label className="font-cinzel text-xs tracking-widest text-foreground/80">
-                  Stay Close
-                </label>
-                <div className="flex gap-2">
-                  <Input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="bg-background/50 border-border font-cormorant"
-                    required
-                  />
-                  <Button type="submit" variant="outline" className="font-cinzel text-xs">
-                    Subscribe
-                  </Button>
-                </div>
-              </form>
             </div>
 
             {/* Column 2: Navigation */}
-            <div className="space-y-6">
-              <h4 className="font-cinzel text-sm tracking-widest text-foreground/80">
+            <div className="space-y-4">
+              <h4 className="font-cinzel text-sm tracking-widest text-foreground">
                 Navigate
               </h4>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-2">
                 {[
                   { to: '/about', label: 'About' },
-                  { to: '/work', label: 'Work' },
+                  { to: '/canon', label: 'The Canon' },
+                  { to: '/art', label: 'Art' },
+                  { to: '/music', label: 'Music' },
                   { to: '/shop', label: 'Shop' },
+                  { to: '/writings', label: 'Writings' },
                   { to: '/contact', label: 'Contact' },
-                  { to: '/echoverse', label: 'Echoverse' },
-                  { to: '/notes', label: 'Notes' },
                 ].map((link) => (
                   <Link
                     key={link.to}
                     to={link.to}
-                    className="font-cormorant text-muted-foreground hover:text-primary transition-colors"
+                    className="block font-cormorant text-muted-foreground hover:text-primary transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -85,60 +66,32 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Column 3: Other Doors (External Links) */}
-            <div className="space-y-6">
-              <h4 className="font-cinzel text-sm tracking-widest text-foreground/80">
-                Other Doors
+            {/* Column 3: Email Updates */}
+            <div className="md:col-span-2 space-y-4">
+              <h4 className="font-cinzel text-sm tracking-widest text-foreground">
+                Updates
               </h4>
-              <div className="space-y-3">
-                <a
-                  href="https://1111.live"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block font-cormorant text-muted-foreground hover:text-primary transition-colors"
-                >
-                  1111.live →
-                </a>
-                <a
-                  href="https://humanityimagined.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block font-cormorant text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Humanity Imagined →
-                </a>
-                <a
-                  href="https://echoverse.io"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block font-cormorant text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Echoverse →
-                </a>
-              </div>
-
-              {/* Social Links */}
-              <div className="pt-4">
-                <h4 className="font-cinzel text-sm tracking-widest text-foreground/80 mb-3">
-                  Connect
-                </h4>
-                <div className="flex items-center gap-4">
-                  {['Instagram', 'Twitter', 'YouTube'].map((social) => (
-                    <a
-                      key={social}
-                      href="#"
-                      className="font-cinzel text-xs text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      {social}
-                    </a>
-                  ))}
-                </div>
-              </div>
+              <p className="font-cormorant text-muted-foreground">
+                Receive updates, writings, and new works.
+              </p>
+              <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="bg-background/50 border-border font-cormorant"
+                  required
+                />
+                <Button type="submit" variant="outline" className="font-cinzel text-xs shrink-0">
+                  Subscribe
+                </Button>
+              </form>
             </div>
           </div>
 
           {/* Bottom bar */}
-          <div className="pt-8 border-t border-border">
+          <div className="pt-8 border-t border-border/50">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {/* Legal links */}
               <div className="flex items-center gap-6">
@@ -158,17 +111,8 @@ export function Footer() {
 
               {/* Copyright */}
               <p className="font-cormorant text-sm text-muted-foreground">
-                © {new Date().getFullYear()} Pharaoh B.
+                © {new Date().getFullYear()} Pharaoh B. All rights reserved.
               </p>
-            </div>
-          </div>
-
-          {/* Bottom ornament */}
-          <div className="flex justify-center mt-8">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-px bg-gradient-to-r from-transparent to-primary" />
-              <span className="text-2xl text-primary">𓂀</span>
-              <div className="w-16 h-px bg-gradient-to-l from-transparent to-primary" />
             </div>
           </div>
         </div>
