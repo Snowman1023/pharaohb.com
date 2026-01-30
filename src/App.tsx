@@ -6,13 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Canon from "./pages/Canon";
-import CanonEntry from "./pages/CanonEntry";
-import Art from "./pages/Art";
-import ArtEntry from "./pages/ArtEntry";
-import Music from "./pages/Music";
+import Echoverse from "./pages/Echoverse";
 import Shop from "./pages/Shop";
-import Writings from "./pages/Writings";
-import WritingsEntry from "./pages/WritingsEntry";
+import News from "./pages/News";
+import NewsArticle from "./pages/NewsArticle";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -30,13 +27,10 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/canon" element={<Canon />} />
-          <Route path="/canon/:slug" element={<CanonEntry />} />
-          <Route path="/art" element={<Art />} />
-          <Route path="/art/:slug" element={<ArtEntry />} />
-          <Route path="/music" element={<Music />} />
+          <Route path="/echoverse" element={<Echoverse />} />
           <Route path="/shop" element={<Shop />} />
-          <Route path="/writings" element={<Writings />} />
-          <Route path="/writings/:slug" element={<WritingsEntry />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/news/:slug" element={<NewsArticle />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />

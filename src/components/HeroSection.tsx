@@ -23,36 +23,39 @@ export function HeroSection() {
         {/* Main headline */}
         <h1 className="font-cinzel text-4xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-tight">
           <span className="text-gold-gradient text-glow-gold">
-            Pharaoh B.
+            {/* PLACEHOLDER: Hero headline part 1 */}
+            Welcome to the Echo
+          </span>
+          <br />
+          <span className="text-foreground/90">
+            {/* PLACEHOLDER: Hero headline part 2 */}
+            of Your Own Becoming
           </span>
         </h1>
 
-        {/* Subhead */}
-        <p className="font-cormorant text-xl md:text-2xl text-muted-foreground mb-12 italic max-w-2xl mx-auto">
-          Writer. Architect. Mirror. Messenger.
+        {/* Tagline */}
+        <p className="font-cormorant text-xl md:text-2xl text-muted-foreground mb-4 italic">
+          {/* PLACEHOLDER: Tagline */}
+          Pharaoh B. | Writer. Architect. Mirror. Messenger.
         </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button
-            asChild
-            className="font-cinzel text-sm tracking-widest px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-500"
-          >
-            <Link to="/work">
-              Enter the Archive
-            </Link>
-          </Button>
-          
-          <Button
-            asChild
-            variant="outline"
-            className="font-cinzel text-sm tracking-widest px-8 py-6 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500"
-          >
-            <Link to="/shop">
-              Shop
-            </Link>
-          </Button>
-        </div>
+        {/* Subtitle */}
+        <p className="font-cormorant text-lg text-foreground/70 mb-12 max-w-2xl mx-auto">
+          {/* PLACEHOLDER: Subtitle text */}
+          Step into the sacred space where ancient wisdom meets modern revelation.
+          This is not just a destination—it is a mirror reflecting the eternal within you.
+        </p>
+
+        {/* CTA Button */}
+        <Button
+          asChild
+          className="font-cinzel text-sm tracking-widest px-8 py-6 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 glow-gold"
+        >
+          <Link to="/canon">
+            {/* PLACEHOLDER: CTA text */}
+            Enter the Canon
+          </Link>
+        </Button>
 
         {/* Scroll indicator */}
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-float">

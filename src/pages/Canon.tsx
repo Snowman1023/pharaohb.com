@@ -3,57 +3,30 @@ import { PageHeader } from '@/components/shared/PageHeader';
 import { SectionContainer } from '@/components/shared/SectionContainer';
 import { PlaceholderImage } from '@/components/shared/PlaceholderImage';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { cn } from '@/lib/utils';
 
-// Mock book/product data
-const canonItems = [
+// PLACEHOLDER: Book data - replace with actual content
+const books = [
   {
     id: 1,
-    slug: 'the-book-of-sacred-echoes',
-    title: 'The Book of Sacred Echoes',
-    subtitle: 'Volume I',
-    description: 'A foundational text exploring the nature of consciousness, memory, and the architecture of self. This work serves as an entry point into the broader philosophy.',
-    price: '$28',
+    title: "The Book of Sacred Echoes",
+    subtitle: "Volume I: Awakening",
+    description: "A transformative journey through the chambers of self-discovery and ancient wisdom.",
+    price: "$29.99",
   },
   {
     id: 2,
-    slug: 'letters-to-the-forgotten-throne',
-    title: 'Letters to the Forgotten Throne',
-    subtitle: 'Collected Correspondence',
-    description: 'A series of meditations written as letters to the self that exists beyond time. Each piece addresses themes of identity, purpose, and remembrance.',
-    price: '$24',
+    title: "Letters to the Forgotten Throne",
+    subtitle: "Reclaiming Your Crown",
+    description: "Messages from the divine realm to remind you of the royalty you carry within.",
+    price: "$24.99",
   },
   {
     id: 3,
-    slug: 'the-architects-blueprint',
-    title: 'The Architect\'s Blueprint',
-    subtitle: 'Essays on Form',
-    description: 'Essays examining the relationship between structure and meaning. How form shapes thought, and how thought shapes experience.',
-    price: '$32',
-  },
-  {
-    id: 4,
-    slug: 'on-sacred-geometry',
-    title: 'On Sacred Geometry',
-    subtitle: 'Visual Philosophy',
-    description: 'An exploration of geometric principles as they relate to consciousness and creation. Includes visual diagrams and contemplative exercises.',
-    price: '$45',
-  },
-  {
-    id: 5,
-    slug: 'the-frequency-of-becoming',
-    title: 'The Frequency of Becoming',
-    subtitle: 'Audio Companion',
-    description: 'A written guide accompanying the audio series. Contains transcriptions, extended notes, and additional material for deeper study.',
-    price: '$18',
-  },
-  {
-    id: 6,
-    slug: 'the-law-of-mirrors',
-    title: 'The Law of Mirrors',
-    subtitle: 'Principles of Reflection',
-    description: 'A concise work outlining the principle of reflection as it operates in consciousness. How what we perceive reflects what we are.',
-    price: '$22',
+    title: "The Architect's Blueprint",
+    subtitle: "Building Sacred Spaces",
+    description: "A practical guide to constructing a life aligned with your highest purpose.",
+    price: "$34.99",
   },
 ];
 
@@ -62,60 +35,62 @@ const Canon = () => {
     <PageLayout>
       <PageHeader 
         title="The Canon"
-        subtitle="Written works and collected texts."
-        symbol="𓏏"
+        subtitle="Sacred texts and teachings for the modern seeker"
+        symbol="𓅓"
       />
 
       <SectionContainer>
-        <div className="max-w-6xl mx-auto">
-          {/* Product Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {canonItems.map((item) => (
-              <div 
-                key={item.id}
-                className="group border border-border hover:border-primary/50 bg-card/30 transition-all duration-500"
-              >
-                {/* Book cover placeholder */}
-                <PlaceholderImage 
-                  aspectRatio="portrait" 
-                  label=""
-                  symbol="𓏏"
-                />
-                
-                {/* Content */}
-                <div className="p-6 space-y-3">
-                  <div>
-                    <h3 className="font-cinzel text-lg text-foreground group-hover:text-gold-gradient transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="font-cormorant text-sm text-primary/70 italic">
-                      {item.subtitle}
-                    </p>
-                  </div>
-                  
-                  <p className="font-cormorant text-muted-foreground text-sm line-clamp-3">
-                    {item.description}
-                  </p>
-                  
-                  <div className="flex items-center justify-between pt-2">
-                    <span className="font-cinzel text-xl text-primary">
-                      {item.price}
-                    </span>
-                    <Button
-                      asChild
-                      variant="outline"
-                      size="sm"
-                      className="font-cinzel text-xs tracking-wider border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground"
-                    >
-                      <Link to={`/canon/${item.slug}`}>
-                        View Details
-                      </Link>
-                    </Button>
-                  </div>
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <p className="font-cormorant text-xl text-muted-foreground">
+            {/* PLACEHOLDER: Canon intro text */}
+            Each work is a key to unlock the chambers of your own becoming. 
+            These are not merely books—they are portals to remembrance.
+          </p>
+        </div>
+
+        {/* Books grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {books.map((book, index) => (
+            <div 
+              key={book.id}
+              className={cn(
+                "group relative bg-card border border-border hover:border-primary/50 transition-all duration-500",
+                "transform hover:-translate-y-2"
+              )}
+            >
+              {/* Book cover placeholder */}
+              <PlaceholderImage 
+                aspectRatio="portrait" 
+                label={`Cover: ${book.title}`}
+                symbol="𓅓"
+              />
+
+              {/* Book info */}
+              <div className="p-6 space-y-3">
+                <h3 className="font-cinzel text-xl text-foreground group-hover:text-gold-gradient transition-colors">
+                  {book.title}
+                </h3>
+                <p className="font-cormorant text-sm text-primary italic">
+                  {book.subtitle}
+                </p>
+                <p className="font-cormorant text-muted-foreground text-sm leading-relaxed">
+                  {book.description}
+                </p>
+                <div className="flex items-center justify-between pt-4">
+                  <span className="font-cinzel text-xl text-primary">
+                    {book.price}
+                  </span>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="font-cinzel text-xs tracking-wider border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground"
+                  >
+                    View Details
+                  </Button>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </SectionContainer>
     </PageLayout>
