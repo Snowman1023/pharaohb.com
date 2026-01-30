@@ -4,8 +4,11 @@ import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/about', label: 'About' },
-  { href: '/work', label: 'Work' },
+  { href: '/canon', label: 'The Canon' },
+  { href: '/art', label: 'Art' },
+  { href: '/music', label: 'Music' },
   { href: '/shop', label: 'Shop' },
+  { href: '/writings', label: 'Writings' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -27,6 +30,13 @@ export function Navbar() {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
+  const isActive = (href: string) => {
+    if (href === '/canon') return location.pathname.startsWith('/canon');
+    if (href === '/art') return location.pathname.startsWith('/art');
+    if (href === '/writings') return location.pathname.startsWith('/writings');
+    return location.pathname === href;
+  };
+
   return (
     <nav
       className={cn(
@@ -47,15 +57,14 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
                 className={cn(
-                  "font-cinzel text-sm tracking-wider transition-colors duration-300 relative group",
-                  location.pathname === link.href || 
-                  (link.href === '/work' && location.pathname.startsWith('/work'))
+                  "font-cinzel text-xs tracking-wider transition-colors duration-300 relative group",
+                  isActive(link.href)
                     ? "text-primary" 
                     : "text-foreground/80 hover:text-primary"
                 )}
@@ -63,18 +72,17 @@ export function Navbar() {
                 {link.label}
                 <span className={cn(
                   "absolute -bottom-1 left-0 h-px bg-primary transition-all duration-300",
-                  location.pathname === link.href || 
-                  (link.href === '/work' && location.pathname.startsWith('/work'))
+                  isActive(link.href)
                     ? "w-full" 
                     : "w-0 group-hover:w-full"
                 )} />
               </Link>
             ))}
-            </div>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground p-2"
+            className="lg:hidden text-foreground p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -97,8 +105,8 @@ export function Navbar() {
 
         {/* Mobile Menu */}
         <div className={cn(
-          "md:hidden overflow-hidden transition-all duration-500",
-          isMobileMenuOpen ? "max-h-80 mt-4" : "max-h-0"
+          "lg:hidden overflow-hidden transition-all duration-500",
+          isMobileMenuOpen ? "max-h-96 mt-4" : "max-h-0"
         )}>
           <div className="flex flex-col gap-4 py-4 border-t border-primary/20">
             {navLinks.map((link) => (
@@ -107,8 +115,7 @@ export function Navbar() {
                 to={link.href}
                 className={cn(
                   "font-cinzel text-sm tracking-wider transition-colors text-left",
-                  location.pathname === link.href || 
-                  (link.href === '/work' && location.pathname.startsWith('/work'))
+                  isActive(link.href)
                     ? "text-primary" 
                     : "text-foreground/80 hover:text-primary"
                 )}
