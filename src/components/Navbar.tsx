@@ -7,6 +7,7 @@ const navLinks = [
   { href: '/canon', label: 'The Canon' },
   { href: '/art', label: 'Art' },
   { href: '/music', label: 'Music' },
+  { href: '/transmissions', label: 'Transmissions' },
   { href: '/writings', label: 'Writings' },
   { href: '/shop', label: 'Shop' },
   { href: '/contact', label: 'Contact' },

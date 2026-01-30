@@ -10,6 +10,7 @@ import CanonDetail from "./pages/CanonDetail";
 import Art from "./pages/Art";
 import ArtDetail from "./pages/ArtDetail";
 import Music from "./pages/Music";
+import Transmissions from "./pages/Transmissions";
 import Writings from "./pages/Writings";
 import WritingDetail from "./pages/WritingDetail";
 import Echoverse from "./pages/Echoverse";
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/art" element={<Art />} />
           <Route path="/art/:slug" element={<ArtDetail />} />
           <Route path="/music" element={<Music />} />
+          <Route path="/transmissions" element={<Transmissions />} />
           <Route path="/writings" element={<Writings />} />
           <Route path="/writings/:slug" element={<WritingDetail />} />
           <Route path="/echoverse" element={<Echoverse />} />
