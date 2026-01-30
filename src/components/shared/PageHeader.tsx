@@ -29,7 +29,7 @@ export function PageHeader({ title, subtitle, symbol = "☥", orientationText, c
           )}
           
           {orientationText && (
-            <p className="font-cormorant text-base md:text-lg text-primary/60 mt-3 max-w-2xl mx-auto">
+            <p className="font-cormorant text-base md:text-lg text-primary/60 mt-2 max-w-2xl mx-auto">
               {orientationText}
             </p>
           )}

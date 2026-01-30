@@ -40,14 +40,14 @@ export function HeroSection() {
         </p>
 
         {/* Subtitle */}
-        <p className="font-cormorant text-lg text-foreground/70 mb-4 max-w-2xl mx-auto">
+        <p className="font-cormorant text-lg text-foreground/70 mb-3 max-w-2xl mx-auto">
           {/* PLACEHOLDER: Subtitle text */}
           Step into the sacred space where ancient wisdom meets modern revelation.
           This is not just a destination—it is a mirror reflecting the eternal within you.
         </p>
         
         {/* Orientation whisper */}
-        <p className="font-cormorant text-base text-primary/60 mb-12 max-w-2xl mx-auto">
+        <p className="font-cormorant text-base text-primary/60 mb-14 max-w-2xl mx-auto">
           You are not entering something new. You are remembering.
         </p>
 
