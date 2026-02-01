@@ -36,7 +36,7 @@ const NewsArticle = () => {
           {/* Back link */}
           <Link 
             to="/news" 
-            className="inline-flex items-center gap-2 font-cinzel text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
+            className="inline-flex items-center gap-2 font-cinzel text-sm text-muted-foreground hover:text-primary transition-colors mb-8 py-2 min-h-[44px]"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to News
@@ -76,7 +76,7 @@ const NewsArticle = () => {
           <footer className="mt-16 pt-8 border-t border-border">
             <Link 
               to="/news" 
-              className="inline-flex items-center gap-2 font-cinzel text-sm text-muted-foreground hover:text-primary transition-colors"
+              className="inline-flex items-center gap-2 font-cinzel text-sm text-muted-foreground hover:text-primary transition-colors py-2 min-h-[44px]"
             >
               <ArrowLeft className="w-4 h-4" />
               Return to all transmissions

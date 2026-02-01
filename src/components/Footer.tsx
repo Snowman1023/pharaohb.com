@@ -30,7 +30,7 @@ export function Footer() {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
           {/* Main footer content */}
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-12">
             {/* Column 1: Brand & Newsletter */}
             <div className="space-y-6">
               <div className="font-cinzel text-xl text-gold-gradient">
@@ -46,7 +46,7 @@ export function Footer() {
                 <label className="font-cinzel text-xs tracking-widest text-foreground/80">
                   Join the Inner Circle
                 </label>
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <Input
                     type="email"
                     placeholder="Enter your email"
@@ -55,7 +55,7 @@ export function Footer() {
                     className="bg-background/50 border-border font-cormorant"
                     required
                   />
-                  <Button type="submit" variant="outline" className="font-cinzel text-xs">
+                  <Button type="submit" variant="outline" className="font-cinzel text-xs min-h-[44px] whitespace-nowrap">
                     Subscribe
                   </Button>
                 </div>
@@ -143,7 +143,7 @@ export function Footer() {
 
           {/* Bottom bar */}
           <div className="pt-8 border-t border-border">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
               {/* Legal links */}
               <div className="flex items-center gap-6">
                 <Link

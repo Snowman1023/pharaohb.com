@@ -45,7 +45,7 @@ export function Navbar() {
           {/* Logo */}
           <Link 
             to="/" 
-            className="font-cinzel text-xl md:text-2xl font-semibold text-gold-gradient tracking-widest"
+            className="font-cinzel text-lg sm:text-xl md:text-2xl font-semibold text-gold-gradient tracking-widest"
           >
             PHARAOH B. 1111
           </Link>
@@ -76,7 +76,7 @@ export function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-foreground p-2"
+            className="lg:hidden text-foreground p-3 min-h-[44px] min-w-[44px] flex items-center justify-center"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -102,13 +102,13 @@ export function Navbar() {
           "lg:hidden overflow-hidden transition-all duration-500",
           isMobileMenuOpen ? "max-h-96 mt-4" : "max-h-0"
         )}>
-          <div className="flex flex-col gap-4 py-4 border-t border-primary/20">
+          <div className="flex flex-col gap-1 py-4 border-t border-primary/20">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
                 className={cn(
-                  "font-cinzel text-sm tracking-wider transition-colors text-left",
+                  "font-cinzel text-sm tracking-wider transition-colors text-left py-3 min-h-[44px] flex items-center",
                   location.pathname === link.href || location.pathname.startsWith(link.href + '/')
                     ? "text-primary" 
                     : "text-foreground/80 hover:text-primary"

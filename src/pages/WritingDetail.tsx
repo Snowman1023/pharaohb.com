@@ -29,7 +29,7 @@ const WritingDetail = () => {
         <div className="max-w-3xl mx-auto">
           <Link
             to="/writings"
-            className="inline-flex items-center gap-2 font-cinzel text-sm text-muted-foreground hover:text-primary transition-colors mb-12"
+            className="inline-flex items-center gap-2 font-cinzel text-sm text-muted-foreground hover:text-primary transition-colors mb-12 py-2 min-h-[44px]"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Writings

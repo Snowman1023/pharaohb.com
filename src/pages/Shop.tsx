@@ -35,13 +35,13 @@ const Shop = () => {
         </div>
 
         {/* Category filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
               className={cn(
-                "px-6 py-2 font-cinzel text-sm tracking-wider border transition-all duration-300",
+                "px-4 sm:px-6 py-2 min-h-[44px] font-cinzel text-xs sm:text-sm tracking-wider border transition-all duration-300",
                 activeCategory === category
                   ? "border-primary bg-primary/10 text-primary"
                   : "border-border text-muted-foreground hover:border-primary/50 hover:text-primary"
@@ -53,7 +53,7 @@ const Shop = () => {
         </div>
 
         {/* Products grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {filteredProducts.map((product) => (
             <div 
               key={product.id}

@@ -29,13 +29,13 @@ const CanonDetail = () => {
       <SectionContainer className="pt-32">
         <Link
           to="/canon"
-          className="inline-flex items-center gap-2 font-cinzel text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
+          className="inline-flex items-center gap-2 font-cinzel text-sm text-muted-foreground hover:text-primary transition-colors mb-8 py-2 min-h-[44px]"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to The Canon
         </Link>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 max-w-6xl mx-auto">
           {/* Book Cover */}
           <div className="relative">
             <div className="aspect-[3/4] overflow-hidden border border-border">
@@ -45,11 +45,11 @@ const CanonDetail = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            {/* Decorative corners */}
-            <div className="absolute -top-3 -left-3 w-12 h-12 border-l-2 border-t-2 border-primary" />
-            <div className="absolute -top-3 -right-3 w-12 h-12 border-r-2 border-t-2 border-primary" />
-            <div className="absolute -bottom-3 -left-3 w-12 h-12 border-l-2 border-b-2 border-primary" />
-            <div className="absolute -bottom-3 -right-3 w-12 h-12 border-r-2 border-b-2 border-primary" />
+            {/* Decorative corners - hidden on mobile */}
+            <div className="hidden sm:block absolute -top-3 -left-3 w-8 sm:w-12 h-8 sm:h-12 border-l-2 border-t-2 border-primary" />
+            <div className="hidden sm:block absolute -top-3 -right-3 w-8 sm:w-12 h-8 sm:h-12 border-r-2 border-t-2 border-primary" />
+            <div className="hidden sm:block absolute -bottom-3 -left-3 w-8 sm:w-12 h-8 sm:h-12 border-l-2 border-b-2 border-primary" />
+            <div className="hidden sm:block absolute -bottom-3 -right-3 w-8 sm:w-12 h-8 sm:h-12 border-r-2 border-b-2 border-primary" />
           </div>
 
           {/* Book Info */}

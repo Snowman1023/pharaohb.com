@@ -40,7 +40,7 @@ export function ExploreTilesSection() {
             <Link
               key={index}
               to={tile.link}
-              className="group relative block overflow-hidden h-48 md:h-64"
+              className="group relative block overflow-hidden h-40 md:h-48 lg:h-64"
             >
               <img
                 src={tile.image}
@@ -50,7 +50,7 @@ export function ExploreTilesSection() {
               <div className="absolute inset-0 bg-background/70 group-hover:bg-background/60 transition-colors duration-500" />
               <div className="absolute inset-0 flex items-center justify-between px-8 md:px-16">
                 <div>
-                  <h3 className="font-cinzel text-2xl md:text-4xl text-foreground group-hover:text-gold-gradient transition-colors mb-2">
+                  <h3 className="font-cinzel text-xl sm:text-2xl md:text-4xl text-foreground group-hover:text-gold-gradient transition-colors mb-2">
                     {tile.title}
                   </h3>
                   <p className="font-cormorant text-lg text-muted-foreground">

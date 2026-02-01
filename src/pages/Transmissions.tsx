@@ -15,7 +15,7 @@ const Transmissions = () => {
       />
 
       <SectionContainer>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {transmissions.map((transmission) => (
             <article key={transmission.slug} className="group">
               {/* Thumbnail */}
@@ -43,7 +43,7 @@ const Transmissions = () => {
                   href={transmission.youtubeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-cinzel text-sm tracking-wider text-primary hover:text-primary/80 transition-colors pt-2"
+                  className="inline-flex items-center gap-2 font-cinzel text-sm tracking-wider text-primary hover:text-primary/80 transition-colors pt-2 py-2 min-h-[44px]"
                 >
                   Enter Transmission
                   <ExternalLink className="w-4 h-4" />
