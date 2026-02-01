@@ -1,320 +1,270 @@
 
 
-# Complete Multi-Page Website Build for PharaohB.com
+# Responsive Audit Plan: PharaohB.com
 
 ## Overview
-Transform the existing site scaffold into a visually complete, production-ready website with all pages fully designed and populated with high-quality content and images. The Home hero section, torus, color palette, typography, and navigation remain untouched.
+
+This plan addresses responsive design issues across all pages at five breakpoints:
+- **320px** (small mobile)
+- **375px** (iPhone standard)
+- **768px** (tablet)
+- **1024px** (small desktop)
+- **1440px** (large desktop)
 
 ---
 
-## Technical Approach
+## Technical Details
 
-### Image Strategy
-All images will be sourced from Unsplash using their direct URL format with specific search terms matching the site aesthetic:
-- Dark, architectural, abstract imagery
-- Gold/black tones, geometric patterns, sacred geometry
-- No people, no stock-photo aesthetics
-- Categories: architecture, abstract, geometric, dark, metallic, cosmic
+### Issues Identified & Fixes
 
-Image URLs will use the format: `https://images.unsplash.com/photo-[ID]?w=800&q=80`
+#### 1. Navigation (Navbar.tsx)
 
-### Component Architecture
-```text
-src/
-├── components/
-│   ├── home/
-│   │   ├── RecentWorksSection.tsx
-│   │   ├── AvailableNowSection.tsx
-│   │   └── ExploreTilesSection.tsx
-│   ├── shared/
-│   │   └── (existing components)
-│   └── (existing layout components)
-├── pages/
-│   ├── Home.tsx (enhanced below hero)
-│   ├── Canon.tsx (enhanced)
-│   ├── CanonDetail.tsx (new)
-│   ├── Art.tsx (new)
-│   ├── ArtDetail.tsx (new)
-│   ├── Music.tsx (new)
-│   ├── Writings.tsx (new)
-│   ├── WritingDetail.tsx (new)
-│   ├── Shop.tsx (enhanced)
-│   ├── About.tsx (enhanced)
-│   └── Contact.tsx (enhanced)
-└── data/
-    ├── books.ts
-    ├── artworks.ts
-    ├── albums.ts
-    ├── writings.ts
-    └── products.ts
-```
+**Issues:**
+- Mobile menu touch targets are too small (nav links lack adequate padding)
+- Logo text may overflow on 320px screens
+- Social links in mobile menu are cramped
+
+**Fixes:**
+- Add `py-3` padding to mobile nav links for 44px+ touch targets
+- Scale logo text down on smallest screens: `text-lg sm:text-xl md:text-2xl`
+- Ensure mobile menu items have proper spacing
 
 ---
 
-## Page Implementations
+#### 2. Hero Section (HeroSection.tsx)
 
-### 1. HOME (Below Hero Only)
+**Issues:**
+- Egyptian decorative corners may overlap content on small screens
+- Hero headline may be too large at 320px
+- Scroll indicator positioning may conflict with corners on mobile
 
-**Section A: "Recent Works" (6 cards)**
-- Grid of 6 visual cards (3 columns on desktop, 2 on tablet, 1 on mobile)
-- Each card: image, title, one-line description
-- Hover effect with golden border glow
-- Links to respective detail pages
-
-**Section B: "Available Now" (3 products)**
-- Horizontal row of 3 product cards
-- Each card: image, title, price, "View" button
-- Pulls from books/art data
-
-**Section C: "Explore" (3 large tiles)**
-- Three large horizontal tiles linking to The Canon, Art, Music
-- Full-width stacked on mobile
-- Each tile: background image, title overlay, subtle arrow indicator
+**Fixes:**
+- Hide decorative corners on mobile: `hidden md:block`
+- Reduce hero text size progression: `text-3xl sm:text-4xl md:text-6xl lg:text-7xl`
+- Adjust scroll indicator bottom positioning for mobile
+- Reduce horizontal padding on very small screens: `px-4 sm:px-6`
 
 ---
 
-### 2. THE CANON (/canon)
+#### 3. Footer (Footer.tsx)
 
-**Book Grid (4 books)**
-Each book entry includes:
-- Cover image (dark, abstract book cover style)
-- Title
-- Short description (2-3 sentences)
-- Price
-- "View Details" button linking to /canon/[slug]
+**Issues:**
+- 3-column grid doesn't stack properly on mobile
+- Newsletter form input/button flex layout may break on 320px
+- Social links may wrap awkwardly
+- Bottom bar flex layout needs improvement for very small screens
 
-**Book Slugs and Titles:**
-1. `echoes-of-becoming` - "Echoes of Becoming"
-2. `the-architects-blueprint` - "The Architect's Blueprint"
-3. `letters-from-the-threshold` - "Letters from the Threshold"
-4. `sacred-geometries` - "Sacred Geometries"
+**Fixes:**
+- Change grid to `grid-cols-1 md:grid-cols-3`
+- Newsletter input: make button full-width on mobile with `flex-col sm:flex-row`
+- Add proper gap spacing for mobile: `gap-8 md:gap-12`
+- Bottom bar: `flex-col` on mobile with centered text
 
 ---
 
-### 3. CANON DETAIL (/canon/:slug)
+#### 4. Home Page Sections
 
-**Layout:**
-- Large cover image (left on desktop, top on mobile)
-- Title, subtitle, price
-- Full description paragraph
-- "Excerpt" section with styled blockquote
-- "Purchase" button (golden, prominent)
-- Back to Canon link
+**ExploreTilesSection.tsx:**
+- Tile height may be too tall on mobile
+- Reduce heights: `h-40 md:h-48 lg:h-64`
+- Text sizing adjustment for mobile
 
----
+**RecentWorksSection.tsx:**
+- Grid needs mobile adjustment: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`
 
-### 4. ART (/art)
-
-**Gallery Grid (20+ pieces)**
-- Dense grid layout (4 columns desktop, 3 tablet, 2 mobile)
-- Each piece: image, title on hover
-- Click links to /art/[slug]
-
-**Art Titles (examples):**
-- "Convergence I", "Golden Ratio", "Obsidian Dreams", "Temple Gate", "Cosmic Alignment", "The Threshold", "Fractal Memory", "Ascension", "Void Reflection", "Sacred Axis", etc.
+**AvailableNowSection.tsx:**
+- Grid needs adjustment: `grid-cols-1 sm:grid-cols-2 md:grid-cols-3`
 
 ---
 
-### 5. ART DETAIL (/art/:slug)
+#### 5. Canon Page (Canon.tsx)
 
-**Layout:**
-- Large artwork image (centered)
-- Title
-- Format options (Canvas / Framed / Print) as radio buttons or tabs
-- Price (varies by format)
-- "Purchase" button
-- Back to gallery link
+**Issues:**
+- 2-column grid on mobile causes cards to be too narrow at 320px
+- Price/button row may wrap awkwardly
 
----
-
-### 6. MUSIC (/music)
-
-**Album Grid (4 albums)**
-- Each album: cover art, title, short description
-- Embedded player placeholder (styled black box with play icon)
-- No autoplay
-
-**Album Titles:**
-1. "Frequencies of the Eternal"
-2. "Temple Meditations Vol. I"
-3. "The Obsidian Sessions"
-4. "Golden Hour Transmissions"
+**Fixes:**
+- Change grid: `grid-cols-1 md:grid-cols-2`
+- Ensure button and price have proper alignment on all sizes
 
 ---
 
-### 7. WRITINGS (/writings)
+#### 6. Art Gallery (Art.tsx)
 
-**List View (12 entries)**
-- Vertical list with clear spacing
-- Each entry: title, date, short excerpt (2-3 lines)
-- Click links to /writings/[slug]
+**Issues:**
+- 2-column grid on smallest screens (320px) creates very small tiles
+- Hover overlays don't work on touch devices
 
-**Writing Titles (examples):**
-- "On the Nature of Becoming", "The Architecture of Self", "Letters to the Unborn", "Reflections on the Threshold", etc.
-
----
-
-### 8. WRITING DETAIL (/writings/:slug)
-
-**Layout:**
-- Title (large, centered)
-- Date
-- Full article content (3-4 paragraphs minimum)
-- Styled prose with proper typography
-- Back to Writings link
+**Fixes:**
+- Reduce columns on mobile: `grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4`
+- Show title/price below image on mobile instead of overlay
+- Add alternative touch-friendly behavior
 
 ---
 
-### 9. SHOP (/shop - Enhanced)
+#### 7. Music Page (Music.tsx)
 
-**Unified Product Grid**
-- All products in one grid
-- Categories: Books, Art, Objects/Apparel
-- Each product: image, title, category tag, price, "View" button
-- 12+ products total
+**Issues:**
+- 2-column grid may cause issues on tablet portrait
+- Player control button size needs touch-target compliance (44px minimum)
+- Track list text may be cramped
 
-**Product Types:**
-- 4 books (from Canon)
-- 4 art prints (from Art)
-- 4 objects/apparel (robes, jewelry, journals, candles)
-
----
-
-### 10. ABOUT (/about - Enhanced)
-
-**Three Sections:**
-
-**Section 1: "What This Is"**
-- Header + 2 paragraphs
-- Description of the work and its purpose
-
-**Section 2: "How to Engage"**
-- Header + bullet points or short paragraphs
-- Read, View, Listen guidance
-
-**Section 3: "Why It Exists"**
-- Header + 2 paragraphs
-- Philosophy and intention
-
-**Supporting Image:**
-- One strong architectural/abstract image
-- Positioned between sections or as a full-width divider
+**Fixes:**
+- Grid adjustment: `grid-cols-1 lg:grid-cols-2`
+- Increase play button size to `w-14 h-14` for touch compliance
+- Improve track list spacing
 
 ---
 
-### 11. CONTACT (/contact - Enhanced)
+#### 8. Shop Page (Shop.tsx)
 
-**Layout:**
-- Short intro text (2 sentences)
-- Contact form (name, email, subject, message)
-- Newsletter signup (separate section)
-- Social links
+**Issues:**
+- Category filter buttons may wrap poorly on mobile
+- 4-column grid creates tiny cards on tablet
+- Product info text may overflow
 
----
-
-## Route Updates
-
-Add to App.tsx:
-```text
-/canon/:slug    → CanonDetail.tsx
-/art            → Art.tsx
-/art/:slug      → ArtDetail.tsx
-/music          → Music.tsx
-/writings       → Writings.tsx
-/writings/:slug → WritingDetail.tsx
-```
-
-Update Navbar to include: About, The Canon, Art, Music, Writings, Shop, Contact
+**Fixes:**
+- Filter buttons: ensure proper wrapping with `flex-wrap justify-center gap-2 sm:gap-3`
+- Grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`
+- Category filter buttons need touch-friendly sizing: `min-h-[44px]`
 
 ---
 
-## Data Files Structure
+#### 9. Transmissions Page (Transmissions.tsx)
 
-**src/data/books.ts**
-```typescript
-export const books = [
-  {
-    slug: 'echoes-of-becoming',
-    title: 'Echoes of Becoming',
-    subtitle: 'A Journey Through the Self',
-    description: '...',
-    excerpt: '...',
-    price: '$34.99',
-    image: 'https://images.unsplash.com/...'
-  },
-  // ... 3 more
-];
-```
+**Issues:**
+- Grid may cause narrow cards on tablet
 
-Similar structure for artworks.ts, albums.ts, writings.ts, products.ts.
+**Fixes:**
+- Adjust grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`
+- Ensure touch targets on "Enter Transmission" links are adequate
 
 ---
 
-## Design Consistency
+#### 10. Writings Page (Writings.tsx)
 
-**Typography:**
-- Headings: font-cinzel with text-gold-gradient
-- Body: font-cormorant
-- Small text: font-cinzel uppercase tracking-widest
+**Issues:**
+- Date placement may cause awkward stacking on mobile
+- Touch targets on writing links may be too small
 
-**Spacing:**
-- Sections: py-16 md:py-24
-- Grid gaps: gap-6 or gap-8
-- Container: max-w-6xl mx-auto
-
-**Cards:**
-- bg-card border border-border
-- hover:border-primary/50 transition
-- Consistent padding (p-6)
-
-**Buttons:**
-- Primary: bg-primary text-primary-foreground
-- Outline: border-primary text-primary
+**Fixes:**
+- Improve spacing in flex layout for mobile
+- Add adequate vertical padding for touch targets: `py-6 sm:py-8`
 
 ---
 
-## Files to Create
+#### 11. About Page (About.tsx)
 
-1. `src/data/books.ts`
-2. `src/data/artworks.ts`
-3. `src/data/albums.ts`
-4. `src/data/writings.ts`
-5. `src/data/products.ts`
-6. `src/components/home/RecentWorksSection.tsx`
-7. `src/components/home/AvailableNowSection.tsx`
-8. `src/components/home/ExploreTilesSection.tsx`
-9. `src/pages/CanonDetail.tsx`
-10. `src/pages/Art.tsx`
-11. `src/pages/ArtDetail.tsx`
-12. `src/pages/Music.tsx`
-13. `src/pages/Writings.tsx`
-14. `src/pages/WritingDetail.tsx`
+**Issues:**
+- "How To Engage" numbered boxes may be too close together on mobile
+- Image divider height may need reduction on mobile
 
-## Files to Modify
-
-1. `src/App.tsx` - Add new routes
-2. `src/components/Navbar.tsx` - Update navigation links
-3. `src/pages/Home.tsx` - Add sections below hero
-4. `src/pages/Canon.tsx` - Complete book grid
-5. `src/pages/Shop.tsx` - Unified product grid
-6. `src/pages/About.tsx` - Three content sections
-7. `src/pages/Contact.tsx` - Enhanced layout
+**Fixes:**
+- Increase gap in step items on mobile
+- Reduce image height: `h-48 md:h-64 lg:h-96`
 
 ---
 
-## Image Sources (Curated Unsplash)
+#### 12. Contact Page (Contact.tsx)
 
-All images will be carefully selected to match the dark, architectural, symbolic aesthetic:
+**Issues:**
+- 2-column layout may stack awkwardly
+- Form inputs need adequate sizing for mobile
 
-- **Abstract/Geometric:** Dark geometric patterns, golden spirals, sacred geometry
-- **Architecture:** Dark corridors, ancient structures, minimalist spaces
-- **Cosmic:** Dark nebulae, star fields, celestial imagery
-- **Metallic:** Gold textures, bronze surfaces, obsidian reflections
+**Fixes:**
+- Ensure grid stacking: `grid-cols-1 md:grid-cols-2`
+- Form elements already use proper Tailwind input sizing
 
-Example queries for selection:
-- "dark abstract geometric gold"
-- "sacred geometry black"
-- "minimal architecture dark"
-- "cosmic gold nebula"
-- "ancient temple shadows"
+---
+
+#### 13. Detail Pages (CanonDetail, ArtDetail, WritingDetail, NewsArticle)
+
+**Issues:**
+- Decorative corner elements on CanonDetail may overlap on mobile
+- Grid layouts need responsive adjustment
+- Back links need adequate touch targets
+
+**Fixes:**
+- Hide decorative corners on small screens or reduce size
+- Ensure `grid-cols-1 md:grid-cols-2` pattern
+- Add `py-3` to back links for touch compliance
+
+---
+
+#### 14. PageHeader Component (PageHeader.tsx)
+
+**Issues:**
+- Top padding may be excessive on mobile
+- Title sizing may need reduction for very small screens
+
+**Fixes:**
+- Adjust padding: `pt-24 pb-12 md:pt-32 md:pb-16 lg:pt-40 lg:pb-20`
+- Title scaling: `text-3xl sm:text-4xl md:text-5xl lg:text-6xl`
+
+---
+
+#### 15. NotFound Page (NotFound.tsx)
+
+**Issues:**
+- Uses `bg-muted` instead of `bg-background`, inconsistent with site design
+- Not using PageLayout or site styling
+
+**Fixes:**
+- Apply consistent dark background and styling
+- Match site typography (Cinzel/Cormorant)
+
+---
+
+#### 16. GoldenTorus 3D Element (GoldenTorus.tsx)
+
+**Performance consideration:**
+- 3D WebGL canvas may cause performance issues on lower-end mobile devices
+
+**Recommendation:**
+- Current implementation is already set to `pointer-events-none` and fades with scroll
+- Consider reducing geometry complexity or adding a static fallback for mobile
+
+---
+
+## Implementation Order
+
+1. **Global Components First**
+   - Navbar (affects all pages)
+   - Footer (affects all pages)
+   - PageHeader (affects multiple pages)
+
+2. **Home Page Sections**
+   - HeroSection
+   - ExploreTilesSection
+   - RecentWorksSection
+   - AvailableNowSection
+
+3. **Primary Content Pages**
+   - Canon + CanonDetail
+   - Art + ArtDetail
+   - Music
+   - Shop
+   - Transmissions
+
+4. **Secondary Pages**
+   - Writings + WritingDetail
+   - About
+   - Contact
+   - News + NewsArticle
+   - Echoverse
+   - NotFound
+
+---
+
+## Summary
+
+This audit covers **16 components/pages** with fixes for:
+- Text overflow at 320px
+- Touch target sizing (minimum 44px)
+- Grid layout adjustments for all breakpoints
+- Spacing and padding refinements
+- Mobile-friendly navigation
+- Consistent styling on all pages
+
+No visual design changes; all adjustments maintain the existing Egyptian aesthetic while ensuring full responsiveness.
 
