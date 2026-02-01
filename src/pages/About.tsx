@@ -36,7 +36,7 @@ const About = () => {
       </SectionContainer>
 
       {/* Full-width image divider */}
-      <div className="relative h-64 md:h-96 my-16">
+      <div className="relative h-48 md:h-64 lg:h-96 my-12 md:my-16">
         <img
           src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=1600&q=80"
           alt="Sunrise over ancient landscape"
@@ -51,9 +51,9 @@ const About = () => {
           <h2 className="font-cinzel text-2xl md:text-3xl text-gold-gradient mb-8">
             How To Engage
           </h2>
-          <div className="space-y-8">
-            <div className="flex gap-6">
-              <div className="flex-shrink-0 w-12 h-12 border border-primary flex items-center justify-center text-primary font-cinzel">
+          <div className="space-y-6 sm:space-y-8">
+            <div className="flex gap-4 sm:gap-6">
+              <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 border border-primary flex items-center justify-center text-primary font-cinzel text-sm sm:text-base">
                 01
               </div>
               <div>
@@ -66,8 +66,8 @@ const About = () => {
               </div>
             </div>
             
-            <div className="flex gap-6">
-              <div className="flex-shrink-0 w-12 h-12 border border-primary flex items-center justify-center text-primary font-cinzel">
+            <div className="flex gap-4 sm:gap-6">
+              <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 border border-primary flex items-center justify-center text-primary font-cinzel text-sm sm:text-base">
                 02
               </div>
               <div>
@@ -80,8 +80,8 @@ const About = () => {
               </div>
             </div>
             
-            <div className="flex gap-6">
-              <div className="flex-shrink-0 w-12 h-12 border border-primary flex items-center justify-center text-primary font-cinzel">
+            <div className="flex gap-4 sm:gap-6">
+              <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 border border-primary flex items-center justify-center text-primary font-cinzel text-sm sm:text-base">
                 03
               </div>
               <div>

@@ -72,7 +72,7 @@ const News = () => {
           </div>
 
           {/* Post Grid */}
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {placeholderPosts.slice(1).map((post) => (
               <Link
                 key={post.slug}

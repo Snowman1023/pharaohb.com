@@ -32,13 +32,13 @@ const ArtDetail = () => {
       <SectionContainer className="pt-32">
         <Link
           to="/art"
-          className="inline-flex items-center gap-2 font-cinzel text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
+          className="inline-flex items-center gap-2 font-cinzel text-sm text-muted-foreground hover:text-primary transition-colors mb-8 py-2 min-h-[44px]"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Gallery
         </Link>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 max-w-6xl mx-auto">
           {/* Artwork Image */}
           <div className="relative">
             <div className="aspect-square overflow-hidden border border-border">

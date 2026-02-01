@@ -10,7 +10,7 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, subtitle, symbol = "☥", orientationText, className }: PageHeaderProps) {
   return (
-    <div className={cn("pt-32 pb-16 md:pt-40 md:pb-20", className)}>
+    <div className={cn("pt-24 pb-12 md:pt-32 md:pb-16 lg:pt-40 lg:pb-20", className)}>
       <div className="container mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto">
           {/* Decorative ornament */}
@@ -18,7 +18,7 @@ export function PageHeader({ title, subtitle, symbol = "☥", orientationText, c
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
           </div>
           
-          <h1 className="font-cinzel text-4xl md:text-5xl lg:text-6xl text-gold-gradient mb-4">
+          <h1 className="font-cinzel text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gold-gradient mb-4">
             {title}
           </h1>
           

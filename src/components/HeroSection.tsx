@@ -14,14 +14,14 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background/80" />
       
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
         {/* Decorative ornament */}
         <div className="mb-8 flex justify-center">
           <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
         </div>
 
         {/* Main headline */}
-        <h1 className="font-cinzel text-4xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-tight">
+        <h1 className="font-cinzel text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-tight">
           <span className="text-gold-gradient text-glow-gold">
             {/* PLACEHOLDER: Hero headline part 1 */}
             Welcome to the Echo
@@ -63,18 +63,18 @@ export function HeroSection() {
         </Button>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-float">
+        <div className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 animate-float">
           <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center pt-2">
             <div className="w-1.5 h-3 bg-primary rounded-full animate-pulse-gold" />
           </div>
         </div>
       </div>
 
-      {/* Egyptian decorative corners */}
-      <div className="absolute top-20 left-8 w-16 h-16 border-l-2 border-t-2 border-primary/30" />
-      <div className="absolute top-20 right-8 w-16 h-16 border-r-2 border-t-2 border-primary/30" />
-      <div className="absolute bottom-8 left-8 w-16 h-16 border-l-2 border-b-2 border-primary/30" />
-      <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-primary/30" />
+      {/* Egyptian decorative corners - hidden on mobile */}
+      <div className="hidden md:block absolute top-20 left-8 w-16 h-16 border-l-2 border-t-2 border-primary/30" />
+      <div className="hidden md:block absolute top-20 right-8 w-16 h-16 border-r-2 border-t-2 border-primary/30" />
+      <div className="hidden md:block absolute bottom-8 left-8 w-16 h-16 border-l-2 border-b-2 border-primary/30" />
+      <div className="hidden md:block absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-primary/30" />
     </section>
   );
 }

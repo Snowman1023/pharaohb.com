@@ -28,7 +28,7 @@ const Writings = () => {
             <Link
               key={writing.slug}
               to={`/writings/${writing.slug}`}
-              className="group block py-8 first:pt-0 last:pb-0"
+              className="group block py-6 sm:py-8 first:pt-0 last:pb-0 min-h-[44px]"
             >
               <div className="flex flex-col md:flex-row md:items-start gap-4">
                 <div className="flex-1">

@@ -43,7 +43,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-16 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 max-w-5xl mx-auto">
           {/* Contact Form */}
           <div className="space-y-6">
             <h2 className="font-cinzel text-2xl text-gold-gradient">
