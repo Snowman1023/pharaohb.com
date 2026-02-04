@@ -1,6 +1,7 @@
 import { useFadeInOnScroll } from '@/hooks/useFadeInOnScroll';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import brandSymbol from '@/assets/brand-symbol.png';
 
 const books = [
   {
@@ -50,7 +51,7 @@ export function CanonSection() {
               the chambers of your own becoming.
             </p>
             <div className="egyptian-divider max-w-md mx-auto mt-6">
-              <span className="text-primary text-2xl">𓂀</span>
+              <img src={brandSymbol} alt="Pharaoh B. Symbol" className="w-10 h-10 object-contain" />
             </div>
           </div>
 

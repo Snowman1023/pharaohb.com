@@ -8,7 +8,6 @@ const Privacy = () => {
       <PageHeader 
         title="Privacy Policy"
         subtitle="How we protect your sacred information"
-        symbol="𓂋"
       />
       
       <SectionContainer>

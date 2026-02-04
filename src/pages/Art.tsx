@@ -11,7 +11,6 @@ const Art = () => {
         title="Art"
         subtitle="Visual meditations on form, void, and the spaces between"
         orientationText="Each piece is a doorway. Pause before entering."
-        symbol="◇"
       />
 
       <SectionContainer>

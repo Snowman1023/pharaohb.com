@@ -41,7 +41,6 @@ const News = () => {
       <PageHeader 
         title="News & Transmissions"
         subtitle="Updates, teachings, and revelations from the eternal now"
-        symbol="𓏏"
       />
       
       <SectionContainer>

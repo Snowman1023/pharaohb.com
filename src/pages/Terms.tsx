@@ -8,7 +8,6 @@ const Terms = () => {
       <PageHeader 
         title="Terms of Service"
         subtitle="The covenant between us"
-        symbol="𓆓"
       />
       
       <SectionContainer>

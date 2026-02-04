@@ -1,14 +1,14 @@
 import { cn } from '@/lib/utils';
+import brandSymbol from '@/assets/brand-symbol.png';
 
 interface PageHeaderProps {
   title: string;
   subtitle?: string;
-  symbol?: string;
   orientationText?: string;
   className?: string;
 }
 
-export function PageHeader({ title, subtitle, symbol = "☥", orientationText, className }: PageHeaderProps) {
+export function PageHeader({ title, subtitle, orientationText, className }: PageHeaderProps) {
   return (
     <div className={cn("pt-24 pb-12 md:pt-32 md:pb-16 lg:pt-40 lg:pb-20", className)}>
       <div className="container mx-auto px-6">
@@ -34,9 +34,9 @@ export function PageHeader({ title, subtitle, symbol = "☥", orientationText, c
             </p>
           )}
           
-          {/* Egyptian divider */}
+          {/* Egyptian divider with brand symbol */}
           <div className="egyptian-divider max-w-md mx-auto mt-8">
-            <span className="text-primary text-2xl">{symbol}</span>
+            <img src={brandSymbol} alt="Pharaoh B. Symbol" className="w-12 h-12 object-contain" />
           </div>
         </div>
       </div>

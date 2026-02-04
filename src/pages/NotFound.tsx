@@ -1,6 +1,7 @@
 import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
+import brandSymbol from '@/assets/brand-symbol.png';
 
 const NotFound = () => {
   const location = useLocation();
@@ -14,7 +15,9 @@ const NotFound = () => {
       <div className="flex min-h-[60vh] items-center justify-center pt-24 pb-16">
         <div className="text-center px-4">
           {/* Decorative symbol */}
-          <div className="text-4xl text-primary/50 mb-6">𓂀</div>
+          <div className="mb-6 flex justify-center">
+            <img src={brandSymbol} alt="Pharaoh B. Symbol" className="w-16 h-16 object-contain opacity-50" />
+          </div>
           
           <h1 className="font-cinzel text-5xl md:text-6xl text-gold-gradient mb-4">404</h1>
           <p className="font-cormorant text-xl md:text-2xl text-muted-foreground mb-8">

@@ -11,7 +11,6 @@ const Transmissions = () => {
         title="Transmissions"
         subtitle="Spoken works, frequencies, and audio reflections"
         orientationText="Receive without grasping. These are living signals."
-        symbol="◉"
       />
 
       <SectionContainer>
