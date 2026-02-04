@@ -11,7 +11,6 @@ const Music = () => {
         title="Music"
         subtitle="Frequencies of transformation and awakening"
         orientationText="Listen without seeking. Let resonance do the work."
-        symbol="♫"
       />
 
       <SectionContainer>

@@ -32,7 +32,6 @@ const Contact = () => {
       <PageHeader 
         title="Connect"
         subtitle="The doorway between realms"
-        symbol="𓂋"
       />
 
       <SectionContainer>

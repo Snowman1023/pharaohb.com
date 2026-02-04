@@ -4,6 +4,7 @@ import { useFadeInOnScroll } from '@/hooks/useFadeInOnScroll';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import brandSymbol from '@/assets/brand-symbol.png';
 
 export function Footer() {
   const { ref, isVisible } = useFadeInOnScroll();
@@ -172,7 +173,7 @@ export function Footer() {
           <div className="flex justify-center mt-8">
             <div className="flex items-center gap-4">
               <div className="w-16 h-px bg-gradient-to-r from-transparent to-primary" />
-              <span className="text-2xl text-primary">𓂀</span>
+              <img src={brandSymbol} alt="Pharaoh B. Symbol" className="w-10 h-10 object-contain" />
               <div className="w-16 h-px bg-gradient-to-l from-transparent to-primary" />
             </div>
           </div>

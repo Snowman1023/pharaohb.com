@@ -8,7 +8,6 @@ const About = () => {
       <PageHeader 
         title="About"
         subtitle="Understanding the architecture of this work"
-        symbol="𓂀"
       />
 
       {/* What This Is */}

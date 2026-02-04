@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { SectionContainer } from '@/components/shared/SectionContainer';
 import { ArrowLeft } from 'lucide-react';
+import brandSymbol from '@/assets/brand-symbol.png';
 
 // PLACEHOLDER: This would come from a CMS or database
 const getArticle = (slug: string) => ({
@@ -62,7 +63,7 @@ const NewsArticle = () => {
             
             {/* Egyptian divider */}
             <div className="egyptian-divider max-w-xs mt-8">
-              <span className="text-primary text-xl">𓂀</span>
+              <img src={brandSymbol} alt="Pharaoh B. Symbol" className="w-8 h-8 object-contain" />
             </div>
           </header>
 

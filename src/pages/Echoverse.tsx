@@ -41,7 +41,6 @@ const Echoverse = () => {
       <PageHeader 
         title="The Echoverse"
         subtitle="Explore the expanding universe of creation"
-        symbol="𓆣"
       />
 
       <SectionContainer>
