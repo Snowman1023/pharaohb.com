@@ -2,49 +2,59 @@ import { Link } from 'react-router-dom';
 import { books } from '@/data/books';
 import { artworks } from '@/data/artworks';
 import { writings } from '@/data/writings';
+import { transmissions } from '@/data/transmissions';
+
+// Pull featured/recent items from each category
+const featuredBook = books[0]; // Echoes of Becoming
+const featuredArt = artworks[0];
+const featuredWriting = writings[0];
+const featuredTransmission = transmissions.find(t => t.featured) || transmissions[0];
+const secondBook = books[1];
+const secondArt = artworks[1];
 
 const recentWorks = [
   { 
     type: 'book',
-    title: books[0].title, 
-    description: 'A transformative exploration of identity and purpose.',
-    image: books[0].image,
-    link: `/canon/${books[0].slug}`
+    title: featuredBook.title, 
+    description: featuredBook.description.slice(0, 100) + '...',
+    image: featuredBook.image,
+    link: `/canon/${featuredBook.slug}`
   },
   { 
     type: 'art',
-    title: artworks[0].title, 
-    description: artworks[0].description,
-    image: artworks[0].image,
-    link: `/art/${artworks[0].slug}`
+    title: featuredArt.title, 
+    description: featuredArt.description,
+    image: featuredArt.image,
+    link: `/art/${featuredArt.slug}`
+  },
+  { 
+    type: 'transmission',
+    title: featuredTransmission.title, 
+    description: featuredTransmission.description.slice(0, 80) + '...',
+    image: featuredTransmission.thumbnail,
+    link: featuredTransmission.href,
+    external: true
   },
   { 
     type: 'writing',
-    title: writings[0].title, 
-    description: writings[0].excerpt.slice(0, 80) + '...',
+    title: featuredWriting.title, 
+    description: featuredWriting.excerpt.slice(0, 80) + '...',
     image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80',
-    link: `/writings/${writings[0].slug}`
-  },
-  { 
-    type: 'art',
-    title: artworks[3].title, 
-    description: artworks[3].description,
-    image: artworks[3].image,
-    link: `/art/${artworks[3].slug}`
+    link: `/writings/${featuredWriting.slug}`
   },
   { 
     type: 'book',
-    title: books[1].title, 
-    description: 'Building sacred spaces within and without.',
-    image: books[1].image,
-    link: `/canon/${books[1].slug}`
+    title: secondBook.title, 
+    description: secondBook.description.slice(0, 100) + '...',
+    image: secondBook.image,
+    link: `/canon/${secondBook.slug}`
   },
   { 
-    type: 'writing',
-    title: writings[2].title, 
-    description: writings[2].excerpt.slice(0, 80) + '...',
-    image: 'https://images.unsplash.com/photo-1473186505569-9c61870c11f9?w=800&q=80',
-    link: `/writings/${writings[2].slug}`
+    type: 'art',
+    title: secondArt.title, 
+    description: secondArt.description,
+    image: secondArt.image,
+    link: `/art/${secondArt.slug}`
   }
 ];
 
@@ -62,33 +72,40 @@ export function RecentWorksSection() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {recentWorks.map((work, index) => (
-            <Link
-              key={index}
-              to={work.link}
-              className="group relative overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-500"
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={work.image}
-                  alt={work.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <span className="font-cinzel text-xs text-primary/70 uppercase tracking-widest mb-2 block">
-                  {work.type}
-                </span>
-                <h3 className="font-cinzel text-lg text-foreground group-hover:text-gold-gradient transition-colors mb-2">
-                  {work.title}
-                </h3>
-                <p className="font-cormorant text-sm text-muted-foreground line-clamp-2">
-                  {work.description}
-                </p>
-              </div>
-            </Link>
-          ))}
+          {recentWorks.map((work, index) => {
+            const Wrapper = work.external ? 'a' : Link;
+            const wrapperProps = work.external 
+              ? { href: work.link, target: '_blank', rel: 'noopener noreferrer' }
+              : { to: work.link };
+            
+            return (
+              <Wrapper
+                key={index}
+                {...wrapperProps as any}
+                className="group relative overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-500"
+              >
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={work.image}
+                    alt={work.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <span className="font-cinzel text-xs text-primary/70 uppercase tracking-widest mb-2 block">
+                    {work.type}
+                  </span>
+                  <h3 className="font-cinzel text-lg text-foreground group-hover:text-gold-gradient transition-colors mb-2">
+                    {work.title}
+                  </h3>
+                  <p className="font-cormorant text-sm text-muted-foreground line-clamp-2">
+                    {work.description}
+                  </p>
+                </div>
+              </Wrapper>
+            );
+          })}
         </div>
       </div>
     </section>
