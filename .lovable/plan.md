@@ -1,109 +1,58 @@
 
-# Plan: Restructure Recent Works Section for YouTube Thumbnails
+# Plan: Update Recent Works with Correct Videos
 
-## Problem Analysis
+## Your Request
+Replace the current layout to match your annotations exactly:
+- **Left column**: Master Key (top) + Galaxies in Your Gaze (bottom) - stacked vertically, full 16:9
+- **Right column**: Overthinking (top) + Procrastination (bottom) - stacked vertically
+- **Bottom row**: 3 Frequency videos
 
-The current "Recent Works" section has two main issues:
-1. **Aspect Ratio Mismatch**: YouTube thumbnails are 16:9 but the grid uses 4:3 cards, causing awkward cropping
-2. **Placeholder Images**: Artwork, books, and writings are using Unsplash placeholders instead of real content
+## Current Problem
+The code is using `getFeaturedTransmissions()` which pulls random featured videos, not the specific ones you want. The right column is showing books instead of videos.
 
 ---
 
-## Solution: Mixed-Layout Section
-
-Instead of a uniform 6-card grid, create a visually dynamic layout that properly showcases different content types:
+## New Layout Structure
 
 ```text
-Current Layout:              New Layout:
-+---------+---------+---------+    +-------------------+---------+
-|  4:3    |  4:3    |  4:3    |    |                   |  1:1    |
-|  card   |  card   |  card   |    |    FEATURED       |  book   |
-+---------+---------+---------+    |    16:9 Video     +---------+
-|  4:3    |  4:3    |  4:3    |    |                   |  1:1    |
-|  card   |  card   |  card   |    |                   |  book   |
-+---------+---------+---------+    +-------------------+---------+
-                                   +---------+---------+---------+
-                                   |  16:9   |  16:9   |  16:9   |
-                                   |  video  |  video  |  video  |
-                                   +---------+---------+---------+
++---------------------------+--------------+
+|   MASTER KEY AFFIRMATIONS |  OVERTHINKING|
+|   (16:9 video, stacked)   |  (16:9)      |
++---------------------------+--------------+
+|   GALAXIES IN YOUR GAZE   | PROCRASTIN-  |
+|   (16:9 video, stacked)   |  ATION (16:9)|
++---------------------------+--------------+
+
++----------+-----------+----------+
+|  FREQ 1  |  FREQ 2   |  FREQ 3  |
+| (16:9)   |  (16:9)   |  (16:9)  |
++----------+-----------+----------+
 ```
 
 ---
 
-## Step 1: Create New Layout Structure
-
-Redesign the Recent Works section with:
-
-1. **Featured Row (Large)**: 
-   - Left: One large 16:9 featured transmission (YouTube video with proper thumbnail)
-   - Right: 2 stacked square cards for books
-
-2. **Video Row**: 
-   - 3 columns of 16:9 YouTube video cards with proper thumbnails
-   - Includes play button overlay and duration badge
-
----
-
-## Step 2: Use Real YouTube Thumbnails
-
-Pull directly from the transmissions data which already has proper YouTube thumbnail URLs:
-- `https://i.ytimg.com/vi/[VIDEO_ID]/maxresdefault.jpg`
-
-Featured transmissions to display:
-- "Galaxies in Your Gaze" (Music - featured)
-- "Delta Waves - Deep Healing Sleep" (Frequency)  
-- "Master Key Affirmations" (Affirmation)
-- "A Vision for Humanity" (Spoken Word)
-
----
-
-## Step 3: Remove Placeholder Content
-
-Remove artworks and writings from this section since they still use Unsplash placeholders. Focus on content that has real imagery:
-- **YouTube Videos**: Have real thumbnails
-- **Books**: Keep but note they still need real cover images
-
----
-
-## Technical Implementation
+## Implementation Details
 
 ### File: `src/components/home/RecentWorksSection.tsx`
 
-Changes:
-1. Import only needed data (transmissions, books)
-2. Filter for featured transmissions
-3. Create featured video component with 16:9 aspect ratio
-4. Create video card row with 16:9 cards
-5. Add play overlay and duration badges for videos
-6. Use CSS Grid with proper responsive breakpoints
+1. **Remove books import** - no longer needed
+2. **Hardcode specific video IDs** for precise control:
+   - Master Key: `XGq0-MGq2O0`
+   - Galaxies: `EAU5cD0Sh_4`
+   - Overthinking: `msA-q_PwIz8`
+   - Procrastination: `HE806qtLYNE`
+   - Delta Waves: `Zrfoe0cz5FQ`
+   - Alpha Frequency: `mcH4iDuTd6c`
+   - Handpan Meditation: `UBGAjWD1WdI`
 
-### CSS Classes Used:
-- `aspect-video` (16:9 for YouTube thumbnails)
-- `aspect-square` (1:1 for books)
-- Grid layout with `grid-cols-1 md:grid-cols-3`
+3. **Update grid structure**:
+   - Left column: `lg:col-span-2` with 2 stacked 16:9 videos
+   - Right column: `lg:col-span-1` with 2 stacked 16:9 videos (NOT books)
+   - Bottom row: 3-column grid with frequency videos
 
----
+4. **Helper function** to find videos by ID from transmissions data
 
-## Visual Result
-
-- Featured YouTube video displays at full 16:9 with no cropping
-- Additional videos in a row below, also 16:9
-- Play button overlays on video cards
-- Duration badges showing video length
-- Clean, professional look matching YouTube's own layout
-
----
-
-## Files Modified
-
-1. **`src/components/home/RecentWorksSection.tsx`**
-   - Complete restructure of the layout
-   - Use 16:9 aspect ratio for all video content
-   - Add video-specific UI (play buttons, duration)
-   - Focus on content with real images (YouTube videos)
-
----
-
-## Future Considerations
-
-Once you have real artwork and book cover images, the section can be expanded to include those in a separate "Featured Works" row with appropriate aspect ratios for each content type.
+### Expected Result
+- All 7 video cards are real YouTube content with proper thumbnails
+- No placeholder images or books in this section
+- Books remain in the Canon, poems in Artifacts (already done)
