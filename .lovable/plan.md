@@ -1,93 +1,97 @@
 
 
-# Transmissions Page - YouTube Video Catalog
+# Books and Music Pages Implementation Plan
 
 ## Overview
 
-Rebuilding the Transmissions page to display YouTube videos in a professional catalog format with:
-- Category filter tabs (All, Frequencies, Audiobooks, Spoken Word, Teachings)
-- Long-form video grid (16:9 thumbnails) with duration badges and play overlays
-- Shorts section (9:16 vertical cards)
-- Updated header with "Audio & Video" subtitle
+This plan implements updates to support a dedicated Books page at `/books` and enhances the Music page with streaming links and a track-focused layout.
 
 ---
 
-## Current State
+## Current State Analysis
 
-The existing Transmissions page shows 6 placeholder entries with:
-- Stock Unsplash images
-- Generic YouTube links
-- `type` field with values: `spoken`, `audio`, `reading`, `frequency`
-- Simple card layout linking externally
+**Existing Structure:**
+- `/canon` - Shows books with detail page links (uses `src/data/books.ts`)
+- `/music` - Shows albums with track lists (uses `src/data/albums.ts`)
+- No `/books` route exists currently
+- No `homeData.ts` file with `contentPillars` - tiles are hardcoded in `ExploreTilesSection.tsx`
 
-The data structure needs to be completely replaced with the new YouTube-focused format.
-
----
-
-## Changes Required
-
-### 1. Replace Data File
-
-**File:** `src/data/transmissions.ts`
-
-Replace entirely with new structure:
-- **Transmission interface**: `id`, `title`, `description`, `thumbnail`, `href`, `duration`, `views`, `category`, `featured`
-- **Short interface**: `id`, `title`, `thumbnail`, `href`
-- **Categories**: `frequency`, `audiobook`, `spoken-word`, `teaching`
-- **Helper functions**: `getTransmissionsByCategory()`, `getFeaturedTransmissions()`
-- Initial data: 3 featured videos provided (999 Hz, Chakra Healing, Master Key System)
-
-### 2. Create VideoCard Component
-
-**New file:** `src/components/transmissions/VideoCard.tsx`
-
-Features:
-- 16:9 aspect ratio thumbnail
-- Hover play button overlay with circular background
-- Duration badge (bottom-right corner)
-- Title and optional view count below
-- External link to YouTube
-
-### 3. Create ShortCard Component
-
-**New file:** `src/components/transmissions/ShortCard.tsx`
-
-Features:
-- 9:16 vertical aspect ratio
-- Centered play icon on hover
-- Title below thumbnail
-- External link to YouTube shorts
-
-### 4. Rebuild Transmissions Page
-
-**File:** `src/pages/Transmissions.tsx`
-
-Complete rebuild with:
-- Updated PageHeader ("Audio & Video" subtitle, new orientation text)
-- Category filter buttons (styled like Shop page)
-- Long-form video grid (3 columns desktop, 2 tablet, 1 mobile)
-- Divider with brand symbol
-- Shorts section with horizontal scroll or 5-column grid
-- "View All Shorts on YouTube" external link
+**Decision Point:** The prompt asks for `/books` as a new route. Since `/canon` already exists as the books section, I will:
+1. Create a NEW `/books` page as requested
+2. Keep `/canon` intact (it serves as the detail-oriented version)
+3. The new `/books` page will have format badges and purchase links as specified
 
 ---
 
-## Component Architecture
+## Part 1: Create Books Page (/books)
 
+### New Files
+
+**A. Create `src/data/booksData.ts`**
+
+New data structure with:
+- `Book` interface: `id`, `title`, `subtitle`, `description`, `coverImage`, `price` (number), `format`, `purchaseLink`, `featured`
+- 3 initial books: Echoes of Becoming, Cosmic Alignment, Sacred Geometries
+- `booksPageContent` object with page metadata
+
+**B. Create `src/components/books/BookCard.tsx`**
+
+Component features:
+- 3:4 aspect ratio book cover
+- Format badge (ebook/paperback/hardcover/audiobook) in top-right corner
+- Title, subtitle, description below cover
+- Price display and Purchase/Coming Soon button
+- Hover lift effect
+
+**C. Create `src/pages/Books.tsx`**
+
+Page structure:
+- PageHeader with "The Canon" title, "The Written Word" subtitle
+- Introduction text
+- Books grid (3 columns desktop, 2 tablet, 1 mobile)
+- "On the Horizon" section with newsletter call-to-action
+
+---
+
+## Part 2: Update Music Page
+
+### Changes to Existing Files
+
+**A. Create `src/data/musicData.ts`**
+
+New data structure with:
+- `Track` interface: `id`, `title`, `description`, `duration`, `coverImage`, `youtubeUrl`, `spotifyUrl`, `appleMusicUrl`, `category`
+- Empty tracks array (ready for content)
+- `musicPageContent` object
+
+**B. Create `src/components/music/TrackCard.tsx`**
+
+Component features:
+- Track number (01, 02, 03...)
+- Optional cover image thumbnail
+- Title and description
+- Duration display
+- Play links (YouTube, Spotify icons)
+- Horizontal row layout
+
+**C. Update `src/pages/Music.tsx`**
+
+Enhancements:
+- Update subtitle to "Sound & Frequency"
+- Keep existing album display (already well-structured)
+- Add new "Streaming Links" section at bottom
+- Add divider with brand symbol
+- Links to YouTube, Spotify, Apple Music
+
+---
+
+## Part 3: Add Route
+
+**Update `src/App.tsx`**
+
+Add new route:
 ```text
-Transmissions Page
-├── PageHeader (title, subtitle, description)
-├── SectionContainer
-│   ├── Category Filter Tabs
-│   │   └── Button per category (All, Frequencies, Audiobooks, etc.)
-│   └── Video Grid
-│       └── VideoCard (for each transmission)
-├── Divider with brand symbol
-└── Shorts Section
-    ├── Section Header
-    ├── Shorts Grid (horizontal)
-    │   └── ShortCard (for each short)
-    └── External YouTube Link
+/books -> Books.tsx
 ```
 
 ---
@@ -96,61 +100,95 @@ Transmissions Page
 
 | Action | File | Description |
 |--------|------|-------------|
-| Replace | `src/data/transmissions.ts` | New YouTube-focused data structure |
-| Create | `src/components/transmissions/VideoCard.tsx` | 16:9 video card component |
-| Create | `src/components/transmissions/ShortCard.tsx` | 9:16 short card component |
-| Rewrite | `src/pages/Transmissions.tsx` | Full page rebuild with filters and sections |
+| Create | `src/data/booksData.ts` | Books data with format, price, purchase links |
+| Create | `src/components/books/BookCard.tsx` | Book card with format badge |
+| Create | `src/pages/Books.tsx` | New Books page |
+| Create | `src/data/musicData.ts` | Tracks data structure |
+| Create | `src/components/music/TrackCard.tsx` | Track list item component |
+| Modify | `src/pages/Music.tsx` | Add streaming links section |
+| Modify | `src/App.tsx` | Add /books route |
 
 ---
 
 ## Technical Details
 
-### Category Filter Implementation
+### BookCard Component Structure
 
 ```text
-Categories:
-- all: Shows all transmissions
-- frequency: Healing frequencies content
-- audiobook: Audiobook readings
-- spoken-word: Spoken word pieces
-- teaching: Teaching videos
-
-Filter uses useState hook and filters the transmissions array based on category match.
+BookCard
+├── Cover Container (aspect-[3/4])
+│   ├── Cover Image
+│   └── Format Badge (absolute, top-right)
+├── Content Area
+│   ├── Title (font-cinzel)
+│   ├── Subtitle (font-cormorant, italic)
+│   ├── Description (line-clamp-3)
+│   └── Footer
+│       ├── Price
+│       └── Purchase Button / Coming Soon
 ```
 
-### Video Thumbnail Strategy
+### Books Page Layout
 
-YouTube provides automatic thumbnails via:
-- `https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg` (1280x720)
-- Falls back to `hqdefault.jpg` if max resolution unavailable
+```text
+Books Page
+├── PageHeader ("The Canon", "The Written Word")
+├── SectionContainer
+│   ├── Intro paragraph
+│   └── Books Grid (1-2-3 responsive columns)
+├── Divider with brand symbol
+└── "On the Horizon" Section
+    ├── Heading
+    └── Newsletter teaser text
+```
 
-### Duration Badge Format
+### Music Page Updates
 
-Displays as provided (e.g., "11:11:45", "8:18:14", "5:21:16") in bottom-right corner with semi-transparent black background.
+Current album layout will be preserved. Adding:
 
-### Shorts Section Layout
+```text
+Music Page (updated)
+├── PageHeader (subtitle: "Sound & Frequency")
+├── SectionContainer with albums (existing)
+├── Divider with brand symbol
+└── Streaming Links Section
+    ├── "Listen On" heading
+    └── Platform links (YouTube, Spotify, Apple Music)
+```
 
-5 columns on desktop, 4 on tablet, 2 on mobile. Each card has:
-- Vertical 9:16 aspect ratio
-- Play icon centered on hover
-- Title truncated if too long
+### TrackCard Component Structure
 
-### External Links
-
-All videos open in new tab with:
-- `target="_blank"`
-- `rel="noopener noreferrer"`
+```text
+TrackCard
+├── Track Number (2-digit padded)
+├── Cover Thumbnail (optional, 48x48)
+├── Info Area (flex-1)
+│   ├── Title
+│   └── Description
+├── Duration
+└── Play Links (YouTube, Spotify icons)
+```
 
 ---
 
 ## Design Consistency
 
-Using existing design patterns:
-- `font-cinzel` for headings and labels
-- `font-cormorant` for descriptions
-- `text-primary` for gold accents (#D4A84B)
+All new components will use:
+- `font-cinzel` for headings
+- `font-cormorant` for body text
+- `text-primary` for gold accents
 - `border-border` for subtle borders
 - Brand symbol from `src/assets/brand-symbol.png` for dividers
-- Category buttons styled like Shop page filters
-- Hover transitions matching site-wide 300ms/500ms durations
+- Consistent hover transitions (300ms/500ms)
+- Button styling matching existing patterns
+
+---
+
+## Navigation Note
+
+The navbar currently shows "The Canon" linking to `/canon`. After this implementation:
+- `/canon` - Detailed book pages with excerpts and detail views
+- `/books` - Overview page with format badges and purchase links
+
+Consider updating navigation to include both, or updating "The Canon" to point to `/books` if that becomes the primary books entry point.
 
