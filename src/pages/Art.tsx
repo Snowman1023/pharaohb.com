@@ -1,16 +1,26 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { SectionContainer } from '@/components/shared/SectionContainer';
+import { ProtectedArtwork } from '@/components/art/ProtectedArtwork';
 import { artworks } from '@/data/artworks';
+import brandSymbol from '@/assets/brand-symbol.png';
 
 const Art = () => {
+  // Global right-click disable for the art page
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => e.preventDefault();
+    document.addEventListener('contextmenu', handleContextMenu);
+    return () => document.removeEventListener('contextmenu', handleContextMenu);
+  }, []);
+
   return (
     <PageLayout>
       <PageHeader
         title="Art"
-        subtitle="Visual meditations on form, void, and the spaces between"
-        orientationText="Each piece is a doorway. Pause before entering."
+        subtitle="Visual Transmissions"
+        orientationText="Original digital artwork exploring consciousness, symbolism, and the architecture of perception."
       />
 
       <SectionContainer>
@@ -21,33 +31,43 @@ const Art = () => {
           </p>
         </div>
 
-        {/* Dense gallery grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-w-7xl mx-auto">
+        {/* Protected gallery grid - 3 columns desktop, 2 tablet, 1 mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {artworks.map((artwork) => (
-            <Link
-              key={artwork.slug}
-              to={`/art/${artwork.slug}`}
-              className="group relative aspect-square overflow-hidden bg-muted"
-            >
-              <img
-                src={artwork.image}
-                alt={artwork.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-background/0 group-hover:bg-background/70 transition-all duration-300 flex items-center justify-center">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center p-4">
-                  <h3 className="font-cinzel text-lg text-foreground">
-                    {artwork.title}
-                  </h3>
-                  <p className="font-cormorant text-sm text-primary mt-1">
-                    From {artwork.formats[0].price}
-                  </p>
-                </div>
-              </div>
-            </Link>
+            <ProtectedArtwork key={artwork.slug} artwork={artwork} />
           ))}
         </div>
       </SectionContainer>
+
+      {/* Shop Prints CTA Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-6">
+          {/* Divider with brand symbol */}
+          <div className="flex items-center justify-center gap-4 mb-12">
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+            <img src={brandSymbol} alt="" className="h-6 w-auto opacity-70" />
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+          </div>
+
+          <div className="text-center">
+            <p className="font-cormorant text-lg text-muted-foreground mb-6">
+              Original prints available on canvas
+            </p>
+            <Link
+              to="/shop"
+              className="inline-flex items-center gap-2 px-8 py-4 border border-primary text-primary font-cinzel text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+            >
+              Shop Prints
+              <span>→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Copyright Footer */}
+      <p className="text-center text-xs text-muted-foreground/60 py-8 border-t border-border">
+        © 2026 Pharaoh B. All artwork is protected. Unauthorized reproduction prohibited.
+      </p>
     </PageLayout>
   );
 };

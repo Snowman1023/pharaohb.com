@@ -6,6 +6,7 @@ import { SectionContainer } from '@/components/shared/SectionContainer';
 import { Button } from '@/components/ui/button';
 import { products, Product } from '@/data/products';
 import { cn } from '@/lib/utils';
+import brandSymbol from '@/assets/brand-symbol.png';
 
 const categories = ['All', 'Books', 'Art', 'Objects', 'Apparel'] as const;
 type Category = typeof categories[number];
@@ -24,6 +25,44 @@ const Shop = () => {
         subtitle="Artifacts and treasures for your sacred journey"
         orientationText="These works are offered as companions, not commodities."
       />
+
+      {/* Canvas Prints Section */}
+      <section className="py-16 border-b border-border">
+        <div className="container mx-auto px-6">
+          {/* Section Header */}
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="w-12 h-px bg-primary" />
+            <span className="font-cinzel text-xs tracking-widest uppercase text-primary">
+              Canvas Prints
+            </span>
+            <div className="w-12 h-px bg-primary" />
+          </div>
+
+          <p className="text-center font-cormorant text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Original artwork printed on museum-quality canvas. Each piece is made to order 
+            with archival inks and gallery-wrapped for timeless display.
+          </p>
+
+          <div className="text-center">
+            <a
+              href="https://printful.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 border border-primary text-primary font-cinzel text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+            >
+              Browse All Prints
+              <span>→</span>
+            </a>
+          </div>
+
+          {/* Divider with brand symbol */}
+          <div className="flex items-center justify-center gap-4 mt-16">
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+            <img src={brandSymbol} alt="" className="h-6 w-auto opacity-70" />
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+          </div>
+        </div>
+      </section>
 
       <SectionContainer>
         <div className="max-w-3xl mx-auto text-center mb-12">
