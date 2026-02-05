@@ -79,7 +79,7 @@ export function RecentWorksSection() {
           </p>
         </div>
 
-        {/* Main Grid: Left (2 large) + Right (3 smaller) */}
+        {/* Main Grid: Left (2 large) + Right (3 smaller) - equal height */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {/* Left Column - 2 large stacked audiobooks (takes 2/3 width) */}
           <div className="lg:col-span-2 flex flex-col gap-6">
@@ -89,9 +89,9 @@ export function RecentWorksSection() {
           </div>
 
           {/* Right Column - 3 smaller stacked audiobooks (takes 1/3 width) */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             {rightColumnVideos.map((video) => (
-              video && <VideoCard key={video.id} video={video} />
+              video && <VideoCard key={video.id} video={video} className="[&_.aspect-video]:aspect-[16/7]" />
             ))}
           </div>
         </div>
