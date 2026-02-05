@@ -28,50 +28,90 @@ export function RecentWorksSection() {
           </p>
         </div>
 
-        {/* Featured Row: Large Video + Stacked Books */}
+        {/* Featured Row: Stacked Videos + Stacked Books */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-6">
-          {/* Featured Video - Takes 2 columns */}
-          <a
-            href={featuredVideo.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="lg:col-span-2 group relative overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-500"
-          >
-            <div className="aspect-video overflow-hidden">
-              <img
-                src={featuredVideo.thumbnail}
-                alt={featuredVideo.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-              
-              {/* Play Button Overlay */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                  <Play className="w-9 h-9 text-primary-foreground ml-1" fill="currentColor" />
+          {/* Two Stacked Videos - Takes 2 columns */}
+          <div className="lg:col-span-2 flex flex-col gap-6">
+            {/* Video 1: Master Key */}
+            <a
+              href={featuredVideo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-500"
+            >
+              <div className="aspect-video overflow-hidden">
+                <img
+                  src={featuredVideo.thumbnail}
+                  alt={featuredVideo.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                
+                {/* Play Button Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                    <Play className="w-7 h-7 text-primary-foreground ml-1" fill="currentColor" />
+                  </div>
+                </div>
+
+                {/* Duration Badge */}
+                <div className="absolute top-3 right-3 px-2 py-1 bg-background/90 text-foreground text-xs font-medium tracking-wide">
+                  {featuredVideo.duration}
                 </div>
               </div>
-
-              {/* Duration Badge */}
-              <div className="absolute top-4 right-4 px-3 py-1 bg-background/90 text-foreground text-sm font-medium tracking-wide">
-                {featuredVideo.duration}
+              
+              {/* Video Info */}
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <span className="font-cinzel text-xs text-primary/70 uppercase tracking-widest mb-1 block">
+                  {featuredVideo.category}
+                </span>
+                <h3 className="font-cinzel text-lg text-foreground group-hover:text-gold-gradient transition-colors">
+                  {featuredVideo.title}
+                </h3>
               </div>
-            </div>
-            
-            {/* Video Info */}
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <span className="font-cinzel text-xs text-primary/70 uppercase tracking-widest mb-2 block">
-                {featuredVideo.category}
-              </span>
-              <h3 className="font-cinzel text-xl md:text-2xl text-foreground group-hover:text-gold-gradient transition-colors mb-2">
-                {featuredVideo.title}
-              </h3>
-              <p className="font-cormorant text-sm text-muted-foreground line-clamp-2 hidden md:block">
-                {featuredVideo.description}
-              </p>
-            </div>
-          </a>
+            </a>
+
+            {/* Video 2: Second featured */}
+            {additionalVideos[0] && (
+              <a
+                href={additionalVideos[0].href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-500"
+              >
+                <div className="aspect-video overflow-hidden">
+                  <img
+                    src={additionalVideos[0].thumbnail}
+                    alt={additionalVideos[0].title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                  
+                  {/* Play Button Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                      <Play className="w-7 h-7 text-primary-foreground ml-1" fill="currentColor" />
+                    </div>
+                  </div>
+
+                  {/* Duration Badge */}
+                  <div className="absolute top-3 right-3 px-2 py-1 bg-background/90 text-foreground text-xs font-medium tracking-wide">
+                    {additionalVideos[0].duration}
+                  </div>
+                </div>
+                
+                {/* Video Info */}
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <span className="font-cinzel text-xs text-primary/70 uppercase tracking-widest mb-1 block">
+                    {additionalVideos[0].category}
+                  </span>
+                  <h3 className="font-cinzel text-lg text-foreground group-hover:text-gold-gradient transition-colors">
+                    {additionalVideos[0].title}
+                  </h3>
+                </div>
+              </a>
+            )}
+          </div>
 
           {/* Stacked Books - Takes 1 column */}
           <div className="flex flex-col gap-6">
@@ -102,9 +142,9 @@ export function RecentWorksSection() {
           </div>
         </div>
 
-        {/* Video Row: 3 columns of 16:9 videos */}
+        {/* Video Row: 3 columns of 16:9 videos (skip first one, it's in top section) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {additionalVideos.map((video) => (
+          {additionalVideos.slice(1).map((video) => (
             <a
               key={video.id}
               href={video.href}
