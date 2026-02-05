@@ -6,21 +6,17 @@ import { transmissions } from '@/data/transmissions';
 const findVideoById = (youtubeId: string) => 
   transmissions.find(t => t.href.includes(youtubeId));
 
-// Specific videos for the layout
+// Left column - 2 large stacked audiobooks
 const leftColumnVideos = [
-  findVideoById('XGq0-MGq2O0'), // Master Key Affirmations
-  findVideoById('EAU5cD0Sh_4'), // Galaxies in Your Gaze
+  findVideoById('Nd_9Nuv39Zw'), // The Master Key System
+  findVideoById('msA-q_PwIz8'), // The Art of Not Thinking Yourself to Death
 ].filter(Boolean);
 
+// Right column - 3 smaller stacked audiobooks
 const rightColumnVideos = [
-  findVideoById('msA-q_PwIz8'), // Overthinking Audiobook
-  findVideoById('HE806qtLYNE'), // Procrastination Affirmations
-].filter(Boolean);
-
-const frequencyVideos = [
-  findVideoById('Zrfoe0cz5FQ'), // Delta Waves
-  findVideoById('mcH4iDuTd6c'), // Alpha Frequency
-  findVideoById('UBGAjWD1WdI'), // Handpan Meditation
+  findVideoById('I-xKF7PyoVM'), // You Are Not Your Addiction
+  findVideoById('HOfjZTY0Q4s'), // The Light Within
+  findVideoById('ejbByodADwA'), // The Kybalion
 ].filter(Boolean);
 
 interface VideoCardProps {
@@ -83,28 +79,21 @@ export function RecentWorksSection() {
           </p>
         </div>
 
-        {/* Main Grid: Left (2 videos) + Right (2 videos) */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-6">
-          {/* Left Column - 2 stacked videos (takes 2/3 width) */}
+        {/* Main Grid: Left (2 large) + Right (3 smaller) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {/* Left Column - 2 large stacked audiobooks (takes 2/3 width) */}
           <div className="lg:col-span-2 flex flex-col gap-6">
             {leftColumnVideos.map((video) => (
               video && <VideoCard key={video.id} video={video} />
             ))}
           </div>
 
-          {/* Right Column - 2 stacked videos (takes 1/3 width) */}
+          {/* Right Column - 3 smaller stacked audiobooks (takes 1/3 width) */}
           <div className="flex flex-col gap-6">
             {rightColumnVideos.map((video) => (
               video && <VideoCard key={video.id} video={video} />
             ))}
           </div>
-        </div>
-
-        {/* Bottom Row: 3 Frequency Videos */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {frequencyVideos.map((video) => (
-            video && <VideoCard key={video.id} video={video} />
-          ))}
         </div>
 
         {/* View All Link */}
