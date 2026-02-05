@@ -1,119 +1,94 @@
 
-# Protected Art Gallery + Writings Page + Shop Integration
+
+# Transmissions Page - YouTube Video Catalog
 
 ## Overview
 
-This plan implements three major updates to PharaohB.com:
-1. A protected art gallery with 5-layer image theft protection
-2. An updated Writings page with 10 expandable poems
-3. A canvas prints section in the Shop
+Rebuilding the Transmissions page to display YouTube videos in a professional catalog format with:
+- Category filter tabs (All, Frequencies, Audiobooks, Spoken Word, Teachings)
+- Long-form video grid (16:9 thumbnails) with duration badges and play overlays
+- Shorts section (9:16 vertical cards)
+- Updated header with "Audio & Video" subtitle
 
 ---
 
-## Part 1: Protected Art Gallery (/art)
+## Current State
 
-### Current State
-The Art page currently uses standard `<img>` tags wrapped in `<Link>` components, linking to individual `/art/:slug` detail pages. Images are fully accessible for right-click saving and dragging.
+The existing Transmissions page shows 6 placeholder entries with:
+- Stock Unsplash images
+- Generic YouTube links
+- `type` field with values: `spoken`, `audio`, `reading`, `frequency`
+- Simple card layout linking externally
 
-### Changes Required
-
-**A. Create ProtectedArtwork Component**
-
-New file: `src/components/art/ProtectedArtwork.tsx`
-
-The component implements 5 layers of protection:
-1. CSS background-image instead of `<img>` tags
-2. Invisible overlay div blocking interaction
-3. Right-click disabled via `onContextMenu`
-4. Drag disabled via `onDragStart`
-5. Images limited to reasonable display size
-
-**B. Update Art Page**
-
-File: `src/pages/Art.tsx`
-
-Changes:
-- Update page header subtitle to "Visual Transmissions"
-- Add global right-click disable `useEffect` for entire page
-- Replace current gallery grid with ProtectedArtwork component
-- Change grid to 3 columns desktop, 2 tablet, 1 mobile
-- Add "Shop Prints" call-to-action section below gallery
-- Add copyright footer
-
-**C. Keep Existing Data Structure**
-
-The current `src/data/artworks.ts` will remain as is - it already has the needed structure with `slug`, `title`, `image`, `description`, and `formats`. No need to create a new `artData.ts` since the existing file works well.
+The data structure needs to be completely replaced with the new YouTube-focused format.
 
 ---
 
-## Part 2: Writings Page with Expandable Poems
+## Changes Required
 
-### Current State
-The Writings page displays a list linking to individual detail pages. It uses `src/data/writings.ts` with essay-style content (paragraph arrays).
+### 1. Replace Data File
 
-### Changes Required
+**File:** `src/data/transmissions.ts`
 
-**A. Create Poems Data File**
+Replace entirely with new structure:
+- **Transmission interface**: `id`, `title`, `description`, `thumbnail`, `href`, `duration`, `views`, `category`, `featured`
+- **Short interface**: `id`, `title`, `thumbnail`, `href`
+- **Categories**: `frequency`, `audiobook`, `spoken-word`, `teaching`
+- **Helper functions**: `getTransmissionsByCategory()`, `getFeaturedTransmissions()`
+- Initial data: 3 featured videos provided (999 Hz, Chakra Healing, Master Key System)
 
-New file: `src/data/poems.ts`
+### 2. Create VideoCard Component
 
-Contains all 10 poems provided:
-- The Union
-- The Unmaking (from The Dawn of You - Part I)
-- The Radiance (from The Dawn of You - Part II)
-- The Threshold
-- The Witness
-- The Mirror
-- The End of Trying
-- The Return
-- The Agreement
-- The Door
+**New file:** `src/components/transmissions/VideoCard.tsx`
 
-**B. Update Writings Page**
+Features:
+- 16:9 aspect ratio thumbnail
+- Hover play button overlay with circular background
+- Duration badge (bottom-right corner)
+- Title and optional view count below
+- External link to YouTube
 
-File: `src/pages/Writings.tsx`
+### 3. Create ShortCard Component
 
-Changes:
-- Add poems section with expandable accordion cards
-- Each poem card shows:
-  - Poem number (01, 02, 03...)
-  - Title (clickable to expand/collapse)
-  - Source attribution if applicable
-  - Full poem content when expanded
-  - Signature "- Pharaoh B." at the bottom
-- Keep existing essays section below poems (optional - or replace entirely with poems)
-- Use the Radix UI Accordion component already installed
+**New file:** `src/components/transmissions/ShortCard.tsx`
 
----
+Features:
+- 9:16 vertical aspect ratio
+- Centered play icon on hover
+- Title below thumbnail
+- External link to YouTube shorts
 
-## Part 3: Shop Page - Canvas Prints Section
+### 4. Rebuild Transmissions Page
 
-### Current State
-Shop has category filters (All, Books, Art, Objects, Apparel) and displays products in a grid.
+**File:** `src/pages/Transmissions.tsx`
 
-### Changes Required
-
-**A. Add Canvas Prints Section**
-
-File: `src/pages/Shop.tsx`
-
-Add a dedicated section above or within the existing shop content:
-- Section header "Canvas Prints"
-- Description about museum-quality prints
-- "Browse All Prints" button linking to external Printful store (placeholder URL for now)
+Complete rebuild with:
+- Updated PageHeader ("Audio & Video" subtitle, new orientation text)
+- Category filter buttons (styled like Shop page)
+- Long-form video grid (3 columns desktop, 2 tablet, 1 mobile)
+- Divider with brand symbol
+- Shorts section with horizontal scroll or 5-column grid
+- "View All Shorts on YouTube" external link
 
 ---
 
-## Part 4: Homepage Pillar Update
+## Component Architecture
 
-### Current State
-The homepage has `ExploreTilesSection` showing Canon, Art, and Music tiles - but no dedicated writings reference in the pillars.
-
-### Changes Required
-
-Looking at the codebase, there is no `contentPillars` array in a `homeData.ts` file. The explore tiles are hardcoded in `ExploreTilesSection.tsx`. 
-
-**Option**: Add a Writings tile to the explore section if desired, or leave as is since Writings is accessible via navigation.
+```text
+Transmissions Page
+├── PageHeader (title, subtitle, description)
+├── SectionContainer
+│   ├── Category Filter Tabs
+│   │   └── Button per category (All, Frequencies, Audiobooks, etc.)
+│   └── Video Grid
+│       └── VideoCard (for each transmission)
+├── Divider with brand symbol
+└── Shorts Section
+    ├── Section Header
+    ├── Shorts Grid (horizontal)
+    │   └── ShortCard (for each short)
+    └── External YouTube Link
+```
 
 ---
 
@@ -121,70 +96,61 @@ Looking at the codebase, there is no `contentPillars` array in a `homeData.ts` f
 
 | Action | File | Description |
 |--------|------|-------------|
-| Create | `src/components/art/ProtectedArtwork.tsx` | Protected artwork display component |
-| Modify | `src/pages/Art.tsx` | Implement protected gallery with CTA and copyright |
-| Create | `src/data/poems.ts` | 10 poems data with full content |
-| Modify | `src/pages/Writings.tsx` | Expandable poem accordion cards |
-| Modify | `src/pages/Shop.tsx` | Add canvas prints section with external link |
+| Replace | `src/data/transmissions.ts` | New YouTube-focused data structure |
+| Create | `src/components/transmissions/VideoCard.tsx` | 16:9 video card component |
+| Create | `src/components/transmissions/ShortCard.tsx` | 9:16 short card component |
+| Rewrite | `src/pages/Transmissions.tsx` | Full page rebuild with filters and sections |
 
 ---
 
 ## Technical Details
 
-### ProtectedArtwork Component Structure
+### Category Filter Implementation
 
 ```text
-ProtectedArtwork
-├── Container div (onContextMenu, onDragStart handlers)
-│   ├── Background image div (CSS background-image)
-│   ├── Invisible overlay div (blocks all interaction)
-│   └── Title/info overlay (visible on hover)
+Categories:
+- all: Shows all transmissions
+- frequency: Healing frequencies content
+- audiobook: Audiobook readings
+- spoken-word: Spoken word pieces
+- teaching: Teaching videos
+
+Filter uses useState hook and filters the transmissions array based on category match.
 ```
 
-### Accordion Implementation
+### Video Thumbnail Strategy
 
-The project already has `@radix-ui/react-accordion` installed and a pre-built `Accordion` component in `src/components/ui/accordion.tsx`. The poems will use this for expand/collapse behavior.
+YouTube provides automatic thumbnails via:
+- `https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg` (1280x720)
+- Falls back to `hqdefault.jpg` if max resolution unavailable
 
-### Poems Data Structure
+### Duration Badge Format
 
-```text
-interface Poem {
-  id: string;
-  title: string;
-  source?: string;
-  content: string;
-}
-```
+Displays as provided (e.g., "11:11:45", "8:18:14", "5:21:16") in bottom-right corner with semi-transparent black background.
 
-The content field will contain the full poem text with preserved line breaks using template literals.
+### Shorts Section Layout
 
-### Shop Canvas Prints Section
+5 columns on desktop, 4 on tablet, 2 on mobile. Each card has:
+- Vertical 9:16 aspect ratio
+- Play icon centered on hover
+- Title truncated if too long
 
-Will be added as a new section below the page header, featuring:
-- Section divider with label
-- Description text
-- Call-to-action button (placeholder external URL)
+### External Links
+
+All videos open in new tab with:
+- `target="_blank"`
+- `rel="noopener noreferrer"`
 
 ---
 
 ## Design Consistency
 
-All implementations will use:
-- `font-cinzel` for headings
-- `font-cormorant` for body text
-- `text-gold-gradient` for emphasis
-- `text-primary` (#D4A84B gold) for accents
-- `bg-background` (#0a0a0a) for backgrounds
+Using existing design patterns:
+- `font-cinzel` for headings and labels
+- `font-cormorant` for descriptions
+- `text-primary` for gold accents (#D4A84B)
 - `border-border` for subtle borders
 - Brand symbol from `src/assets/brand-symbol.png` for dividers
+- Category buttons styled like Shop page filters
+- Hover transitions matching site-wide 300ms/500ms durations
 
----
-
-## Routes
-
-All required routes already exist:
-- `/art` - Art.tsx
-- `/writings` - Writings.tsx
-- `/shop` - Shop.tsx
-
-No routing changes needed.
