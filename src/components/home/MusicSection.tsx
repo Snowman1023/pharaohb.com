@@ -6,13 +6,40 @@ const featuredVideo = {
   title: 'Galaxies in Your Gaze',
 };
 
-// Spotify albums to display (all 5 unique albums)
-const spotifyAlbums = [
-  { id: '1gVW4727OxzEj6EQ7wQBSi', title: 'Frequencies of the Eternal' },
-  { id: '7r3I3KZnSZPyjci4zxJAZR', title: 'Temple Meditations Vol. I' },
-  { id: '799xzarOcV5RSWk3LCVI8C', title: 'The Obsidian Sessions' },
-  { id: '3184qyYgGnm8yBs6asYF5d', title: 'Golden Hour Transmissions' },
-  { id: '0G8WL3Q4cIEwzNgQl5Jw2f', title: 'Sacred Geometry Soundscapes' },
+// Spotify embeds to display (exactly as provided)
+const spotifyEmbeds = [
+  {
+    src: 'https://open.spotify.com/embed/album/1gVW4727OxzEj6EQ7wQBSi?utm_source=generator',
+    title: 'Spotify embed 01',
+  },
+  {
+    src: 'https://open.spotify.com/embed/album/7r3I3KZnSZPyjci4zxJAZR?utm_source=generator',
+    title: 'Spotify embed 02',
+  },
+  {
+    src: 'https://open.spotify.com/embed/album/7r3I3KZnSZPyjci4zxJAZR?utm_source=generator',
+    title: 'Spotify embed 03',
+  },
+  {
+    src: 'https://open.spotify.com/embed/album/799xzarOcV5RSWk3LCVI8C?utm_source=generator',
+    title: 'Spotify embed 04',
+  },
+  {
+    src: 'https://open.spotify.com/embed/album/799xzarOcV5RSWk3LCVI8C?utm_source=generator',
+    title: 'Spotify embed 05',
+  },
+  {
+    src: 'https://open.spotify.com/embed/album/799xzarOcV5RSWk3LCVI8C?utm_source=generator',
+    title: 'Spotify embed 06',
+  },
+  {
+    src: 'https://open.spotify.com/embed/album/3184qyYgGnm8yBs6asYF5d?utm_source=generator',
+    title: 'Spotify embed 07',
+  },
+  {
+    src: 'https://open.spotify.com/embed/album/0G8WL3Q4cIEwzNgQl5Jw2f?utm_source=generator',
+    title: 'Spotify embed 08',
+  },
 ];
 
 export function MusicSection() {
@@ -47,19 +74,19 @@ export function MusicSection() {
             </p>
           </div>
 
-          {/* Spotify Albums - 3 column grid */}
+          {/* Spotify Embeds */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {spotifyAlbums.map((album) => (
-              <div key={album.id}>
+            {spotifyEmbeds.map((embed, idx) => (
+              <div key={`${embed.src}-${idx}`}>
                 <iframe
-                  src={`https://open.spotify.com/embed/album/${album.id}?utm_source=generator&theme=0`}
+                  src={embed.src}
                   width="100%"
                   height="352"
                   frameBorder="0"
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
                   className="rounded-lg"
-                  title={album.title}
+                  title={embed.title}
                 />
               </div>
             ))}
