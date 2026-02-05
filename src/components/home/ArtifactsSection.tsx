@@ -36,19 +36,19 @@ function getExcerpt(content: string): string {
 
 export function ArtifactsSection() {
   return (
-    <section className="py-16 md:py-24">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="font-cinzel text-3xl md:text-4xl text-gold-gradient mb-4">
+    <section className="py-12 sm:py-16 md:py-24">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="font-cinzel text-2xl sm:text-3xl md:text-4xl text-gold-gradient mb-3 sm:mb-4">
             Artifacts
           </h2>
-          <p className="font-cormorant text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="font-cormorant text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
             Transmissions from the threshold.
           </p>
         </div>
 
         {/* 3x3 Grid of Poem Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
           {featuredPoems.map((poem) => (
             <Link
               key={poem.id}
@@ -67,14 +67,14 @@ export function ArtifactsSection() {
               </div>
 
               {/* Poem Info */}
-              <div className="absolute bottom-0 left-0 right-0 p-5">
-                <span className="font-cinzel text-xs text-primary/70 uppercase tracking-widest mb-2 block">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                <span className="font-cinzel text-[10px] sm:text-xs text-primary/70 uppercase tracking-widest mb-1 sm:mb-2 block">
                   Poetry
                 </span>
-                <h3 className="font-cinzel text-lg text-foreground group-hover:text-gold-gradient transition-colors mb-2">
+                <h3 className="font-cinzel text-base sm:text-lg text-foreground group-hover:text-gold-gradient transition-colors mb-1 sm:mb-2">
                   {poem.title}
                 </h3>
-                <p className="font-cormorant text-sm text-muted-foreground italic line-clamp-2">
+                <p className="font-cormorant text-xs sm:text-sm text-muted-foreground italic line-clamp-2">
                   "{getExcerpt(poem.content)}"
                 </p>
               </div>

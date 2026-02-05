@@ -17,18 +17,18 @@ const spotifyAlbums = [
 
 export function MusicSection() {
   return (
-    <section className="py-16 md:py-24 bg-muted/20">
-      <div className="container mx-auto px-6">
+    <section className="py-12 sm:py-16 md:py-24 bg-muted/20">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="font-cinzel text-3xl md:text-4xl text-gold-gradient mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="font-cinzel text-2xl sm:text-3xl md:text-4xl text-gold-gradient mb-3 sm:mb-4">
             Music
           </h2>
         </div>
 
         <div className="max-w-5xl mx-auto">
           {/* Featured YouTube Video - 16:9 */}
-          <div className="mb-10">
+          <div className="mb-6 sm:mb-10">
             <div className="aspect-video overflow-hidden border border-border bg-background">
               <iframe
                 src={`https://www.youtube.com/embed/${featuredVideo.id}`}
@@ -42,13 +42,13 @@ export function MusicSection() {
                 title={featuredVideo.title}
               />
             </div>
-            <p className="text-center mt-4 font-cinzel text-lg text-foreground">
+            <p className="text-center mt-3 sm:mt-4 font-cinzel text-base sm:text-lg text-foreground">
               {featuredVideo.title}
             </p>
           </div>
 
-          {/* Spotify Albums - 3 column grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Spotify Albums - responsive grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {spotifyAlbums.map((album) => (
               <div key={album.id}>
                 <iframe
