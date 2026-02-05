@@ -1,58 +1,45 @@
 
-# Plan: Update Recent Works with Correct Videos
 
-## Your Request
-Replace the current layout to match your annotations exactly:
-- **Left column**: Master Key (top) + Galaxies in Your Gaze (bottom) - stacked vertically, full 16:9
-- **Right column**: Overthinking (top) + Procrastination (bottom) - stacked vertically
-- **Bottom row**: 3 Frequency videos
+# Plan: Recent Works — Audiobook Layout
 
-## Current Problem
-The code is using `getFeaturedTransmissions()` which pulls random featured videos, not the specific ones you want. The right column is showing books instead of videos.
-
----
-
-## New Layout Structure
+## Your Requested Layout
 
 ```text
-+---------------------------+--------------+
-|   MASTER KEY AFFIRMATIONS |  OVERTHINKING|
-|   (16:9 video, stacked)   |  (16:9)      |
-+---------------------------+--------------+
-|   GALAXIES IN YOUR GAZE   | PROCRASTIN-  |
-|   (16:9 video, stacked)   |  ATION (16:9)|
-+---------------------------+--------------+
-
-+----------+-----------+----------+
-|  FREQ 1  |  FREQ 2   |  FREQ 3  |
-| (16:9)   |  (16:9)   |  (16:9)  |
-+----------+-----------+----------+
++---------------------------+----------------+
+|                           |   ADDICTION    |
+|   THE MASTER KEY SYSTEM   +----------------+
+|   (large, 16:9)           |  THE LIGHT     |
+|                           |   WITHIN       |
++---------------------------+----------------+
+|   THE ART OF NOT          |                |
+|   THINKING YOURSELF       |  THE KYBALION  |
+|   TO DEATH (large, 16:9)  |                |
++---------------------------+----------------+
 ```
 
----
+## Audiobook IDs
 
-## Implementation Details
+| Position | ID | Title |
+|----------|-----|-------|
+| Left Top | `Nd_9Nuv39Zw` | The Master Key System |
+| Left Bottom | `msA-q_PwIz8` | The Art of Not Thinking Yourself to Death |
+| Right Top | `I-xKF7PyoVM` | You Are Not Your Addiction |
+| Right Middle | `HOfjZTY0Q4s` | The Light Within |
+| Right Bottom | `ejbByodADwA` | The Kybalion |
 
-### File: `src/components/home/RecentWorksSection.tsx`
+## Technical Changes
 
-1. **Remove books import** - no longer needed
-2. **Hardcode specific video IDs** for precise control:
-   - Master Key: `XGq0-MGq2O0`
-   - Galaxies: `EAU5cD0Sh_4`
-   - Overthinking: `msA-q_PwIz8`
-   - Procrastination: `HE806qtLYNE`
-   - Delta Waves: `Zrfoe0cz5FQ`
-   - Alpha Frequency: `mcH4iDuTd6c`
-   - Handpan Meditation: `UBGAjWD1WdI`
+**File:** `src/components/home/RecentWorksSection.tsx`
 
-3. **Update grid structure**:
+1. **Update video arrays** (lines 10-24):
+   - Left column: Master Key System + Art of Not Thinking (2 videos)
+   - Right column: Addiction + Light Within + Kybalion (3 videos)
+   - Remove bottom row entirely
+
+2. **Update grid structure** (lines 89-110):
    - Left column: `lg:col-span-2` with 2 stacked 16:9 videos
-   - Right column: `lg:col-span-1` with 2 stacked 16:9 videos (NOT books)
-   - Bottom row: 3-column grid with frequency videos
+   - Right column: `lg:col-span-1` with 3 stacked smaller cards
+   - Remove the separate bottom row section
 
-4. **Helper function** to find videos by ID from transmissions data
+3. **Result**: 5 audiobook cards in the exact layout you specified
 
-### Expected Result
-- All 7 video cards are real YouTube content with proper thumbnails
-- No placeholder images or books in this section
-- Books remain in the Canon, poems in Artifacts (already done)
