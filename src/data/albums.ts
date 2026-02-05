@@ -5,8 +5,8 @@ export interface Album {
   image: string;
   tracks: string[];
   year: string;
-  spotifyEmbedId?: string; // Spotify album/playlist ID for embedding
-  youtubeVideoId?: string; // YouTube video ID for embedding
+  spotifyEmbedId?: string;
+  youtubeVideoId?: string;
 }
 
 export const albums: Album[] = [
@@ -25,8 +25,8 @@ export const albums: Album[] = [
       'The Infinite Octave'
     ],
     year: '2024',
-    spotifyEmbedId: '', // Add your Spotify album ID here
-    youtubeVideoId: '', // Add your YouTube video ID here
+    spotifyEmbedId: '1gVW4727OxzEj6EQ7wQBSi',
+    youtubeVideoId: 'UBGAjWD1WdI',
   },
   {
     slug: 'temple-meditations-vol-i',
@@ -42,8 +42,8 @@ export const albums: Album[] = [
       'Midnight Prayers'
     ],
     year: '2023',
-    spotifyEmbedId: '', // Add your Spotify album ID here
-    youtubeVideoId: '', // Add your YouTube video ID here
+    spotifyEmbedId: '7r3I3KZnSZPyjci4zxJAZR',
+    youtubeVideoId: 'Zrfoe0cz5FQ',
   },
   {
     slug: 'the-obsidian-sessions',
@@ -60,8 +60,8 @@ export const albums: Album[] = [
       'Black Gold'
     ],
     year: '2023',
-    spotifyEmbedId: '', // Add your Spotify album ID here
-    youtubeVideoId: '', // Add your YouTube video ID here
+    spotifyEmbedId: '799xzarOcV5RSWk3LCVI8C',
+    youtubeVideoId: 'mcH4iDuTd6c',
   },
   {
     slug: 'golden-hour-transmissions',
@@ -79,8 +79,25 @@ export const albums: Album[] = [
       'Aureate Dreams'
     ],
     year: '2024',
-    spotifyEmbedId: '', // Add your Spotify album ID here
-    youtubeVideoId: '', // Add your YouTube video ID here
+    spotifyEmbedId: '3184qyYgGnm8yBs6asYF5d',
+    youtubeVideoId: '6-yEttH5hiA',
+  },
+  {
+    slug: 'sacred-geometry-soundscapes',
+    title: 'Sacred Geometry Soundscapes',
+    description: 'Sound patterns aligned with the mathematical harmonies found in nature. Frequencies that mirror the golden ratio and Fibonacci sequences.',
+    image: 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=800&q=80',
+    tracks: [
+      'Phi Sequence',
+      'Metatron\'s Cube',
+      'Flower of Life',
+      'Vesica Piscis',
+      'Seed of Creation',
+      'Infinite Spiral'
+    ],
+    year: '2024',
+    spotifyEmbedId: '0G8WL3Q4cIEwzNgQl5Jw2f',
+    youtubeVideoId: 'XGq0-MGq2O0',
   }
 ];
 
