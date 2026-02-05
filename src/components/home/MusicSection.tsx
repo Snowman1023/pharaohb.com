@@ -6,11 +6,13 @@ const featuredVideo = {
   title: 'Galaxies in Your Gaze',
 };
 
-// Spotify albums to display
+// Spotify albums to display (all 5 unique albums)
 const spotifyAlbums = [
   { id: '1gVW4727OxzEj6EQ7wQBSi', title: 'Frequencies of the Eternal' },
   { id: '7r3I3KZnSZPyjci4zxJAZR', title: 'Temple Meditations Vol. I' },
   { id: '799xzarOcV5RSWk3LCVI8C', title: 'The Obsidian Sessions' },
+  { id: '3184qyYgGnm8yBs6asYF5d', title: 'Golden Hour Transmissions' },
+  { id: '0G8WL3Q4cIEwzNgQl5Jw2f', title: 'Sacred Geometry Soundscapes' },
 ];
 
 export function MusicSection() {
