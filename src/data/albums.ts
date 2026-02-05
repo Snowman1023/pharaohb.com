@@ -6,6 +6,7 @@ export interface Album {
   tracks: string[];
   year: string;
   spotifyEmbedId?: string; // Spotify album/playlist ID for embedding
+  youtubeVideoId?: string; // YouTube video ID for embedding
 }
 
 export const albums: Album[] = [
@@ -24,7 +25,8 @@ export const albums: Album[] = [
       'The Infinite Octave'
     ],
     year: '2024',
-    spotifyEmbedId: '', // Add your Spotify album ID here (e.g., '37i9dQZF1DXcBWIGoYBM5M')
+    spotifyEmbedId: '', // Add your Spotify album ID here
+    youtubeVideoId: '', // Add your YouTube video ID here
   },
   {
     slug: 'temple-meditations-vol-i',
@@ -41,6 +43,7 @@ export const albums: Album[] = [
     ],
     year: '2023',
     spotifyEmbedId: '', // Add your Spotify album ID here
+    youtubeVideoId: '', // Add your YouTube video ID here
   },
   {
     slug: 'the-obsidian-sessions',
@@ -58,6 +61,7 @@ export const albums: Album[] = [
     ],
     year: '2023',
     spotifyEmbedId: '', // Add your Spotify album ID here
+    youtubeVideoId: '', // Add your YouTube video ID here
   },
   {
     slug: 'golden-hour-transmissions',
@@ -76,6 +80,7 @@ export const albums: Album[] = [
     ],
     year: '2024',
     spotifyEmbedId: '', // Add your Spotify album ID here
+    youtubeVideoId: '', // Add your YouTube video ID here
   }
 ];
 
