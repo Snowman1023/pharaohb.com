@@ -9,6 +9,7 @@ const navLinks = [
   { href: '/music', label: 'Music' },
   { href: '/transmissions', label: 'Transmissions' },
   { href: '/writings', label: 'Writings' },
+  { href: '/books', label: 'Books' },
   { href: '/shop', label: 'Shop' },
   { href: '/contact', label: 'Contact' },
 ];

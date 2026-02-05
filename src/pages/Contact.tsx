@@ -1,144 +1,204 @@
 import { useState } from 'react';
 import { PageLayout } from '@/components/layout/PageLayout';
-import { PageHeader } from '@/components/shared/PageHeader';
-import { SectionContainer } from '@/components/shared/SectionContainer';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Label } from '@/components/ui/label';
+import brandSymbol from '@/assets/brand-symbol.png';
 
 const Contact = () => {
-  const [email, setEmail] = useState('');
-  const [contactForm, setContactForm] = useState({ 
-    name: '', 
-    email: '', 
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
     subject: '',
-    message: '' 
+    message: '',
   });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Newsletter signup:', email);
-    setEmail('');
+    // TODO: Connect to email service (Formspree, Netlify Forms, etc.)
+    console.log('Form submitted:', formState);
+    setIsSubmitted(true);
   };
 
-  const handleContactSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Contact form:', contactForm);
-    setContactForm({ name: '', email: '', subject: '', message: '' });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
   return (
     <PageLayout>
-      <PageHeader 
-        title="Connect"
-        subtitle="The doorway between realms"
-      />
-
-      <SectionContainer>
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <p className="font-cormorant text-xl text-muted-foreground">
-            Whether you seek collaboration, have questions about the work, or simply 
-            wish to share your experience—this channel is open.
+      {/* Header */}
+      <section className="pt-32 pb-12 px-6 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="font-cinzel text-4xl md:text-5xl lg:text-6xl text-gold-gradient mb-4">
+            Contact
+          </h1>
+          <p className="font-cormorant text-xl md:text-2xl text-muted-foreground italic mb-8">
+            Reach Out
+          </p>
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+            <img src={brandSymbol} alt="" className="w-10 h-10 object-contain" />
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+          </div>
+          <p className="font-cormorant text-lg text-muted-foreground">
+            For inquiries, collaborations, or just to say hello.
           </p>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 max-w-5xl mx-auto">
-          {/* Contact Form */}
-          <div className="space-y-6">
-            <h2 className="font-cinzel text-2xl text-gold-gradient">
-              Send a Message
-            </h2>
-            <form onSubmit={handleContactSubmit} className="space-y-4">
-              <Input
-                type="text"
-                placeholder="Your name"
-                value={contactForm.name}
-                onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                className="bg-muted/50 border-primary/30 focus:border-primary font-cormorant"
-                required
-              />
-              <Input
-                type="email"
-                placeholder="Your email"
-                value={contactForm.email}
-                onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                className="bg-muted/50 border-primary/30 focus:border-primary font-cormorant"
-                required
-              />
-              <Input
-                type="text"
-                placeholder="Subject"
-                value={contactForm.subject}
-                onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
-                className="bg-muted/50 border-primary/30 focus:border-primary font-cormorant"
-              />
-              <Textarea
-                placeholder="Your message"
-                value={contactForm.message}
-                onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                className="bg-muted/50 border-primary/30 focus:border-primary font-cormorant min-h-40"
-                required
-              />
-              <Button
-                type="submit"
-                className="w-full font-cinzel text-sm tracking-wider bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                Send Message
-              </Button>
-            </form>
-          </div>
-
-          {/* Newsletter */}
-          <div className="space-y-6">
-            <h2 className="font-cinzel text-2xl text-gold-gradient">
-              Join the Sacred Circle
-            </h2>
-            <p className="font-cormorant text-muted-foreground">
-              Receive transmissions from the eternal realm. New writings, releases, 
-              and exclusive offerings delivered directly to your sanctuary. No noise. 
-              Only signal.
-            </p>
-            <form onSubmit={handleNewsletterSubmit} className="space-y-4">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-muted/50 border-primary/30 focus:border-primary font-cormorant"
-                required
-              />
-              <Button
-                type="submit"
-                variant="outline"
-                className="w-full font-cinzel text-sm tracking-wider border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground"
-              >
-                Subscribe
-              </Button>
-            </form>
-
-            <div className="pt-8 border-t border-border">
-              <h3 className="font-cinzel text-lg text-foreground mb-4">Follow the Journey</h3>
-              <div className="flex flex-wrap gap-4">
-                {['Instagram', 'Twitter', 'YouTube', 'TikTok'].map((social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="font-cinzel text-sm tracking-wider text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {social}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-8">
-              <p className="font-cormorant text-muted-foreground italic">
-                Houston, Texas
+      {/* Contact Form */}
+      <section className="py-12 px-6">
+        <div className="max-w-xl mx-auto">
+          {isSubmitted ? (
+            <div className="text-center py-16">
+              <img src={brandSymbol} alt="" className="w-12 h-12 mx-auto mb-6 object-contain" />
+              <h2 className="font-cinzel text-2xl text-foreground mb-4">
+                Message Received
+              </h2>
+              <p className="font-cormorant text-lg text-muted-foreground">
+                Thank you for reaching out. I'll respond as soon as I can.
               </p>
             </div>
-          </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Name */}
+              <div className="space-y-2">
+                <Label htmlFor="name" className="font-cinzel text-xs tracking-wider text-foreground/80">
+                  Name
+                </Label>
+                <Input
+                  id="name"
+                  name="name"
+                  type="text"
+                  value={formState.name}
+                  onChange={handleChange}
+                  className="bg-muted/30 border-border focus:border-primary font-cormorant"
+                  required
+                />
+              </div>
+
+              {/* Email */}
+              <div className="space-y-2">
+                <Label htmlFor="email" className="font-cinzel text-xs tracking-wider text-foreground/80">
+                  Email
+                </Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                  placeholder="you@email.com"
+                  className="bg-muted/30 border-border focus:border-primary font-cormorant"
+                  required
+                />
+              </div>
+
+              {/* Subject */}
+              <div className="space-y-2">
+                <Label htmlFor="subject" className="font-cinzel text-xs tracking-wider text-foreground/80">
+                  Subject
+                </Label>
+                <Select
+                  value={formState.subject}
+                  onValueChange={(value) => setFormState({ ...formState, subject: value })}
+                >
+                  <SelectTrigger className="bg-muted/30 border-border font-cormorant">
+                    <SelectValue placeholder="Select a subject" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="general">General Inquiry</SelectItem>
+                    <SelectItem value="collaboration">Collaboration</SelectItem>
+                    <SelectItem value="press">Press / Media</SelectItem>
+                    <SelectItem value="support">Support</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Message */}
+              <div className="space-y-2">
+                <Label htmlFor="message" className="font-cinzel text-xs tracking-wider text-foreground/80">
+                  Message
+                </Label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  value={formState.message}
+                  onChange={handleChange}
+                  className="bg-muted/30 border-border focus:border-primary font-cormorant min-h-40"
+                  required
+                />
+              </div>
+
+              {/* Submit */}
+              <button
+                type="submit"
+                className="w-full px-8 py-4 bg-primary text-primary-foreground font-cinzel text-sm tracking-wider uppercase transition-all duration-300 hover:bg-primary/90"
+              >
+                Send Message
+              </button>
+            </form>
+          )}
         </div>
-      </SectionContainer>
+      </section>
+
+      {/* Divider */}
+      <div className="flex items-center justify-center gap-4 py-16">
+        <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+        <img src={brandSymbol} alt="" className="w-8 h-8 object-contain" />
+        <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      </div>
+
+      {/* Alternative Contact */}
+      <section className="py-12 px-6 text-center">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="font-cinzel text-sm tracking-wider uppercase text-primary mb-6">
+            Or Reach Me Directly
+          </h2>
+          <a
+            href="mailto:contact@pharaohb.com"
+            className="font-cormorant text-lg text-muted-foreground hover:text-primary transition-colors"
+          >
+            contact@pharaohb.com
+          </a>
+        </div>
+      </section>
+
+      {/* Social Links */}
+      <section className="py-12 px-6 text-center">
+        <div className="flex items-center justify-center gap-8 md:gap-12">
+          <a
+            href="https://youtube.com/@PharaohB-1111"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-cinzel text-sm tracking-wider text-muted-foreground hover:text-primary transition-colors"
+          >
+            YouTube
+          </a>
+          <a
+            href="https://tiktok.com/@awmoive"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-cinzel text-sm tracking-wider text-muted-foreground hover:text-primary transition-colors"
+          >
+            TikTok
+          </a>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-cinzel text-sm tracking-wider text-muted-foreground hover:text-primary transition-colors"
+          >
+            Instagram
+          </a>
+        </div>
+      </section>
+
+      {/* Footer space */}
+      <div className="h-16" />
     </PageLayout>
   );
 };
