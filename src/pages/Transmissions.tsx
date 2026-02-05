@@ -1,57 +1,113 @@
+import { useState } from 'react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { SectionContainer } from '@/components/shared/SectionContainer';
-import { transmissions } from '@/data/transmissions';
-import { ExternalLink } from 'lucide-react';
+import { VideoCard } from '@/components/transmissions/VideoCard';
+import { ShortCard } from '@/components/transmissions/ShortCard';
+import { 
+  transmissions, 
+  shorts, 
+  categories,
+  getTransmissionsByCategory,
+  type CategoryId 
+} from '@/data/transmissions';
+import brandSymbol from '@/assets/brand-symbol.png';
 
 const Transmissions = () => {
+  const [activeCategory, setActiveCategory] = useState<CategoryId>('all');
+  
+  const filteredTransmissions = getTransmissionsByCategory(activeCategory);
+
   return (
     <PageLayout>
       <PageHeader
         title="Transmissions"
-        subtitle="Spoken works, frequencies, and audio reflections"
-        orientationText="Receive without grasping. These are living signals."
+        subtitle="Audio & Video"
+        orientationText="Healing frequencies, affirmations, spoken word, and teachings for the soul."
       />
 
       <SectionContainer>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {transmissions.map((transmission) => (
-            <article key={transmission.slug} className="group">
-              {/* Thumbnail */}
-              <div className="relative aspect-video overflow-hidden mb-4 border border-border">
-                <img
-                  src={transmission.thumbnail}
-                  alt={transmission.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-background/30 group-hover:bg-background/20 transition-colors duration-300" />
-              </div>
-
-              {/* Content */}
-              <div className="space-y-3">
-                <h2 className="font-cinzel text-xl text-foreground group-hover:text-gold-gradient transition-colors">
-                  {transmission.title}
-                </h2>
-                
-                <p className="font-cormorant text-muted-foreground leading-relaxed">
-                  {transmission.intention}
-                </p>
-
-                {/* CTA */}
-                <a
-                  href={transmission.youtubeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-cinzel text-sm tracking-wider text-primary hover:text-primary/80 transition-colors pt-2 py-2 min-h-[44px]"
-                >
-                  Enter Transmission
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
-            </article>
+        {/* Category Filter Tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`px-6 py-2 font-cinzel text-xs tracking-widest uppercase border transition-all duration-300 ${
+                activeCategory === cat.id
+                  ? 'border-primary bg-primary text-primary-foreground'
+                  : 'border-border text-muted-foreground hover:border-primary/50 hover:text-primary'
+              }`}
+            >
+              {cat.label}
+            </button>
           ))}
         </div>
+
+        {/* Long-form Video Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {filteredTransmissions.map((video) => (
+            <VideoCard key={video.id} video={video} />
+          ))}
+        </div>
+
+        {/* Empty State */}
+        {filteredTransmissions.length === 0 && (
+          <div className="text-center py-16">
+            <p className="font-cormorant text-lg text-muted-foreground">
+              No transmissions in this category yet.
+            </p>
+          </div>
+        )}
       </SectionContainer>
+
+      {/* Shorts Section - Only show if there are shorts */}
+      {shorts.length > 0 && (
+        <>
+          {/* Divider with brand symbol */}
+          <div className="flex items-center justify-center gap-4 py-12">
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+            <img src={brandSymbol} alt="" className="w-8 h-8 object-contain opacity-70" />
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+          </div>
+
+          <SectionContainer>
+            {/* Section Header */}
+            <div className="text-center mb-8">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <div className="w-12 h-px bg-primary" />
+                <span className="font-cinzel text-xs tracking-widest uppercase text-primary">
+                  Shorts
+                </span>
+                <div className="w-12 h-px bg-primary" />
+              </div>
+              <p className="font-cormorant text-lg text-muted-foreground">
+                Quick transmissions. Under 60 seconds.
+              </p>
+            </div>
+
+            {/* Shorts Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-w-5xl mx-auto">
+              {shorts.map((short) => (
+                <ShortCard key={short.id} short={short} />
+              ))}
+            </div>
+
+            {/* Link to YouTube Shorts */}
+            <div className="text-center mt-8">
+              <a
+                href="https://www.youtube.com/@PharaohB-1111/shorts"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-cinzel text-sm tracking-widest text-primary hover:opacity-70 transition-opacity"
+              >
+                View All Shorts on YouTube
+                <span>→</span>
+              </a>
+            </div>
+          </SectionContainer>
+        </>
+      )}
     </PageLayout>
   );
 };
