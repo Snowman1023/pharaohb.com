@@ -6,31 +6,30 @@ import { transmissions } from '@/data/transmissions';
 const findVideoById = (youtubeId: string) => 
   transmissions.find(t => t.href.includes(youtubeId));
 
-// Left column - 2 large stacked audiobooks
-const leftColumnVideos = [
+// All 5 audiobooks in display order
+const audiobooks = [
   findVideoById('Nd_9Nuv39Zw'), // The Master Key System
   findVideoById('msA-q_PwIz8'), // The Art of Not Thinking Yourself to Death
-].filter(Boolean);
-
-// Right column - 3 smaller stacked audiobooks
-const rightColumnVideos = [
   findVideoById('I-xKF7PyoVM'), // You Are Not Your Addiction
   findVideoById('HOfjZTY0Q4s'), // The Light Within
   findVideoById('ejbByodADwA'), // The Kybalion
 ].filter(Boolean);
 
+// Split into rows: 3 on top, 2 on bottom
+const topRow = audiobooks.slice(0, 3);
+const bottomRow = audiobooks.slice(3, 5);
+
 interface VideoCardProps {
   video: typeof transmissions[0];
-  className?: string;
 }
 
-function VideoCard({ video, className = '' }: VideoCardProps) {
+function VideoCard({ video }: VideoCardProps) {
   return (
     <a
       href={video.href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group relative overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-500 ${className}`}
+      className="group relative overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-500"
     >
       <div className="aspect-video overflow-hidden">
         <img
@@ -79,18 +78,18 @@ export function RecentWorksSection() {
           </p>
         </div>
 
-        {/* Main Grid: Left (2 large) + Right (3 smaller) - equal height */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {/* Left Column - 2 large stacked audiobooks (takes 2/3 width) */}
-          <div className="lg:col-span-2 flex flex-col gap-6">
-            {leftColumnVideos.map((video) => (
+        {/* Symmetric Grid: 3 on top, 2 centered below */}
+        <div className="max-w-6xl mx-auto space-y-6">
+          {/* Top Row - 3 equal cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {topRow.map((video) => (
               video && <VideoCard key={video.id} video={video} />
             ))}
           </div>
 
-          {/* Right Column - 3 stacked audiobooks with full 16:9 ratio */}
-          <div className="flex flex-col gap-6">
-            {rightColumnVideos.map((video) => (
+          {/* Bottom Row - 2 centered cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {bottomRow.map((video) => (
               video && <VideoCard key={video.id} video={video} />
             ))}
           </div>
