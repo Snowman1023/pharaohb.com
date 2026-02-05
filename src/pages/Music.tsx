@@ -3,7 +3,7 @@ import { PageHeader } from '@/components/shared/PageHeader';
 import { SectionContainer } from '@/components/shared/SectionContainer';
 import { albums } from '@/data/albums';
 import { musicPageContent, streamingPlatforms } from '@/data/musicData';
-import { Play } from 'lucide-react';
+import { Music as MusicIcon } from 'lucide-react';
 import brandSymbol from '@/assets/brand-symbol.png';
 
 const Music = () => {
@@ -52,36 +52,45 @@ const Music = () => {
                   {album.description}
                 </p>
 
-                {/* Player Placeholder - fills remaining space */}
-                <div className="bg-muted/30 border border-border p-6 mt-auto">
-                  <div className="flex items-center gap-4 mb-4">
-                    <button className="w-14 h-14 min-w-[44px] min-h-[44px] rounded-full border border-primary flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
-                      <Play className="w-5 h-5 ml-0.5" />
-                    </button>
-                    <div className="flex-1">
-                      <div className="h-1 bg-border rounded-full overflow-hidden">
-                        <div className="h-full w-0 bg-primary" />
+                {/* Spotify Embed or Track List */}
+                <div className="mt-auto">
+                  {album.spotifyEmbedId ? (
+                    <iframe
+                      src={`https://open.spotify.com/embed/album/${album.spotifyEmbedId}?utm_source=generator&theme=0`}
+                      width="100%"
+                      height="352"
+                      frameBorder="0"
+                      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                      loading="lazy"
+                      className="rounded-lg"
+                    />
+                  ) : (
+                    <div className="bg-muted/30 border border-border p-6">
+                      <div className="flex items-center gap-3 mb-4 text-muted-foreground">
+                        <MusicIcon className="w-5 h-5" />
+                        <span className="font-cormorant text-sm italic">
+                          Spotify embed coming soon
+                        </span>
+                      </div>
+                      
+                      {/* Track List */}
+                      <div className="space-y-2 max-h-48 overflow-y-auto">
+                        {album.tracks.map((track, index) => (
+                          <div
+                            key={index}
+                            className="flex items-center gap-3 sm:gap-4 py-2 border-b border-border/50 last:border-0"
+                          >
+                            <span className="font-cinzel text-xs text-primary/50 w-6">
+                              {(index + 1).toString().padStart(2, '0')}
+                            </span>
+                            <span className="font-cormorant text-sm text-foreground/80">
+                              {track}
+                            </span>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                    <span className="font-cormorant text-sm text-muted-foreground">0:00</span>
-                  </div>
-
-                  {/* Track List - fixed height with scroll */}
-                  <div className="space-y-2 max-h-48 overflow-y-auto">
-                    {album.tracks.map((track, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center gap-3 sm:gap-4 py-2 border-b border-border/50 last:border-0"
-                      >
-                        <span className="font-cinzel text-xs text-primary/50 w-6">
-                          {(index + 1).toString().padStart(2, '0')}
-                        </span>
-                        <span className="font-cormorant text-sm text-foreground/80">
-                          {track}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
