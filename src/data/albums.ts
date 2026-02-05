@@ -5,6 +5,7 @@ export interface Album {
   image: string;
   tracks: string[];
   year: string;
+  spotifyEmbedId?: string; // Spotify album/playlist ID for embedding
 }
 
 export const albums: Album[] = [
@@ -22,7 +23,8 @@ export const albums: Album[] = [
       'Harmonic Convergence',
       'The Infinite Octave'
     ],
-    year: '2024'
+    year: '2024',
+    spotifyEmbedId: '', // Add your Spotify album ID here (e.g., '37i9dQZF1DXcBWIGoYBM5M')
   },
   {
     slug: 'temple-meditations-vol-i',
@@ -37,7 +39,8 @@ export const albums: Album[] = [
       'Descent and Return',
       'Midnight Prayers'
     ],
-    year: '2023'
+    year: '2023',
+    spotifyEmbedId: '', // Add your Spotify album ID here
   },
   {
     slug: 'the-obsidian-sessions',
@@ -53,7 +56,8 @@ export const albums: Album[] = [
       'Emergence',
       'Black Gold'
     ],
-    year: '2023'
+    year: '2023',
+    spotifyEmbedId: '', // Add your Spotify album ID here
   },
   {
     slug: 'golden-hour-transmissions',
@@ -70,7 +74,8 @@ export const albums: Album[] = [
       'The Glow Within',
       'Aureate Dreams'
     ],
-    year: '2024'
+    year: '2024',
+    spotifyEmbedId: '', // Add your Spotify album ID here
   }
 ];
 
