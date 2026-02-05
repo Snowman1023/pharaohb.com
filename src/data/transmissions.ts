@@ -26,15 +26,15 @@ export interface Short {
 
 export const transmissions: Transmission[] = [
   // ───────────────────────────────────────────────────────────────
-  // MUSIC (Handpan, Original Songs)
+  // MUSIC (Original Songs)
   // ───────────────────────────────────────────────────────────────
   {
-    id: 'UBGAjWD1WdI',
-    title: 'Handpan Music — 11:11 Meditation',
-    description: 'This handpan composition is paired with flowing water and living landscapes to create a space of stillness, alignment, and return. No words. No instruction. Just presence.',
-    thumbnail: 'https://i.ytimg.com/vi/UBGAjWD1WdI/maxresdefault.jpg',
-    href: 'https://www.youtube.com/watch?v=UBGAjWD1WdI',
-    duration: '11:11:00',
+    id: 'EAU5cD0Sh_4',
+    title: 'Galaxies in Your Gaze',
+    description: 'Original music video accompanying the Spotify track. A visual and auditory journey through love and cosmic connection.',
+    thumbnail: 'https://i.ytimg.com/vi/EAU5cD0Sh_4/maxresdefault.jpg',
+    href: 'https://www.youtube.com/watch?v=EAU5cD0Sh_4',
+    duration: '4:30',
     category: 'music',
     featured: true,
   },
@@ -84,6 +84,16 @@ export const transmissions: Transmission[] = [
   // ───────────────────────────────────────────────────────────────
   // AFFIRMATIONS ("I Am" declarations with frequencies)
   // ───────────────────────────────────────────────────────────────
+  {
+    id: 'UBGAjWD1WdI',
+    title: 'Handpan Music — 11:11 Meditation',
+    description: 'This handpan composition is paired with flowing water and living landscapes to create a space of stillness, alignment, and return. No words. No instruction. Just presence.',
+    thumbnail: 'https://i.ytimg.com/vi/UBGAjWD1WdI/maxresdefault.jpg',
+    href: 'https://www.youtube.com/watch?v=UBGAjWD1WdI',
+    duration: '11:11:00',
+    category: 'affirmation',
+    featured: true,
+  },
   {
     id: '0lTnOJfD33M',
     title: '"I Am" Learning Affirmations (5Hz)',
