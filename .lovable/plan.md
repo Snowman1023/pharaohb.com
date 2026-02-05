@@ -1,142 +1,109 @@
 
+# Plan: Restructure Recent Works Section for YouTube Thumbnails
 
-# Plan: Reorganize Audio/Video Content with Correct Categories
+## Problem Analysis
 
-## Overview
-
-This plan will fix the incorrectly categorized content and add new category types to properly separate your different content types: Music, Frequencies, Affirmations, Audiobooks, Teachings, and Spoken Word.
+The current "Recent Works" section has two main issues:
+1. **Aspect Ratio Mismatch**: YouTube thumbnails are 16:9 but the grid uses 4:3 cards, causing awkward cropping
+2. **Placeholder Images**: Artwork, books, and writings are using Unsplash placeholders instead of real content
 
 ---
 
-## New Category Structure
+## Solution: Mixed-Layout Section
+
+Instead of a uniform 6-card grid, create a visually dynamic layout that properly showcases different content types:
 
 ```text
-Current Categories:        New Categories:
--------------------        ---------------
-frequency                  frequency (healing frequencies)
-audiobook                  audiobook (classic texts + original books)
-spoken-word                spoken-word (poems, messages)
-teaching                   teaching (educational content)
-                          affirmation (NEW - "I Am" affirmations)
-                          music (NEW - original songs, handpan)
+Current Layout:              New Layout:
++---------+---------+---------+    +-------------------+---------+
+|  4:3    |  4:3    |  4:3    |    |                   |  1:1    |
+|  card   |  card   |  card   |    |    FEATURED       |  book   |
++---------+---------+---------+    |    16:9 Video     +---------+
+|  4:3    |  4:3    |  4:3    |    |                   |  1:1    |
+|  card   |  card   |  card   |    |                   |  book   |
++---------+---------+---------+    +-------------------+---------+
+                                   +---------+---------+---------+
+                                   |  16:9   |  16:9   |  16:9   |
+                                   |  video  |  video  |  video  |
+                                   +---------+---------+---------+
 ```
 
 ---
 
-## Step 1: Update Category Interface
+## Step 1: Create New Layout Structure
 
-Modify `src/data/transmissions.ts` to add new category types:
+Redesign the Recent Works section with:
 
-```typescript
-category: 'frequency' | 'audiobook' | 'spoken-word' | 'teaching' | 'affirmation' | 'music';
-```
+1. **Featured Row (Large)**: 
+   - Left: One large 16:9 featured transmission (YouTube video with proper thumbnail)
+   - Right: 2 stacked square cards for books
 
-Update the categories array:
-```typescript
-export const categories = [
-  { id: 'all', label: 'All' },
-  { id: 'frequency', label: 'Frequencies' },
-  { id: 'affirmation', label: 'Affirmations' },
-  { id: 'audiobook', label: 'Audiobooks' },
-  { id: 'teaching', label: 'Teachings' },
-  { id: 'spoken-word', label: 'Spoken Word' },
-  { id: 'music', label: 'Music' },
-] as const;
-```
+2. **Video Row**: 
+   - 3 columns of 16:9 YouTube video cards with proper thumbnails
+   - Includes play button overlay and duration badge
 
 ---
 
-## Step 2: Recategorize All Videos
+## Step 2: Use Real YouTube Thumbnails
 
-Based on your MUSIC.md file, here is the correct categorization:
+Pull directly from the transmissions data which already has proper YouTube thumbnail URLs:
+- `https://i.ytimg.com/vi/[VIDEO_ID]/maxresdefault.jpg`
 
-### MUSIC (Handpan, Original Songs)
-| ID | Title |
-|----|-------|
-| `UBGAjWD1WdI` | Handpan Music - 11:11 Meditation |
-| `EAU5cD0Sh_4` | Galaxies in Your Gaze |
-| `w8FbD3EMkiY` | Holy Chance (Gospel Soul) |
-
-### FREQUENCIES (Healing tones, binaural beats)
-| ID | Title |
-|----|-------|
-| `Zrfoe0cz5FQ` | Delta Waves - Deep Healing Sleep (Black Screen) |
-| `mcH4iDuTd6c` | Alpha Frequency (111 min) - Clear the Mind |
-
-### AFFIRMATIONS ("I Am" declarations with frequencies)
-| ID | Title |
-|----|-------|
-| `0lTnOJfD33M` | "I Am" Learning Affirmations (5Hz) |
-| `XGq0-MGq2O0` | Master Key Affirmations Part One (432 Hz) |
-| `sHwBFVEq33c` | 111 Gratitude Affirmations (4Hz Theta) |
-| `HE806qtLYNE` | "Do It Now" Affirmations |
-| `npiLiP3pVBM` | Morning Affirmations (432 Hz) |
-| `ZFjiDQ3fG6M` | Powerful Mind in 30 Days Affirmations |
-| `MXtf36KfeqM` | Self-Discipline Affirmations |
-
-### AUDIOBOOKS (Classic texts + Original books)
-| ID | Title |
-|----|-------|
-| `Nd_9Nuv39Zw` | The Master Key System (Full) |
-| `I-xKF7PyoVM` | You Are Not Your Addiction (by Pharaoh B) |
-| `ejbByodADwA` | The Kybalion - Hidden Laws of the Universe |
-| `msA-q_PwIz8` | Art of Not Thinking Yourself to Death - Part 1 |
-| `HOfjZTY0Q4s` | The Light Within (by Pharaoh B) |
-
-### TEACHINGS (Educational, how-to)
-| ID | Title |
-|----|-------|
-| `6-yEttH5hiA` | The Death of the Perfect Moment |
-| `4wBd6HZzYzg` | Your Mind Is Lying To You (Part 3) |
-| `R_90k9LPywQ` | How to Stop Thinking Everything to Death |
-
-### SPOKEN WORD (Poems, messages)
-| ID | Title |
-|----|-------|
-| `-ySQ19J3ewo` | A Vision for Humanity |
-| `vff0ny5Dfxs` | This Is For You (Poem for Women) |
-| `8qCJMoRaAbg` | The Truth About Happiness |
-| `-KVdYmfVoRg` | This Will Change How You See Humanity |
-| `m7BdjZ4vHBs` | The Awakening (Poem) |
-| `CZC6VNTc1sY` | The Forgotten Connection (Poem) |
+Featured transmissions to display:
+- "Galaxies in Your Gaze" (Music - featured)
+- "Delta Waves - Deep Healing Sleep" (Frequency)  
+- "Master Key Affirmations" (Affirmation)
+- "A Vision for Humanity" (Spoken Word)
 
 ---
 
-## Step 3: Add Real Titles and Descriptions
+## Step 3: Remove Placeholder Content
 
-Each video will be updated with the actual title and description from your MUSIC.md file, including:
-
-- Accurate titles (not generic placeholders)
-- Real descriptions from your YouTube content
-- Correct durations where provided
-- Proper SEO keywords from your hashtags
+Remove artworks and writings from this section since they still use Unsplash placeholders. Focus on content that has real imagery:
+- **YouTube Videos**: Have real thumbnails
+- **Books**: Keep but note they still need real cover images
 
 ---
 
-## Step 4: Remove Incorrect Placeholder Content
+## Technical Implementation
 
-Remove videos that were added with incorrect placeholder data:
-- Videos listed as "Solfeggio frequencies" that are actually affirmations or teachings
-- Audiobooks listed that don't match your actual content
+### File: `src/components/home/RecentWorksSection.tsx`
+
+Changes:
+1. Import only needed data (transmissions, books)
+2. Filter for featured transmissions
+3. Create featured video component with 16:9 aspect ratio
+4. Create video card row with 16:9 cards
+5. Add play overlay and duration badges for videos
+6. Use CSS Grid with proper responsive breakpoints
+
+### CSS Classes Used:
+- `aspect-video` (16:9 for YouTube thumbnails)
+- `aspect-square` (1:1 for books)
+- Grid layout with `grid-cols-1 md:grid-cols-3`
 
 ---
 
-## Files to be Modified
+## Visual Result
 
-1. **`src/data/transmissions.ts`**
-   - Add `affirmation` and `music` to category type
-   - Update categories array
-   - Replace all transmission entries with correctly categorized content
-   - Add real titles, descriptions, and durations
+- Featured YouTube video displays at full 16:9 with no cropping
+- Additional videos in a row below, also 16:9
+- Play button overlays on video cards
+- Duration badges showing video length
+- Clean, professional look matching YouTube's own layout
 
 ---
 
-## Result After Implementation
+## Files Modified
 
-- **Music Page**: Shows your 5 Spotify albums with embedded players
-- **Transmissions Page**: 
-  - 6 filter tabs: All, Frequencies, Affirmations, Audiobooks, Teachings, Spoken Word, Music
-  - Each video properly categorized
-  - Real titles and descriptions from your YouTube content
-  - SEO-friendly metadata
+1. **`src/components/home/RecentWorksSection.tsx`**
+   - Complete restructure of the layout
+   - Use 16:9 aspect ratio for all video content
+   - Add video-specific UI (play buttons, duration)
+   - Focus on content with real images (YouTube videos)
 
+---
+
+## Future Considerations
+
+Once you have real artwork and book cover images, the section can be expanded to include those in a separate "Featured Works" row with appropriate aspect ratios for each content type.
