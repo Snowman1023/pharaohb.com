@@ -88,10 +88,10 @@ export function RecentWorksSection() {
             ))}
           </div>
 
-          {/* Right Column - 3 smaller stacked audiobooks (takes 1/3 width) */}
-          <div className="flex flex-col gap-4">
+          {/* Right Column - 3 stacked audiobooks with full 16:9 ratio */}
+          <div className="flex flex-col gap-6">
             {rightColumnVideos.map((video) => (
-              video && <VideoCard key={video.id} video={video} className="[&_.aspect-video]:aspect-[16/7]" />
+              video && <VideoCard key={video.id} video={video} />
             ))}
           </div>
         </div>
