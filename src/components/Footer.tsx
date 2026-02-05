@@ -9,18 +9,18 @@ export function Footer() {
   return (
     <footer
       ref={ref as React.RefObject<HTMLElement>}
-      className="relative py-16 border-t border-primary/20 bg-background"
+      className="relative py-10 sm:py-16 border-t border-primary/20 bg-background"
     >
       {/* Egyptian decorative border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
 
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className={cn(
           "transition-all duration-1000",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
           {/* Main footer content */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12 mb-8 sm:mb-12">
             {/* Brand */}
             <div className="text-center md:text-left">
               <Link to="/" className="font-cinzel text-xl text-gold-gradient">

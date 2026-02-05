@@ -67,28 +67,28 @@ function VideoCard({ video }: VideoCardProps) {
 
 export function RecentWorksSection() {
   return (
-    <section className="py-16 md:py-24">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="font-cinzel text-3xl md:text-4xl text-gold-gradient mb-4">
+    <section className="py-12 sm:py-16 md:py-24">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="font-cinzel text-2xl sm:text-3xl md:text-4xl text-gold-gradient mb-3 sm:mb-4">
             Recent Works
           </h2>
-          <p className="font-cormorant text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="font-cormorant text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
             Explorations in word, image, and form—each piece a doorway into deeper territories.
           </p>
         </div>
 
         {/* 2-Column Grid: Left (2 large 16:9) + Right (3 smaller 16:9) */}
-        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-4 max-w-6xl mx-auto items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-3 sm:gap-4 max-w-6xl mx-auto items-stretch">
           {/* Left Column - 2 large stacked audiobooks */}
-          <div className="flex flex-col gap-4 lg:gap-0 lg:justify-between lg:h-full">
+          <div className="flex flex-col gap-3 sm:gap-4 lg:gap-0 lg:justify-between lg:h-full">
             {leftColumnVideos.map((video) => (
               video && <VideoCard key={video.id} video={video} />
             ))}
           </div>
 
           {/* Right Column - 3 stacked audiobooks (flush top + bottom aligned with left column on lg+) */}
-          <div className="flex flex-col gap-4 lg:gap-0 lg:justify-between lg:h-full">
+          <div className="flex flex-col gap-3 sm:gap-4 lg:gap-0 lg:justify-between lg:h-full">
             {rightColumnVideos.map((video) => (
               video && <VideoCard key={video.id} video={video} />
             ))}

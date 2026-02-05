@@ -26,18 +26,18 @@ const availableNow = [
 
 export function AvailableNowSection() {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-transparent via-muted/5 to-transparent">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="font-cinzel text-3xl md:text-4xl text-gold-gradient mb-4">
+    <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-transparent via-muted/5 to-transparent">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="font-cinzel text-2xl sm:text-3xl md:text-4xl text-gold-gradient mb-3 sm:mb-4">
             Available Now
           </h2>
-          <p className="font-cormorant text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="font-cormorant text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
             Artifacts and teachings ready to accompany your journey.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto">
           {availableNow.map((item, index) => (
             <div
               key={index}
@@ -50,12 +50,12 @@ export function AvailableNowSection() {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <div className="p-6 space-y-4">
-                <h3 className="font-cinzel text-lg text-foreground group-hover:text-gold-gradient transition-colors">
+              <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+                <h3 className="font-cinzel text-base sm:text-lg text-foreground group-hover:text-gold-gradient transition-colors line-clamp-2">
                   {item.title}
                 </h3>
                 <div className="flex items-center justify-between">
-                  <span className="font-cinzel text-2xl text-primary">
+                  <span className="font-cinzel text-xl sm:text-2xl text-primary">
                     {item.price}
                   </span>
                   <Button
