@@ -3,21 +3,26 @@ import { poems } from '@/data/poems';
 
 // Custom generated images for poems
 import theUnionImg from '@/assets/poems/the-union.jpg';
+import theUnmakingImg from '@/assets/poems/the-unmaking.jpg';
+import theRadianceImg from '@/assets/poems/the-radiance.jpg';
 import theThresholdImg from '@/assets/poems/the-threshold.jpg';
 import theWitnessImg from '@/assets/poems/the-witness.jpg';
 import theMirrorImg from '@/assets/poems/the-mirror.jpg';
+import theEndOfTryingImg from '@/assets/poems/the-end-of-trying.jpg';
+import theReturnImg from '@/assets/poems/the-return.jpg';
+import theAgreementImg from '@/assets/poems/the-agreement.jpg';
 
-// Images matching the vibration of each poem (no people, dark/architectural/symbolic)
+// Images matching the vibration of each poem
 const poemImages: Record<string, string> = {
   'the-union': theUnionImg,
-  'the-unmaking': 'https://images.unsplash.com/photo-1507400492013-162706c8c05e?w=600&q=80', // Dark abstract dissolution
-  'the-radiance': 'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&q=80', // Starry cosmic glow
+  'the-unmaking': theUnmakingImg,
+  'the-radiance': theRadianceImg,
   'the-threshold': theThresholdImg,
   'the-witness': theWitnessImg,
   'the-mirror': theMirrorImg,
-  'the-end-of-trying': 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&q=80', // Nebula cosmos
-  'the-return': 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80', // Earth from space
-  'the-agreement': 'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=600&q=80', // Galaxy unity
+  'the-end-of-trying': theEndOfTryingImg,
+  'the-return': theReturnImg,
+  'the-agreement': theAgreementImg,
 };
 
 // Get first 9 poems
