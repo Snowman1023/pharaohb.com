@@ -1,163 +1,142 @@
 
 
-# Plan: Add Spotify Albums & YouTube Videos with SEO Content
+# Plan: Reorganize Audio/Video Content with Correct Categories
 
 ## Overview
 
-This plan will populate your Music page with real Spotify albums and add all your YouTube videos to the Transmissions page, complete with proper descriptions and categorization for SEO.
+This plan will fix the incorrectly categorized content and add new category types to properly separate your different content types: Music, Frequencies, Affirmations, Audiobooks, Teachings, and Spoken Word.
 
 ---
 
-## What You Provided
-
-### Spotify Albums (5 unique)
-| Album ID | Will need title/description |
-|----------|---------------------------|
-| `1gVW4727OxzEj6EQ7wQBSi` | Yes |
-| `7r3I3KZnSZPyjci4zxJAZR` | Yes |
-| `799xzarOcV5RSWk3LCVI8C` | Yes |
-| `3184qyYgGnm8yBs6asYF5d` | Yes |
-| `0G8WL3Q4cIEwzNgQl5Jw2f` | Yes |
-
-### YouTube Videos (24+ unique videos)
-These will be categorized based on content type:
-- **Audiobooks**: The Master Key System, Think and Grow Rich, The Kybalion, etc.
-- **Frequencies**: 432 Hz, 528 Hz, 999 Hz healing frequencies
-- **Teachings**: Wisdom teachings and spoken word pieces
-
----
-
-## Implementation Steps
-
-### Step 1: Update Albums Data (Music Page)
-
-Replace the placeholder albums in `src/data/albums.ts` with your real Spotify albums:
+## New Category Structure
 
 ```text
-Album 1: ID 1gVW4727OxzEj6EQ7wQBSi
-Album 2: ID 7r3I3KZnSZPyjci4zxJAZR  
-Album 3: ID 799xzarOcV5RSWk3LCVI8C
-Album 4: ID 3184qyYgGnm8yBs6asYF5d
-Album 5: ID 0G8WL3Q4cIEwzNgQl5Jw2f
+Current Categories:        New Categories:
+-------------------        ---------------
+frequency                  frequency (healing frequencies)
+audiobook                  audiobook (classic texts + original books)
+spoken-word                spoken-word (poems, messages)
+teaching                   teaching (educational content)
+                          affirmation (NEW - "I Am" affirmations)
+                          music (NEW - original songs, handpan)
 ```
-
-Each album will include:
-- Spotify embed ID for playback
-- YouTube video ID where available (for dual-player option)
-- Placeholder title/description (you can update later with exact names)
-
-### Step 2: Add All YouTube Videos to Transmissions
-
-Add all 24+ videos to `src/data/transmissions.ts` with:
-- Auto-generated thumbnails using YouTube's image URL format
-- Categorization (frequency/audiobook/spoken-word/teaching)
-- SEO-friendly descriptions
-- Placeholder durations (can be updated)
-
-### Step 3: Add SEO Fields (Optional Enhancement)
-
-Add to Album and Transmission interfaces:
-- `longDescription`: Extended description for detail pages
-- `keywords`: Array of SEO keywords
-- `metaTitle` / `metaDescription`: For page meta tags
 
 ---
 
-## Technical Details
+## Step 1: Update Category Interface
 
-### Albums Data Structure Update
+Modify `src/data/transmissions.ts` to add new category types:
 
 ```typescript
-// src/data/albums.ts
-export const albums: Album[] = [
-  {
-    slug: 'album-1',
-    title: 'Album Title Here',
-    description: 'Description for SEO...',
-    image: 'https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg',
-    tracks: ['Track 1', 'Track 2'],
-    year: '2024',
-    spotifyEmbedId: '1gVW4727OxzEj6EQ7wQBSi',
-    youtubeVideoId: 'UBGAjWD1WdI', // Optional
-  },
-  // ... more albums
-];
+category: 'frequency' | 'audiobook' | 'spoken-word' | 'teaching' | 'affirmation' | 'music';
 ```
 
-### Transmissions Data Structure
-
+Update the categories array:
 ```typescript
-// src/data/transmissions.ts - Adding your videos
-{
-  id: 'UBGAjWD1WdI',
-  title: 'Video Title',
-  description: 'SEO description...',
-  thumbnail: 'https://i.ytimg.com/vi/UBGAjWD1WdI/maxresdefault.jpg',
-  href: 'https://www.youtube.com/watch?v=UBGAjWD1WdI',
-  duration: '1:00:00',
-  category: 'audiobook', // or 'frequency', 'teaching', 'spoken-word'
-  featured: true,
-},
+export const categories = [
+  { id: 'all', label: 'All' },
+  { id: 'frequency', label: 'Frequencies' },
+  { id: 'affirmation', label: 'Affirmations' },
+  { id: 'audiobook', label: 'Audiobooks' },
+  { id: 'teaching', label: 'Teachings' },
+  { id: 'spoken-word', label: 'Spoken Word' },
+  { id: 'music', label: 'Music' },
+] as const;
 ```
 
 ---
 
-## Video IDs to Add
+## Step 2: Recategorize All Videos
 
-| Video ID | Likely Category | Notes |
-|----------|----------------|-------|
-| `UBGAjWD1WdI` | audiobook/frequency | |
-| `Zrfoe0cz5FQ` | frequency | |
-| `mcH4iDuTd6c` | audiobook | |
-| `Nd_9Nuv39Zw` | audiobook | Already exists (Master Key System) |
-| `6-yEttH5hiA` | frequency | |
-| `0lTnOJfD33M` | teaching | |
-| `XGq0-MGq2O0` | frequency | |
-| `I-xKF7PyoVM` | audiobook | |
-| `sHwBFVEq33c` | frequency | |
-| `HE806qtLYNE` | teaching | |
-| `npiLiP3pVBM` | frequency | |
-| `4wBd6HZzYzg` | audiobook | |
-| `ejbByodADwA` | spoken-word | |
-| `ZFjiDQ3fG6M` | frequency | |
-| `-ySQ19J3ewo` | teaching | |
-| `R_90k9LPywQ` | audiobook | |
-| `msA-q_PwIz8` | frequency | |
-| `vff0ny5Dfxs` | teaching | |
-| `EAU5cD0Sh_4` | frequency | |
-| `w8FbD3EMkiY` | audiobook | |
-| `MXtf36KfeqM` | teaching | |
-| `8qCJMoRaAbg` | frequency | |
-| `-KVdYmfVoRg` | audiobook | |
-| `m7BdjZ4vHBs` | teaching | |
-| `CZC6VNTc1sY` | frequency | |
-| `HOfjZTY0Q4s` | teaching | |
+Based on your MUSIC.md file, here is the correct categorization:
+
+### MUSIC (Handpan, Original Songs)
+| ID | Title |
+|----|-------|
+| `UBGAjWD1WdI` | Handpan Music - 11:11 Meditation |
+| `EAU5cD0Sh_4` | Galaxies in Your Gaze |
+| `w8FbD3EMkiY` | Holy Chance (Gospel Soul) |
+
+### FREQUENCIES (Healing tones, binaural beats)
+| ID | Title |
+|----|-------|
+| `Zrfoe0cz5FQ` | Delta Waves - Deep Healing Sleep (Black Screen) |
+| `mcH4iDuTd6c` | Alpha Frequency (111 min) - Clear the Mind |
+
+### AFFIRMATIONS ("I Am" declarations with frequencies)
+| ID | Title |
+|----|-------|
+| `0lTnOJfD33M` | "I Am" Learning Affirmations (5Hz) |
+| `XGq0-MGq2O0` | Master Key Affirmations Part One (432 Hz) |
+| `sHwBFVEq33c` | 111 Gratitude Affirmations (4Hz Theta) |
+| `HE806qtLYNE` | "Do It Now" Affirmations |
+| `npiLiP3pVBM` | Morning Affirmations (432 Hz) |
+| `ZFjiDQ3fG6M` | Powerful Mind in 30 Days Affirmations |
+| `MXtf36KfeqM` | Self-Discipline Affirmations |
+
+### AUDIOBOOKS (Classic texts + Original books)
+| ID | Title |
+|----|-------|
+| `Nd_9Nuv39Zw` | The Master Key System (Full) |
+| `I-xKF7PyoVM` | You Are Not Your Addiction (by Pharaoh B) |
+| `ejbByodADwA` | The Kybalion - Hidden Laws of the Universe |
+| `msA-q_PwIz8` | Art of Not Thinking Yourself to Death - Part 1 |
+| `HOfjZTY0Q4s` | The Light Within (by Pharaoh B) |
+
+### TEACHINGS (Educational, how-to)
+| ID | Title |
+|----|-------|
+| `6-yEttH5hiA` | The Death of the Perfect Moment |
+| `4wBd6HZzYzg` | Your Mind Is Lying To You (Part 3) |
+| `R_90k9LPywQ` | How to Stop Thinking Everything to Death |
+
+### SPOKEN WORD (Poems, messages)
+| ID | Title |
+|----|-------|
+| `-ySQ19J3ewo` | A Vision for Humanity |
+| `vff0ny5Dfxs` | This Is For You (Poem for Women) |
+| `8qCJMoRaAbg` | The Truth About Happiness |
+| `-KVdYmfVoRg` | This Will Change How You See Humanity |
+| `m7BdjZ4vHBs` | The Awakening (Poem) |
+| `CZC6VNTc1sY` | The Forgotten Connection (Poem) |
 
 ---
 
-## What You'll Need to Provide Later
+## Step 3: Add Real Titles and Descriptions
 
-After I add these entries with placeholder content:
+Each video will be updated with the actual title and description from your MUSIC.md file, including:
 
-1. **Album Names**: The actual titles for each Spotify album
-2. **Video Categories**: Confirm if my category guesses are correct
-3. **Descriptions**: You can edit the SEO descriptions in the data files anytime
-4. **Durations**: Exact video lengths (optional - can stay as placeholders)
+- Accurate titles (not generic placeholders)
+- Real descriptions from your YouTube content
+- Correct durations where provided
+- Proper SEO keywords from your hashtags
+
+---
+
+## Step 4: Remove Incorrect Placeholder Content
+
+Remove videos that were added with incorrect placeholder data:
+- Videos listed as "Solfeggio frequencies" that are actually affirmations or teachings
+- Audiobooks listed that don't match your actual content
 
 ---
 
 ## Files to be Modified
 
-1. `src/data/albums.ts` - Replace placeholder albums with real Spotify data
-2. `src/data/transmissions.ts` - Add all YouTube videos with categories
-3. `src/data/musicData.ts` - Update streaming platform links
+1. **`src/data/transmissions.ts`**
+   - Add `affirmation` and `music` to category type
+   - Update categories array
+   - Replace all transmission entries with correctly categorized content
+   - Add real titles, descriptions, and durations
 
 ---
 
-## Result
+## Result After Implementation
 
-After implementation:
-- **Music Page**: Will show 5 real Spotify albums with working embedded players
-- **Transmissions Page**: Will display 25+ videos organized by category (Frequencies, Audiobooks, Spoken Word, Teachings)
-- **SEO**: Each entry will have descriptions that help with search visibility
+- **Music Page**: Shows your 5 Spotify albums with embedded players
+- **Transmissions Page**: 
+  - 6 filter tabs: All, Frequencies, Affirmations, Audiobooks, Teachings, Spoken Word, Music
+  - Each video properly categorized
+  - Real titles and descriptions from your YouTube content
+  - SEO-friendly metadata
 
