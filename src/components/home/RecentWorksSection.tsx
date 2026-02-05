@@ -78,7 +78,7 @@ export function RecentWorksSection() {
           </p>
         </div>
 
-        {/* 2-Column Grid: Left (2 large 16:9) + Right (3 smaller 16:9) with 3:2 ratio for equal heights */}
+        {/* 2-Column Grid: Left (2 large 16:9) + Right (3 smaller 16:9) */}
         <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-4 max-w-6xl mx-auto">
           {/* Left Column - 2 large stacked audiobooks */}
           <div className="flex flex-col gap-4">
@@ -87,8 +87,10 @@ export function RecentWorksSection() {
             ))}
           </div>
 
-          {/* Right Column - 3 stacked audiobooks */}
-          <div className="flex flex-col gap-4">
+          {/* Right Column - 3 stacked audiobooks
+              On lg+, use a smaller per-gap spacing so TOTAL vertical spacing equals the left column
+              (left has 1 gap; right has 2 gaps). This makes both columns align perfectly. */}
+          <div className="flex flex-col gap-4 lg:gap-2">
             {rightColumnVideos.map((video) => (
               video && <VideoCard key={video.id} video={video} />
             ))}
