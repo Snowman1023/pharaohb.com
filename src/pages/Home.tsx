@@ -1,6 +1,7 @@
 import { PageLayout } from '@/components/layout/PageLayout';
 import { HeroSection } from '@/components/HeroSection';
 import { RecentWorksSection } from '@/components/home/RecentWorksSection';
+import { MusicSection } from '@/components/home/MusicSection';
 import { AvailableNowSection } from '@/components/home/AvailableNowSection';
 import { ArtifactsSection } from '@/components/home/ArtifactsSection';
 import { ExploreTilesSection } from '@/components/home/ExploreTilesSection';
@@ -13,6 +14,9 @@ const Home = () => {
       
       {/* Recent Works Section */}
       <RecentWorksSection />
+      
+      {/* Music Section */}
+      <MusicSection />
       
       {/* Available Now Section */}
       <AvailableNowSection />
