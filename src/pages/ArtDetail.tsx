@@ -18,8 +18,8 @@ const ArtDetail = () => {
         <SectionContainer className="pt-32">
           <div className="text-center">
             <h1 className="font-cinzel text-3xl text-foreground mb-4">Artwork Not Found</h1>
-            <Link to="/art" className="text-primary hover:underline">
-              Return to Gallery
+            <Link to="/shop" className="text-primary hover:underline">
+              Return to Shop
             </Link>
           </div>
         </SectionContainer>
@@ -31,11 +31,11 @@ const ArtDetail = () => {
     <PageLayout>
       <SectionContainer className="pt-32">
         <Link
-          to="/art"
+          to="/shop"
           className="inline-flex items-center gap-2 font-cinzel text-sm text-muted-foreground hover:text-primary transition-colors mb-8 py-2 min-h-[44px]"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to Gallery
+          Back to Shop
         </Link>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 max-w-6xl mx-auto">

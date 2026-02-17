@@ -12,7 +12,6 @@ const spotifyAlbums = [
   { id: '7r3I3KZnSZPyjci4zxJAZR', title: 'Temple Meditations Vol. I' },
   { id: '799xzarOcV5RSWk3LCVI8C', title: 'The Obsidian Sessions' },
   { id: '3184qyYgGnm8yBs6asYF5d', title: 'Golden Hour Transmissions' },
-  { id: '0G8WL3Q4cIEwzNgQl5Jw2f', title: 'Sacred Geometry Soundscapes' },
 ];
 
 export function MusicSection() {
@@ -69,10 +68,10 @@ export function MusicSection() {
         {/* View All Link */}
         <div className="text-center mt-10">
           <Link
-            to="/music"
+            to="/transmissions"
             className="inline-flex items-center gap-2 font-cinzel text-sm tracking-widest text-primary hover:opacity-70 transition-opacity"
           >
-            Explore All Music
+            Explore All Transmissions
             <span>→</span>
           </Link>
         </div>

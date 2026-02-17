@@ -5,12 +5,10 @@ import { cn } from '@/lib/utils';
 const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/canon', label: 'The Canon' },
-  { href: '/art', label: 'Art' },
-  { href: '/music', label: 'Music' },
   { href: '/transmissions', label: 'Transmissions' },
-  { href: '/writings', label: 'Writings' },
-  { href: '/books', label: 'Books' },
+  { href: '/echoverse', label: 'Echoverse' },
   { href: '/shop', label: 'Shop' },
+  { href: '/news', label: 'News' },
   { href: '/contact', label: 'Contact' },
 ];
 

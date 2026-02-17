@@ -4,21 +4,21 @@ import { ArrowRight } from 'lucide-react';
 const exploreTiles = [
   {
     title: 'The Canon',
-    description: 'Sacred texts and teachings',
+    description: 'Books, essays, and poetry',
     image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200&q=80',
     link: '/canon'
   },
   {
-    title: 'Art',
-    description: 'Visual meditations on form and void',
-    image: 'https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=1200&q=80',
-    link: '/art'
+    title: 'Transmissions',
+    description: 'Frequencies, teachings, and music',
+    image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1200&q=80',
+    link: '/transmissions'
   },
   {
-    title: 'Music',
-    description: 'Frequencies of transformation',
-    image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1200&q=80',
-    link: '/music'
+    title: 'Shop',
+    description: 'Art prints, objects, and apparel',
+    image: 'https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=1200&q=80',
+    link: '/shop'
   }
 ];
 

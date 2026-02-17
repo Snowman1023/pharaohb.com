@@ -20,7 +20,7 @@ export function Footer() {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
           {/* Main footer content */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12 mb-8 sm:mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
             {/* Brand */}
             <div className="text-center md:text-left">
               <Link to="/" className="font-cinzel text-xl text-gold-gradient">
@@ -31,33 +31,91 @@ export function Footer() {
               </p>
             </div>
 
-            {/* Quick Links */}
+            {/* Explore (footerNav) */}
             <div className="text-center md:text-left">
               <h4 className="font-cinzel text-sm tracking-wider text-foreground/80 mb-4">
                 Explore
               </h4>
               <div className="space-y-2">
+                <Link to="/about" className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors">
+                  About
+                </Link>
+                <Link to="/canon" className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors">
+                  The Canon
+                </Link>
                 <Link to="/transmissions" className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors">
                   Transmissions
                 </Link>
-                <Link to="/writings" className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Writings
-                </Link>
-                <Link to="/books" className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Books
+                <Link to="/echoverse" className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Echoverse
                 </Link>
                 <Link to="/shop" className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors">
                   Shop
                 </Link>
+                <Link to="/news" className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors">
+                  News
+                </Link>
+                <Link to="/contact" className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Contact
+                </Link>
               </div>
             </div>
 
-            {/* Connect */}
+            {/* Realms (externalLinks) */}
+            <div className="text-center md:text-left">
+              <h4 className="font-cinzel text-sm tracking-wider text-foreground/80 mb-4">
+                Realms
+              </h4>
+              <div className="space-y-2">
+                <a
+                  href="https://1111.live"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  1111.live
+                </a>
+                <a
+                  href="https://humanityimagined.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Humanity Imagined
+                </a>
+                <a
+                  href="https://echoverse.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Echoverse
+                </a>
+              </div>
+            </div>
+
+            {/* Connect (socialLinks) */}
             <div className="text-center md:text-left">
               <h4 className="font-cinzel text-sm tracking-wider text-foreground/80 mb-4">
                 Connect
               </h4>
               <div className="space-y-2">
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Instagram
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Twitter
+                </a>
                 <a
                   href="https://youtube.com/@PharaohB-1111"
                   target="_blank"
@@ -74,17 +132,6 @@ export function Footer() {
                 >
                   TikTok
                 </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Instagram
-                </a>
-                <Link to="/contact" className="block font-cormorant text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Contact
-                </Link>
               </div>
             </div>
           </div>
@@ -117,7 +164,7 @@ export function Footer() {
               </Link>
             </div>
             <p className="font-cormorant text-xs text-muted-foreground">
-              © 2026 Pharaoh B. All rights reserved.
+              © 2024 Pharaoh B. All Rights Reserved.
             </p>
             <img src={brandSymbol} alt="Pharaoh B. Symbol" className="w-8 h-8 object-contain" />
           </div>

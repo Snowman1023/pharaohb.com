@@ -1,10 +1,9 @@
-import { books } from './books';
 import { artworks } from './artworks';
 
 export interface Product {
   id: string;
   name: string;
-  category: 'Books' | 'Art' | 'Objects' | 'Apparel';
+  category: 'Art Prints' | 'Objects' | 'Apparel';
   price: string;
   image: string;
   description: string;
@@ -79,22 +78,11 @@ const objectProducts: Product[] = [
   }
 ];
 
-// Convert books to products
-const bookProducts: Product[] = books.map(book => ({
-  id: `book-${book.slug}`,
-  name: book.title,
-  category: 'Books' as const,
-  price: book.price,
-  image: book.image,
-  description: book.description.slice(0, 100) + '...',
-  link: `/canon/${book.slug}`
-}));
-
-// Convert select artworks to products
-const artProducts: Product[] = artworks.slice(0, 4).map(art => ({
+// Convert all artworks to products
+const artProducts: Product[] = artworks.map(art => ({
   id: `art-${art.slug}`,
   name: art.title,
-  category: 'Art' as const,
+  category: 'Art Prints' as const,
   price: art.formats[0].price,
   image: art.image,
   description: art.description,
@@ -102,7 +90,6 @@ const artProducts: Product[] = artworks.slice(0, 4).map(art => ({
 }));
 
 export const products: Product[] = [
-  ...bookProducts,
   ...artProducts,
   ...objectProducts
 ];

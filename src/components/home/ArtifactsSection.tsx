@@ -52,7 +52,7 @@ export function ArtifactsSection() {
           {featuredPoems.map((poem) => (
             <Link
               key={poem.id}
-              to="/writings"
+              to="/canon"
               className="group relative overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-500"
             >
               {/* Image */}
@@ -85,10 +85,10 @@ export function ArtifactsSection() {
         {/* View All Link */}
         <div className="text-center mt-10">
           <Link
-            to="/writings"
+            to="/canon"
             className="inline-flex items-center gap-2 font-cinzel text-sm tracking-widest text-primary hover:opacity-70 transition-opacity"
           >
-            View All Writings
+            View All Canon
             <span>→</span>
           </Link>
         </div>
